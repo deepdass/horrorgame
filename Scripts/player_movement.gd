@@ -1,14 +1,11 @@
 extends CharacterBody3D
 
 
-const SPEED = 5.0
+const SPEED = 3
 const SPRINTSPEED = 7.0
 const JUMP_VELOCITY = 3
 
 @onready var camerarig: Node3D = $camerarig
-
-func _ready() -> void:
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.

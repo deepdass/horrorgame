@@ -1,0 +1,38 @@
+[gd_scene load_steps=9 format=3 uid="uid://brc7a5wrmkv1k"]
+
+[ext_resource type="PackedScene" uid="uid://0mgja4bkltcp" path="res://assets/3D/pyramid-head/source/Pyramid Head - Silent Hill 2.fbx" id="1_13hwc"]
+[ext_resource type="Shader" uid="uid://b84qvs26oyhtn" path="res://Shaders/ps1_jitter.gdshader" id="2_q0572"]
+[ext_resource type="Texture2D" uid="uid://dncggyfdcubk2" path="res://assets/3D/pyramid-head/textures/pyramide_arm_d.png" id="3_oo5ue"]
+[ext_resource type="Texture2D" uid="uid://bai1vg0sc2chi" path="res://assets/3D/pyramid-head/textures/pyramide_body_d.png" id="4_fvbmo"]
+[ext_resource type="Texture2D" uid="uid://cg01xfcs8fxav" path="res://assets/3D/pyramid-head/textures/pyramide_head_d.png" id="5_icqy0"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yy3la"]
+render_priority = 0
+shader = ExtResource("2_q0572")
+shader_parameter/base_tex = ExtResource("3_oo5ue")
+shader_parameter/texture_tile = Vector2(1, 1)
+shader_parameter/snap_enabled = true
+shader_parameter/snap_res = 110.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_11312"]
+render_priority = 0
+shader = ExtResource("2_q0572")
+shader_parameter/base_tex = ExtResource("4_fvbmo")
+shader_parameter/texture_tile = Vector2(1, 1)
+shader_parameter/snap_enabled = true
+shader_parameter/snap_res = 110.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6aqlo"]
+render_priority = 0
+shader = ExtResource("2_q0572")
+shader_parameter/base_tex = ExtResource("5_icqy0")
+shader_parameter/texture_tile = Vector2(1, 1)
+shader_parameter/snap_enabled = true
+shader_parameter/snap_res = 110.0
+
+[node name="Pyramid Head - Silent Hill 2" instance=ExtResource("1_13hwc")]
+
+[node name="pyramid head" parent="." index="0"]
+surface_material_override/0 = SubResource("ShaderMaterial_yy3la")
+surface_material_override/1 = SubResource("ShaderMaterial_11312")
+surface_material_override/2 = SubResource("ShaderMaterial_6aqlo")
