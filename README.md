@@ -5,7 +5,7 @@ A retro horror game with unique visuals thats use shader techanics like Posteriz
 
 ## progress 
 
-recent - added a basic movement system and the ps1 look and some test builds
+recent - added a basic movement system and the ps1 look and some test building
 
 https://github.com/user-attachments/assets/1d13310a-2786-470e-be9d-f18a18d7f4cb
 
