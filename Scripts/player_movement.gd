@@ -2,7 +2,7 @@ extends CharacterBody3D
 
 
 const SPEED = 3
-const SPRINTSPEED = 7.0
+const SPRINTSPEED = 5.5
 const JUMP_VELOCITY = 3
 
 @onready var camerarig: Node3D = $camerarig

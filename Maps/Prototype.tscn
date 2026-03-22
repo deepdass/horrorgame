@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=4 uid="uid://brc27vrw3vk6w"]
+[gd_scene load_steps=27 format=4 uid="uid://brc27vrw3vk6w"]
 
 [ext_resource type="Script" uid="uid://b3v5i62lcncdb" path="res://Scripts/managers/gamemode.gd" id="1_ageuk"]
 [ext_resource type="Script" uid="uid://4g5aftkmv1ur" path="res://Scripts/player_movement.gd" id="1_dntxa"]
@@ -6,9 +6,11 @@
 [ext_resource type="Texture2D" uid="uid://dcnqtvue7y7o2" path="res://assets/3D/human/textures/DiffuseMap.png" id="4_ageuk"]
 [ext_resource type="ArrayMesh" uid="uid://bh658wc82a6me" path="res://assets/3D/human/source/Character.obj" id="5_hgj1k"]
 [ext_resource type="Shader" uid="uid://b84qvs26oyhtn" path="res://Shaders/ps1_jitter.gdshader" id="5_yi55j"]
+[ext_resource type="PackedScene" uid="uid://be7ebd8qy0bm8" path="res://assets/env/silent_hill_3_cathedral/scene.gltf" id="6_ao1rr"]
 [ext_resource type="Shader" uid="uid://bptckj33b1dsn" path="res://Shaders/ps1look.gdshader" id="7_hgj1k"]
 [ext_resource type="PackedScene" uid="uid://brc7a5wrmkv1k" path="res://assets/3D/pyramid-head/pyramid_head.tscn" id="8_yi55j"]
 [ext_resource type="Texture2D" uid="uid://d2i54e4j0mt64" path="res://assets/3D/ps1-chicken/textures/Chicken1.TGA.png" id="9_mralm"]
+[ext_resource type="PackedScene" uid="uid://lqwtn0sh4nt8" path="res://assets/env/old_bar/scene.gltf" id="10_32ben"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_dntxa"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -152,7 +154,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 [node name="env" type="Node3D" parent="."]
 
 [node name="floor" type="CSGMesh3D" parent="env"]
-transform = Transform3D(43.790726, 0, 0, 0, 0.041186154, 0, 0, 0, 40.362144, 0.0010323524, 0.013698101, 0.0047955513)
+transform = Transform3D(100.71867, 0, 0, 0, 0.041186154, 0, 0, 0, 87.18223, 0.0010323524, -0.16412926, 0.0047955513)
 mesh = SubResource("BoxMesh_nrr81")
 material = SubResource("ShaderMaterial_32ben")
 
@@ -163,26 +165,33 @@ transform = Transform3D(1, 0, 0, 0, 1.0000001, 0, 0, 0, 1.0000002, 0, 0, 0)
 shape = SubResource("ConcavePolygonShape3D_nrr81")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="env"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 1.6514893, -0.8868408)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22, 1.6514893, -3.8868408)
 size = Vector3(1, 3.401123, 6)
 material = SubResource("ShaderMaterial_ao1rr")
 
-[node name="ps1 models" type="Node3D" parent="."]
+[node name="cathedral" parent="env" instance=ExtResource("6_ao1rr")]
+transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 16.53623, 0, 4)
 
-[node name="human" type="MeshInstance3D" parent="ps1 models"]
+[node name="ps1_models" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 1)
+
+[node name="human" type="MeshInstance3D" parent="ps1_models"]
 transform = Transform3D(-0.2588191, 0, -0.96592575, 0, 1, 0, 0.96592575, 0, -0.2588191, 5.3891106, 0.020593079, -1.5618207)
 material_override = SubResource("ShaderMaterial_mralm")
 mesh = ExtResource("5_hgj1k")
 skeleton = NodePath("../..")
 
-[node name="Pyramid Head - Silent Hill 2" parent="ps1 models" instance=ExtResource("8_yi55j")]
-transform = Transform3D(-1.5, 0, 2.2649371e-07, 0, 1.5, 0, -2.2649371e-07, 0, -1.5, 3.91013, 0.034291178, -0.85105544)
+[node name="Pyramid Head - Silent Hill 2" parent="ps1_models" instance=ExtResource("8_yi55j")]
+transform = Transform3D(-1.3, 0, 1.9629454e-07, 0, 1.3, 0, -1.9629454e-07, 0, -1.3, 3.91013, 0.034291178, -0.85105544)
 
-[node name="TheChicken" type="Node3D" parent="ps1 models"]
+[node name="TheChicken" type="Node3D" parent="ps1_models"]
 transform = Transform3D(-0.96891, 0, 2.304607, 0, 2.5, 0, -2.304607, 0, -0.96891, 4.6855264, 0.086259514, -1.5598943)
 
-[node name="Chicken" type="MeshInstance3D" parent="ps1 models/TheChicken"]
+[node name="Chicken" type="MeshInstance3D" parent="ps1_models/TheChicken"]
 transform = Transform3D(100, 0, 0, 0, -1.1920929e-05, 99.99999, 0, -99.99999, -1.1920929e-05, 0, 0, 0)
 material_override = SubResource("ShaderMaterial_rfg7q")
 mesh = SubResource("ArrayMesh_ybswy")
 skeleton = NodePath("")
+
+[node name="bar" parent="." instance=ExtResource("10_32ben")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.65812, 0.13830185, -3.004013)

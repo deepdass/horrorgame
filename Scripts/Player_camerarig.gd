@@ -5,8 +5,6 @@ var Sensitivity = .0017
 
 @onready var camera_3d: Camera3D = $Camera3D
 
-
-
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		self.rotate_y(event.relative.x * -Sensitivity)

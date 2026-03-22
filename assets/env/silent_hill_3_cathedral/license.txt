@@ -1,0 +1,11 @@
+Model Information:
+* title:	Silent Hill 3 cathedral
+* source:	https://sketchfab.com/3d-models/silent-hill-3-cathedral-032d086b265c492eac3f92eb427cb60e
+* author:	Katydid (https://sketchfab.com/Katydid.)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Silent Hill 3 cathedral" (https://sketchfab.com/3d-models/silent-hill-3-cathedral-032d086b265c492eac3f92eb427cb60e) by Katydid (https://sketchfab.com/Katydid.) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

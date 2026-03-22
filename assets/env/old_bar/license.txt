@@ -1,0 +1,11 @@
+Model Information:
+* title:	Silent Hill Old bar
+* source:	https://sketchfab.com/3d-models/silent-hill-old-bar-938cadc8f61f43f0b8d1f2a195dc29a2
+* author:	Katydid (https://sketchfab.com/Katydid.)
+
+Model License:
+* license type:	CC-BY-NC-4.0 (http://creativecommons.org/licenses/by-nc/4.0/)
+* requirements:	Author must be credited. No commercial use.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Silent Hill Old bar" (https://sketchfab.com/3d-models/silent-hill-old-bar-938cadc8f61f43f0b8d1f2a195dc29a2) by Katydid (https://sketchfab.com/Katydid.) licensed under CC-BY-NC-4.0 (http://creativecommons.org/licenses/by-nc/4.0/)
