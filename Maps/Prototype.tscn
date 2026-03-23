@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=4 uid="uid://brc27vrw3vk6w"]
+[gd_scene load_steps=29 format=4 uid="uid://brc27vrw3vk6w"]
 
 [ext_resource type="Script" uid="uid://b3v5i62lcncdb" path="res://Scripts/managers/gamemode.gd" id="1_ageuk"]
 [ext_resource type="Script" uid="uid://4g5aftkmv1ur" path="res://Scripts/player_movement.gd" id="1_dntxa"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://brc7a5wrmkv1k" path="res://assets/3D/pyramid-head/pyramid_head.tscn" id="8_yi55j"]
 [ext_resource type="Texture2D" uid="uid://d2i54e4j0mt64" path="res://assets/3D/ps1-chicken/textures/Chicken1.TGA.png" id="9_mralm"]
 [ext_resource type="PackedScene" uid="uid://lqwtn0sh4nt8" path="res://assets/env/old_bar/scene.gltf" id="10_32ben"]
+[ext_resource type="PackedScene" uid="uid://t5r7anp4ftyv" path="res://assets/3D/player/school_girl.glb" id="12_rfg7q"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_dntxa"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -203,3 +204,6 @@ script = ExtResource("2_nrr81")
 
 [node name="Camera3D" type="Camera3D" parent="camerarig"]
 transform = Transform3D(1, 0, 0, 0, 0.8660254, 0.5, 0, -0.5, 0.8660254, 0, 2, 0)
+
+[node name="school_girl" parent="." instance=ExtResource("12_rfg7q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7577184, -0.13283658, -2.3283672)

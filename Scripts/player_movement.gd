@@ -2,10 +2,13 @@ extends CharacterBody3D
 
 
 const SPEED = 100
-const SPRINTSPEED = 200
+const SPRINTSPEED = 220
 const JUMP_VELOCITY = 3
 
-const turn_speed = 180
+const turn_speed = 240
+const quick_turn_time = 0.3
+
+var is_quick_turning = false
 
 func turn(delta):
 	var turn_dir = Input.get_axis("turn_left", "turn_right")
@@ -29,7 +32,7 @@ func walk(delta):
 	else:
 		velocity.x = 0.0
 		velocity.z = 0.0
-	
+
  
 @onready var camerarig: Node3D = $camerarig
 
@@ -37,6 +40,10 @@ func _physics_process(delta: float) -> void:
 	
 	turn(delta)
 	walk(delta)
+	
+	if is_quick_turning:
+		velocity.x = 0
+		velocity.z = 0
 	
 	# Add the gravity.
 	if not is_on_floor():
@@ -46,3 +53,15 @@ func _physics_process(delta: float) -> void:
 	##
 	
 	move_and_slide()
+	
+func _unhandled_input(_event: InputEvent) -> void:
+	if Input.is_action_just_pressed("quick_turn") and not is_quick_turning:
+		is_quick_turning = true
+		var target_y_rotation := rotation.y + PI
+		var tween := create_tween() as Tween
+		tween.tween_property(self, "rotation:y", target_y_rotation, quick_turn_time)
+		
+		tween.finished.connect(func(): is_quick_turning = false )
+		
+		
+		
