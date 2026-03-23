@@ -11,9 +11,7 @@ var is_quick_turning = false
 
 @onready var animation_tree: AnimationTree = $school_girl/AnimationTree
 var velo_z 
-var walking = false
 var running = false
-var is_walking_backward = false
 
 func _ready() -> void:
 	animation_tree.active = true
@@ -36,26 +34,16 @@ func walk():
 			velocity.x = direction.x * SPRINTSPEED 
 			velocity.z = direction.z * SPRINTSPEED
 			running = true
-			walking = false
 		else:
 			velocity.x = direction.x * SPEED
 			velocity.z = direction.z * SPEED
-			if is_walking_backward:
-				walking = false
-			else:
-				walking = true
 			running = false
 	else:
 		velocity.x = 0.0
 		velocity.z = 0.0
-		walking = false
 		running = false
-		
-	if velo_z > 0:
-		is_walking_backward = true
-	else: 
-		is_walking_backward = false
 	
+
 
 
 func _physics_process(delta: float) -> void:
@@ -75,11 +63,12 @@ func _physics_process(delta: float) -> void:
 	##
 	
 	move_and_slide()
-	
-	animation_tree.set("parameters/conditions/idle", velo_z == 0)
-	animation_tree.set("parameters/conditions/is_walking", walking)
-	animation_tree.set("parameters/conditions/is_running", running)
-	animation_tree.set("parameters/conditions/is_walking_backward", is_walking_backward)
+	var input_dir = Input.get_axis("forward", "backward")
+	print(input_dir)
+	animation_tree.set("parameters/conditions/idle", velocity == Vector3.ZERO)
+	animation_tree.set("parameters/conditions/is_walking", input_dir < 0 and !running)
+	animation_tree.set("parameters/conditions/is_running", input_dir < 0 and running)
+	animation_tree.set("parameters/conditions/is_walking_backward", input_dir > 0)
 	
 func _unhandled_input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("quick_turn") and not is_quick_turning:
