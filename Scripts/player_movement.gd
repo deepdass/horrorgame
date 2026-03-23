@@ -1,21 +1,22 @@
 extends CharacterBody3D
 
 
-const SPEED = 1.2
-const SPRINTSPEED = 3.5
-const JUMP_VELOCITY = 3
+const SPEED : float = 1.2
+const SPRINTSPEED : float = 3.5
+const JUMP_VELOCITY : float = 3.0
 
-const turn_speed = 240
-const quick_turn_time = 0.4
-var is_quick_turning = false
+const turn_speed : float = 240.0
+const quick_turn_time : float = 0.4
+var is_quick_turning : bool = false
 
 @onready var animation_tree: AnimationTree = $school_girl/AnimationTree
 var animation_state_machine_playback : AnimationNodeStateMachinePlayback
-var running = false
+var running : bool = false
 
 func _ready() -> void:
 	animation_state_machine_playback = animation_tree.get("parameters/playback")
 	animation_tree.active = true
+	
 
 func turn(delta):
 	var turn_dir = Input.get_axis("turn_left", "turn_right")
@@ -24,6 +25,17 @@ func turn(delta):
 		rotation_degrees.y -= turn_dir * turn_speed * delta
 	else: 
 		rotation_degrees.y += turn_dir * turn_speed * delta
+	
+func _unhandled_input(_event: InputEvent) -> void:
+	if Input.is_action_just_pressed("quick_turn") and not is_quick_turning:
+		is_quick_turning = true
+		var target_y_rotation := rotation.y + PI
+		var tween := create_tween() as Tween
+		tween.tween_property(self, "rotation:y", target_y_rotation, quick_turn_time)
+		
+		tween.finished.connect(func(): is_quick_turning = false )
+		
+	
 
 func walk():
 	var input_dir = Input.get_axis("forward", "backward")
@@ -50,7 +62,6 @@ func walk():
 		velocity.z = 0.0
 		check_correct_anim("idle")
 		running = false
-	
 
 func check_correct_anim(anim):
 	if !(animation_state_machine_playback.get_current_node() == anim):
@@ -65,28 +76,10 @@ func _physics_process(delta: float) -> void:
 		velocity.x = 0
 		velocity.z = 0
 	
-	# Add the gravity.
+	## Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 	if Input.is_action_just_pressed("Jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 	##
-	
 	move_and_slide()
-	
-	var input_dir = Input.get_axis("forward", "backward")
-	animation_tree.set("parameters/conditions/idle", velocity == Vector3.ZERO)
-	animation_tree.set("parameters/conditions/is_walking", input_dir < 0 and !running)
-	animation_tree.set("parameters/conditions/is_running", input_dir < 0 and running)
-	animation_tree.set("parameters/conditions/is_walking_backward", input_dir > 0)
-	
-func _unhandled_input(_event: InputEvent) -> void:
-	if Input.is_action_just_pressed("quick_turn") and not is_quick_turning:
-		is_quick_turning = true
-		var target_y_rotation := rotation.y + PI
-		var tween := create_tween() as Tween
-		tween.tween_property(self, "rotation:y", target_y_rotation, quick_turn_time)
-		
-		tween.finished.connect(func(): is_quick_turning = false )
-		
-	
