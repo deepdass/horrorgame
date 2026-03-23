@@ -10,10 +10,11 @@ const quick_turn_time = 0.4
 var is_quick_turning = false
 
 @onready var animation_tree: AnimationTree = $school_girl/AnimationTree
-var velo_z 
+var animation_state_machine_playback : AnimationNodeStateMachinePlayback
 var running = false
 
 func _ready() -> void:
+	animation_state_machine_playback = animation_tree.get("parameters/playback")
 	animation_tree.active = true
 
 func turn(delta):
@@ -27,24 +28,33 @@ func turn(delta):
 func walk():
 	var input_dir = Input.get_axis("forward", "backward")
 	var direction = basis.z * input_dir
-	velo_z = (transform.basis.inverse() * velocity).z
-		
-	if input_dir != 0:
-		if Input.is_action_pressed("Sprint") and velo_z < 0 :
+	
+	if input_dir > 0:
+		velocity.x = direction.x * SPEED
+		velocity.z = direction.z * SPEED
+		check_correct_anim("walk_backward")
+	
+	elif input_dir != 0:
+		if Input.is_action_pressed("Sprint"):
 			velocity.x = direction.x * SPRINTSPEED 
 			velocity.z = direction.z * SPRINTSPEED
+			check_correct_anim("run")
 			running = true
 		else:
 			velocity.x = direction.x * SPEED
 			velocity.z = direction.z * SPEED
+			check_correct_anim("walk")
 			running = false
 	else:
 		velocity.x = 0.0
 		velocity.z = 0.0
+		check_correct_anim("idle")
 		running = false
 	
 
-
+func check_correct_anim(anim):
+	if !(animation_state_machine_playback.get_current_node() == anim):
+			animation_state_machine_playback.travel(anim)
 
 func _physics_process(delta: float) -> void:
 	
@@ -63,8 +73,8 @@ func _physics_process(delta: float) -> void:
 	##
 	
 	move_and_slide()
+	
 	var input_dir = Input.get_axis("forward", "backward")
-	print(input_dir)
 	animation_tree.set("parameters/conditions/idle", velocity == Vector3.ZERO)
 	animation_tree.set("parameters/conditions/is_walking", input_dir < 0 and !running)
 	animation_tree.set("parameters/conditions/is_running", input_dir < 0 and running)
