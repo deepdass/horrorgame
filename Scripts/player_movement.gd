@@ -6,7 +6,7 @@ const SPRINTSPEED = 220
 const JUMP_VELOCITY = 3
 
 const turn_speed = 240
-const quick_turn_time = 0.3
+const quick_turn_time = 0.4
 
 var is_quick_turning = false
 
