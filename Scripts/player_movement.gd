@@ -1,14 +1,21 @@
 extends CharacterBody3D
 
 
-const SPEED = 100
-const SPRINTSPEED = 220
+const SPEED = 1.2
+const SPRINTSPEED = 3.5
 const JUMP_VELOCITY = 3
 
 const turn_speed = 240
 const quick_turn_time = 0.4
-
 var is_quick_turning = false
+
+@onready var animation_tree: AnimationTree = $school_girl/AnimationTree
+var walking = false
+var running = false
+var is_walking_backward = false
+
+func _ready() -> void:
+	animation_tree.active = true
 
 func turn(delta):
 	var turn_dir = Input.get_axis("turn_left", "turn_right")
@@ -18,28 +25,41 @@ func turn(delta):
 	else: 
 		rotation_degrees.y += turn_dir * turn_speed * delta
 
-func walk(delta):
+func walk():
 	var input_dir = Input.get_axis("forward", "backward")
 	var direction = basis.z * input_dir
-	if direction:
-		if Input.is_action_pressed("Sprint") and input_dir != 1:
-			velocity.x = direction.x * SPRINTSPEED * delta
-			velocity.z = direction.z * SPRINTSPEED * delta
-		else:
-			velocity.x = direction.x * SPEED * delta
-			velocity.z = direction.z * SPEED * delta
 		
+	if input_dir != 0:
+		if Input.is_action_pressed("Sprint") and (transform.basis.inverse() * velocity).z < 0 :
+			velocity.x = direction.x * SPRINTSPEED 
+			velocity.z = direction.z * SPRINTSPEED
+			running = true
+			walking = false
+		else:
+			velocity.x = direction.x * SPEED
+			velocity.z = direction.z * SPEED
+			if is_walking_backward:
+				walking = false
+			else:
+				walking = true
+			running = false
 	else:
 		velocity.x = 0.0
 		velocity.z = 0.0
+		walking = false
+		running = false
+		
+	if (transform.basis.inverse() * velocity).z > 0:
+		is_walking_backward = true
+	else: 
+		is_walking_backward = false
+		
 
- 
-@onready var camerarig: Node3D = $camerarig
 
 func _physics_process(delta: float) -> void:
 	
 	turn(delta)
-	walk(delta)
+	walk()
 	
 	if is_quick_turning:
 		velocity.x = 0
@@ -51,6 +71,12 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("Jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 	##
+	
+	animation_tree.set("parameters/conditions/idle", !walking and !running and !is_walking_backward)
+	animation_tree.set("parameters/conditions/is_walking", walking)
+	animation_tree.set("parameters/conditions/is_running", running)
+	animation_tree.set("parameters/conditions/is_walking_backward", is_walking_backward)
+	
 	
 	move_and_slide()
 	
