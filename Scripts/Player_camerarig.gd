@@ -10,4 +10,3 @@ func _unhandled_input(event: InputEvent) -> void:
 		self.rotate_y(event.relative.x * -Sensitivity)
 		camera_3d.rotate_x(event.relative.y * -Sensitivity)
 		
-		camera_3d.rotation.x = clamp(camera_3d.rotation.x, deg_to_rad(-60), deg_to_rad(90))
