@@ -28,4 +28,5 @@ void fragment() {
 	vec4 base = texture(base_tex,UV * texture_tile);
 	ALBEDO = base.rgb;
 	ALPHA = base.a;
+	
 }
