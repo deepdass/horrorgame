@@ -1,4 +1,4 @@
-extends CharacterBody3D
+class_name Player extends CharacterBody3D
 
 
 const SPEED : float = 1.2
@@ -32,6 +32,7 @@ func _unhandled_input(_event: InputEvent) -> void:
 		var target_y_rotation := rotation.y + PI
 		var tween := create_tween() as Tween
 		tween.tween_property(self, "rotation:y", target_y_rotation, quick_turn_time)
+		check_correct_anim("walk")
 		
 		tween.finished.connect(func(): is_quick_turning = false )
 		

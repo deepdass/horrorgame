@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://dn6hk1omiou1y"]
+
+[ext_resource type="Script" uid="uid://ddpjrv8sd3jb2" path="res://Scripts/managers/fixed_cam.gd" id="1_s2lxb"]
+
+[node name="fixed_cam" type="Camera3D" groups=["Cameras"]]
+transform = Transform3D(1, 0, 0, 0, 0.8660254, 0.5, 0, -0.5, 0.8660254, 0, 0, 0)
+script = ExtResource("1_s2lxb")
+
+[node name="trigger" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.3841858e-07, -1.1920929e-07)
+top_level = true
+collision_layer = 0
+collision_mask = 129
+
+[connection signal="body_entered" from="trigger" to="." method="_on_trigger_body_entered"]
