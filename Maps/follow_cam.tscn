@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://cmtcx2ncr0dnc"]
+
+[ext_resource type="Script" uid="uid://5gsyyei383cj" path="res://Scripts/follow_cam.gd" id="1_uyj1s"]
+[ext_resource type="PackedScene" uid="uid://dn6hk1omiou1y" path="res://Maps/fixed_cam.tscn" id="2_6h2pk"]
+
+[sub_resource type="Curve3D" id="Curve3D_nnnlr"]
+
+[node name="follow_cam" type="Path3D"]
+curve = SubResource("Curve3D_nnnlr")
+script = ExtResource("1_uyj1s")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="."]
+loop = false
+
+[node name="fixed_cam" parent="PathFollow3D" instance=ExtResource("2_6h2pk")]
