@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=4 uid="uid://brc27vrw3vk6w"]
+[gd_scene load_steps=34 format=4 uid="uid://brc27vrw3vk6w"]
 
 [ext_resource type="Script" uid="uid://b3v5i62lcncdb" path="res://Scripts/managers/gamemode.gd" id="1_ageuk"]
 [ext_resource type="Script" uid="uid://4g5aftkmv1ur" path="res://Scripts/player_movement.gd" id="1_dntxa"]
@@ -57,6 +57,12 @@ size = Vector3(21.231018, 0.448143, 37.356567)
 [sub_resource type="BoxShape3D" id="BoxShape3D_oc6tg"]
 size = Vector3(21.231018, 0.4292717, 25.381042)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_6owcg"]
+size = Vector3(2.55542, 0.4292717, 7.5776367)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_f81uu"]
+size = Vector3(1.2074585, 0.8258419, 0.5703125)
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_mralm"]
 render_priority = 0
 shader = ExtResource("5_yi55j")
@@ -113,7 +119,7 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_c6tgc")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rfg7q"]
-size = Vector3(5, 1, 1)
+size = Vector3(5, 1, 0.6915283)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4d1mg"]
 size = Vector3(7, 1, 1)
@@ -122,7 +128,7 @@ size = Vector3(7, 1, 1)
 size = Vector3(7, 1, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_stmjy"]
-size = Vector3(1, 1, 1.3950195)
+size = Vector3(0.79119873, 1, 0.6633301)
 
 [node name="world" type="Node3D"]
 
@@ -185,11 +191,32 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.82925415, -0.2759285, -6.8
 shape = SubResource("BoxShape3D_tllh5")
 
 [node name="StaticBody3D2" type="StaticBody3D" parent="env"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.14879256, -12)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.085799634, -12)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="env/StaticBody3D2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.82925415, -0.28536415, -12.878326)
 shape = SubResource("BoxShape3D_oc6tg")
+
+[node name="StaticBody3D3" type="StaticBody3D" parent="env"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0857997, -5)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="env/StaticBody3D3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5148315, -0.65811276, -1.7301178)
+shape = SubResource("BoxShape3D_6owcg")
+
+[node name="StaticBody3D4" type="StaticBody3D" parent="env"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.17918, 1.0857997, -5)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="env/StaticBody3D4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5148315, -0.65811276, -1.7301178)
+shape = SubResource("BoxShape3D_6owcg")
+
+[node name="StaticBody3D5" type="StaticBody3D" parent="env"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9241438, 1.0857997, -11)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="env/StaticBody3D5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.832489, -0.39616573, -1.7621002)
+shape = SubResource("BoxShape3D_f81uu")
 
 [node name="ps1_models" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 1)
@@ -216,13 +243,14 @@ skeleton = NodePath("")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0000002, -13.783042)
 
 [node name="fixed_cam" parent="all cams" instance=ExtResource("12_rfg7q")]
-transform = Transform3D(1, 0, 0, 0, 0.8775398, 0.4795038, 0, -0.4795038, 0.8775398, 0, 1.9399998, 15.209042)
+transform = Transform3D(1, 0, 0, 0, 0.8775398, 0.4795038, 0, -0.4795038, 0.8775398, 0, 1.9399998, 15.209041)
+follow_player = true
 
 [node name="trigger" parent="all cams/fixed_cam" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.0000002, 0.9999999)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="all cams/fixed_cam/trigger" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, -1.9999999)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, -3.0829818)
 shape = SubResource("BoxShape3D_rfg7q")
 
 [node name="fixed_cam2" parent="all cams" instance=ExtResource("12_rfg7q")]
@@ -241,7 +269,7 @@ transform = Transform3D(-0.5161752, 0.47527334, -0.71251553, 0, 0.8319086, 0.554
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.3841858e-07, -11)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="all cams/fixed_cam3/trigger" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0.7497339)
 shape = SubResource("BoxShape3D_7buel")
 
 [node name="fixed_cam4" parent="all cams" instance=ExtResource("12_rfg7q")]
@@ -251,7 +279,7 @@ transform = Transform3D(-0.98272294, 0.14323375, -0.11721659, 0, 0.6333198, 0.77
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.3841858e-07, -13)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="all cams/fixed_cam4/trigger" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -0.78304195)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.07443237, 1, -0.41719723)
 shape = SubResource("BoxShape3D_stmjy")
 
 [editable path="all cams/fixed_cam"]

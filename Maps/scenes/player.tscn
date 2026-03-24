@@ -3722,7 +3722,6 @@ radius = 0.2163086
 height = 1.800293
 
 [sub_resource type="SeparationRayShape3D" id="SeparationRayShape3D_q7435"]
-margin = 0.1
 length = 0.5
 
 [node name="player" type="CharacterBody3D"]
@@ -4101,5 +4100,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.90657055, 0)
 shape = SubResource("CapsuleShape3D_rfg7q")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, -0.25)
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.25, -0.25)
 shape = SubResource("SeparationRayShape3D_q7435")
