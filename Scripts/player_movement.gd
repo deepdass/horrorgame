@@ -1,7 +1,7 @@
 class_name Player extends CharacterBody3D
 
 
-const SPEED : float = 1.2
+const SPEED : float = 1.4
 const SPRINTSPEED : float = 3.5
 const JUMP_VELOCITY : float = 3.0
 
@@ -38,7 +38,7 @@ func _unhandled_input(_event: InputEvent) -> void:
 		
 	
 
-func walk():
+func walk(delta):
 	var input_dir = Input.get_axis("forward", "backward")
 	var direction = basis.z * input_dir
 	
@@ -59,8 +59,8 @@ func walk():
 			check_correct_anim("walk")
 			running = false
 	else:
-		velocity.x = 0.0
-		velocity.z = 0.0
+		velocity.x = lerp(velocity.x, direction.x * SPRINTSPEED, delta * 5)
+		velocity.z = lerp(velocity.z, direction.z * SPRINTSPEED, delta * 5)
 		check_correct_anim("idle")
 		running = false
 
@@ -71,7 +71,7 @@ func check_correct_anim(anim):
 func _physics_process(delta: float) -> void:
 	
 	turn(delta)
-	walk()
+	walk(delta)
 	
 	if is_quick_turning:
 		velocity.x = 0

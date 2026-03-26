@@ -8,17 +8,21 @@
 
 config_version=5
 
+[animation]
+
+compatibility/default_parent_skeleton_in_mesh_instance_3d=true
+
 [application]
 
 config/name="Horrorgame"
 run/main_scene="uid://brc27vrw3vk6w"
-config/features=PackedStringArray("4.5", "Forward Plus")
+config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
 [display]
 
-window/size/viewport_width=320
-window/size/viewport_height=240
+window/size/viewport_width=640
+window/size/viewport_height=480
 window/size/mode=2
 window/stretch/mode="viewport"
 

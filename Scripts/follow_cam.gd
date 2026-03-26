@@ -7,3 +7,4 @@ func _process(delta: float) -> void:
 	if fixed_cam.player != null:
 		var player_position = fixed_cam.player.global_position
 		path_follow_3d.progress = curve.get_closest_offset(player_position)
+	
