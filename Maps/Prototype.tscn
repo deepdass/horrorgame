@@ -11,9 +11,21 @@
 [ext_resource type="Shader" uid="uid://bptckj33b1dsn" path="res://Shaders/ps1look.gdshader" id="7_hgj1k"]
 [ext_resource type="PackedScene" uid="uid://brc7a5wrmkv1k" path="res://assets/3D/pyramid-head/pyramid_head.tscn" id="8_yi55j"]
 [ext_resource type="Texture2D" uid="uid://d2i54e4j0mt64" path="res://assets/3D/ps1-chicken/textures/Chicken1.TGA.png" id="9_mralm"]
+[ext_resource type="PackedScene" uid="uid://cl3mcntidv5hd" path="res://assets/env/cathedral/cathedral.glb" id="9_stmjy"]
 [ext_resource type="PackedScene" uid="uid://lqwtn0sh4nt8" path="res://assets/env/old_bar/scene.gltf" id="10_32ben"]
+[ext_resource type="Texture2D" uid="uid://d2iqmxd6ayl5c" path="res://assets/env/cathedral/cathedral_RefRep.png" id="10_tllh5"]
+[ext_resource type="Texture2D" uid="uid://bg6fafr2242t" path="res://assets/env/cathedral/cathedral_RefRep_1.png" id="11_qs540"]
 [ext_resource type="PackedScene" uid="uid://dn6hk1omiou1y" path="res://Maps/fixed_cam.tscn" id="12_rfg7q"]
+[ext_resource type="Texture2D" uid="uid://os3a6dtaftdi" path="res://assets/env/cathedral/cathedral_RefRep_2.png" id="12_yj5vl"]
+[ext_resource type="Texture2D" uid="uid://0gq8yh14haol" path="res://assets/env/cathedral/cathedral_RefRep_4.png" id="13_nyqs4"]
 [ext_resource type="Shader" uid="uid://bx6l8umgq38ax" path="res://Shaders/posterization.gdshader" id="14_7buel"]
+[ext_resource type="Texture2D" uid="uid://cr2mw62plr0b3" path="res://assets/env/cathedral/cathedral_RefRep_5.png" id="14_l0qwv"]
+[ext_resource type="Texture2D" uid="uid://oqbd11b5y8bx" path="res://assets/env/cathedral/cathedral_RefRep_6.png" id="15_8wxf2"]
+[ext_resource type="Texture2D" uid="uid://df03gcafokp1s" path="res://assets/env/cathedral/cathedral_RefRep_7.png" id="16_l88py"]
+[ext_resource type="Texture2D" uid="uid://kvwav8aky1f6" path="res://assets/env/cathedral/cathedral_RefRep_8.png" id="17_v7mc6"]
+[ext_resource type="Texture2D" uid="uid://bbeq4p1eklagt" path="res://assets/env/cathedral/cathedral_RefRep_9.png" id="18_5j2pe"]
+[ext_resource type="Texture2D" uid="uid://bj38eufeo8axi" path="res://assets/env/cathedral/cathedral_RefRep_10.png" id="19_y85mv"]
+[ext_resource type="Texture2D" uid="uid://c36uva33xp3jt" path="res://assets/env/cathedral/cathedral_RefRep_11.png" id="20_v612b"]
 
 [sub_resource type="VoxelGIData" id="VoxelGIData_4d1mg"]
 
@@ -56,6 +68,94 @@ size = Vector3(2.55542, 0.4292717, 7.5776367)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_f81uu"]
 size = Vector3(1.2074585, 0.8258419, 0.5703125)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fl6ej"]
+render_priority = 0
+shader = ExtResource("5_yi55j")
+shader_parameter/base_tex = ExtResource("10_tllh5")
+shader_parameter/texture_tile = Vector2(1, 1)
+shader_parameter/snap_enabled = false
+shader_parameter/snap_res = 256.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_speb1"]
+render_priority = 0
+shader = ExtResource("5_yi55j")
+shader_parameter/base_tex = ExtResource("11_qs540")
+shader_parameter/texture_tile = Vector2(1, 1)
+shader_parameter/snap_enabled = false
+shader_parameter/snap_res = 160.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_e7hr7"]
+render_priority = 0
+shader = ExtResource("5_yi55j")
+shader_parameter/base_tex = ExtResource("12_yj5vl")
+shader_parameter/texture_tile = Vector2(1, 1)
+shader_parameter/snap_enabled = false
+shader_parameter/snap_res = 256.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_b3old"]
+render_priority = 0
+shader = ExtResource("5_yi55j")
+shader_parameter/base_tex = ExtResource("13_nyqs4")
+shader_parameter/texture_tile = Vector2(1, 1)
+shader_parameter/snap_enabled = false
+shader_parameter/snap_res = 256.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yf3nn"]
+render_priority = 0
+shader = ExtResource("5_yi55j")
+shader_parameter/base_tex = ExtResource("14_l0qwv")
+shader_parameter/texture_tile = Vector2(1, 1)
+shader_parameter/snap_enabled = false
+shader_parameter/snap_res = 256.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ofrg3"]
+render_priority = 0
+shader = ExtResource("5_yi55j")
+shader_parameter/base_tex = ExtResource("15_8wxf2")
+shader_parameter/texture_tile = Vector2(1, 1)
+shader_parameter/snap_enabled = false
+shader_parameter/snap_res = 256.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tuo4h"]
+render_priority = 0
+shader = ExtResource("5_yi55j")
+shader_parameter/base_tex = ExtResource("16_l88py")
+shader_parameter/texture_tile = Vector2(1, 1)
+shader_parameter/snap_enabled = false
+shader_parameter/snap_res = 256.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dehne"]
+render_priority = 0
+shader = ExtResource("5_yi55j")
+shader_parameter/base_tex = ExtResource("17_v7mc6")
+shader_parameter/texture_tile = Vector2(1, 1)
+shader_parameter/snap_enabled = false
+shader_parameter/snap_res = 256.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1fpbf"]
+render_priority = 0
+shader = ExtResource("5_yi55j")
+shader_parameter/base_tex = ExtResource("18_5j2pe")
+shader_parameter/texture_tile = Vector2(1, 1)
+shader_parameter/snap_enabled = false
+shader_parameter/snap_res = 256.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5bfks"]
+render_priority = 0
+shader = ExtResource("5_yi55j")
+shader_parameter/base_tex = ExtResource("19_y85mv")
+shader_parameter/texture_tile = Vector2(1, 1)
+shader_parameter/snap_enabled = false
+shader_parameter/snap_res = 256.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_oc6tg"]
+render_priority = 0
+shader = ExtResource("5_yi55j")
+shader_parameter/base_tex = ExtResource("20_v612b")
+shader_parameter/texture_tile = Vector2(1, 1)
+shader_parameter/snap_enabled = false
+shader_parameter/snap_res = 256.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_mralm"]
 render_priority = 0
@@ -217,6 +317,7 @@ material = SubResource("ShaderMaterial_ao1rr")
 
 [node name="cathedral" parent="env" unique_id=1767185244 instance=ExtResource("6_ao1rr")]
 transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 16.954626, -0.11654663, 4)
+visible = false
 
 [node name="bar" parent="env" unique_id=376087219 instance=ExtResource("10_32ben")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.65812, 0.13830185, -3.004013)
@@ -258,6 +359,22 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9241438, 1.0857997, -11)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="env/StaticBody3D5" unique_id=1554938401]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.832489, -0.39616573, -1.7621002)
 shape = SubResource("BoxShape3D_f81uu")
+
+[node name="cathedral2" parent="env" unique_id=928190163 instance=ExtResource("9_stmjy")]
+transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 8.97179, -0.11654663, 2.2924912)
+
+[node name="gate" parent="env/cathedral2/Sketchfab_model/Collada visual scene group" parent_id_path=PackedInt32Array(928190163, 666556367) index="0" unique_id=572348236]
+surface_material_override/0 = SubResource("ShaderMaterial_fl6ej")
+surface_material_override/1 = SubResource("ShaderMaterial_speb1")
+surface_material_override/2 = SubResource("ShaderMaterial_e7hr7")
+surface_material_override/3 = SubResource("ShaderMaterial_b3old")
+surface_material_override/4 = SubResource("ShaderMaterial_yf3nn")
+surface_material_override/5 = SubResource("ShaderMaterial_ofrg3")
+surface_material_override/6 = SubResource("ShaderMaterial_tuo4h")
+surface_material_override/7 = SubResource("ShaderMaterial_dehne")
+surface_material_override/8 = SubResource("ShaderMaterial_1fpbf")
+surface_material_override/9 = SubResource("ShaderMaterial_5bfks")
+surface_material_override/10 = SubResource("ShaderMaterial_oc6tg")
 
 [node name="ps1_models" type="Node3D" parent="." unique_id=312117846]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 1)
@@ -328,6 +445,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.3841858e-07, -13)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.07443237, 1, -0.41719723)
 shape = SubResource("BoxShape3D_stmjy")
 
+[editable path="env/cathedral2"]
 [editable path="all cams/fixed_cam"]
 [editable path="all cams/fixed_cam2"]
 [editable path="all cams/fixed_cam3"]
