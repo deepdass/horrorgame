@@ -7,22 +7,39 @@ var player : Player = null
 var animation_state_machine_playback : AnimationNodeStateMachinePlayback
 
 const SPEED : float = 0.7
+const ATTACK_RANGE : float = 0.85
+
+var can_bite : bool = true
+var is_bitting : bool = false
+@onready var bite_timer: Timer = $bite_timer
+@onready var can_bite_timer: Timer = $can_bite_timer
 
 func _ready() -> void:
 	animation_state_machine_playback = animation_tree.get("parameters/playback")
 	animation_tree.active = true
-
-
-func _process(delta: float) -> void:
+	
+func _process(delta):
 	velocity = Vector3.ZERO
 	if player:
-		look_at(player. global_position)
-		navigation_agent_3d.set_target_position(player.global_position)
-		var next_nav_point = navigation_agent_3d.get_next_path_position()
-		velocity = (next_nav_point - global_position).normalized() * SPEED
-		check_correct_anim("walk")
+		var direction = player.global_position - global_position
+		direction.y = 0
+		var target_rotation = atan2(direction.x, direction.z)
+		rotation.y = lerp_angle(rotation.y, target_rotation, 5 * delta)
+		
+		if (Vector3(player.global_position.x, 0, player.global_position.z) - Vector3(global_position.x, 0, global_position.z)).length() < ATTACK_RANGE and can_bite and !is_bitting:
+			is_bitting = true
+			can_bite = false
+			check_correct_anim("bite")
+			player.dont_move()
+			bite_timer.start()
+		elif !is_bitting:
+			navigation_agent_3d.set_target_position(player.global_position)
+			var next_nav_point = navigation_agent_3d.get_next_path_position()
+			velocity = (next_nav_point - global_position).normalized() * SPEED
+			check_correct_anim("walk")
 	else:
 		check_correct_anim("idle1")
+
 	move_and_slide()
 
 
@@ -33,3 +50,14 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 func check_correct_anim(anim):
 	if !(animation_state_machine_playback.get_current_node() == anim):
 			animation_state_machine_playback.travel(anim)
+
+
+func _on_bite_timer_timeout() -> void:
+	player.set_dont_move_false()
+	is_bitting = false
+	var push_dir = (player.global_position - global_position).normalized()
+	player.velocity += push_dir * 3000
+	can_bite_timer.start()
+	
+func _on_can_bite_timer_timeout() -> void:
+	can_bite = true

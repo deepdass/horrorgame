@@ -1,8 +1,8 @@
 class_name Player extends CharacterBody3D
 
 
-const SPEED : float = 1.4
-const SPRINTSPEED : float = 3.5
+const SPEED : float = 1.3
+const SPRINTSPEED : float = 3.0
 const JUMP_VELOCITY : float = 3.0
 
 const turn_speed : float = 240.0
@@ -12,6 +12,8 @@ var is_quick_turning : bool = false
 @onready var animation_tree: AnimationTree = $school_girl/AnimationTree
 var animation_state_machine_playback : AnimationNodeStateMachinePlayback
 var running : bool = false
+
+var is_dont_move : bool = false
 
 func _ready() -> void:
 	animation_state_machine_playback = animation_tree.get("parameters/playback")
@@ -59,8 +61,8 @@ func walk(delta):
 			check_correct_anim("walk")
 			running = false
 	else:
-		velocity.x = lerp(velocity.x, direction.x * SPRINTSPEED, delta * 5)
-		velocity.z = lerp(velocity.z, direction.z * SPRINTSPEED, delta * 5)
+		velocity.x = 0
+		velocity.z = 0
 		check_correct_anim("idle")
 		running = false
 
@@ -69,6 +71,12 @@ func check_correct_anim(anim):
 			animation_state_machine_playback.travel(anim)
 
 func _physics_process(delta: float) -> void:
+	
+	if is_dont_move:
+		velocity = Vector3.ZERO
+		check_correct_anim("idle")
+		move_and_slide()
+		return
 	
 	turn(delta)
 	walk(delta)
@@ -80,7 +88,15 @@ func _physics_process(delta: float) -> void:
 	## Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
-	if Input.is_action_just_pressed("Jump") and is_on_floor():
+	if Input.is_action_just_pressed("Jump"):
 		velocity.y = JUMP_VELOCITY
 	##
 	move_and_slide()
+	
+func dont_move():
+	print("dont move")
+	is_dont_move = true
+	
+func set_dont_move_false():
+	is_dont_move = false
+	print("move")
