@@ -4,10 +4,16 @@ var player : Player = null
 @onready var navigation_agent_3d: NavigationAgent3D = $NavigationAgent3D
 
 @onready var animation_tree: AnimationTree = $mons1/AnimationTree
-var animation_state_machine_playback : AnimationNodeStateMachinePlayback
+enum State {
+	IDLE,
+	CHASE,
+	PREPARE_BITE,
+	BITE
+}
+var state : State = State.IDLE
 
 const SPEED : float = 0.7
-const ATTACK_RANGE : float = 0.7
+const ATTACK_RANGE : float = 0.8
 
 var can_bite : bool = true
 var is_bitting : bool = false
@@ -18,48 +24,69 @@ var bite_limit_reached : bool = false
 var player_original_rota : float
 
 func _ready() -> void:
-	animation_state_machine_playback = animation_tree.get("parameters/playback")
 	animation_tree.active = true
 	
 func _process(delta):
-	velocity = Vector3.ZERO
 	if player:
 		var direction = player.global_position - global_position
 		direction.y = 0
 		var target_rotation = atan2(direction.x, direction.z)
 		rotation.y = lerp_angle(rotation.y, target_rotation, 5 * delta)
 		
-		if (Vector3(player.global_position.x, 0, player.global_position.z) - Vector3(global_position.x, 0, global_position.z)).length() < ATTACK_RANGE and can_bite and !is_bitting:
-			if !bite_limit_reached:
-				bite_limit_reached = true
-				bite_bef_limit.start()
+	match state:
+		State.IDLE:
+			velocity = Vector3.ZERO
+			if player:
+				state = State.CHASE
+		
+		State.CHASE:
+			if player:
+				var direction = player.global_position - global_position
+				direction.y = 0
+				var target_rotation = atan2(direction.x, direction.z)
+				rotation.y = lerp_angle(rotation.y, target_rotation, 5 * delta)
+	
+				navigation_agent_3d.set_target_position(player.global_position)
+				var next_nav_point = navigation_agent_3d.get_next_path_position()
+				velocity = (next_nav_point - global_position).normalized() * SPEED
+	
+				if _target_in_range() and can_bite:
+					state = State.PREPARE_BITE
+					bite_bef_limit.start()
+	
+		State.PREPARE_BITE:
+			velocity = Vector3.ZERO
+			if !_target_in_range():
+				state = State.CHASE
 				
-		elif !is_bitting:
-			navigation_agent_3d.set_target_position(player.global_position)
-			var next_nav_point = navigation_agent_3d.get_next_path_position()
-			velocity = (next_nav_point - global_position).normalized() * SPEED
-			check_correct_anim("walk")
-	else:
-		check_correct_anim("idle1")
+		State.BITE:
+			velocity = Vector3.ZERO
+			var dir = -(global_position - player.global_position)
+			dir.y = 0
+			var target_rot = atan2(dir.x, dir.z)
+			player.rotation.y = lerp_angle(player.rotation.y, target_rot, 3 * delta)
 		
-	if is_bitting:
-		var dir = -(global_position - player.global_position)
-		dir.y = 0
-		var target_rot = atan2(dir.x, dir.z)
-		player.rotation.y = lerp_angle(player.rotation.y, target_rot, 3 * delta)
-		
+	_update_animation_conditions()
+	
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 	move_and_slide()
+
+func _update_animation_conditions():
+	if !player:
+		animation_tree.set("parameters/conditions/walking", false)
+		animation_tree.set("parameters/conditions/bite", false)
+		animation_tree.set("parameters/conditions/idle", state == State.IDLE)
+		return
+	else:
+		animation_tree.set("parameters/conditions/idle", false)
+	animation_tree.set("parameters/conditions/bite", state == State.BITE)
+	animation_tree.set("parameters/conditions/walking", state == State.CHASE)
 
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	if body is Player:
 		player = body
-
-func check_correct_anim(anim):
-	if !(animation_state_machine_playback.get_current_node() == anim):
-			animation_state_machine_playback.travel(anim)
 
 
 func _on_bite_timer_timeout() -> void:
@@ -69,24 +96,26 @@ func _on_bite_timer_timeout() -> void:
 	player.rotation.y = lerp_angle(player.rotation.y, player_original_rota, 1)
 	player.knockback = push_dir * 4
 	can_bite_timer.start()
-	
+	state = State.CHASE
+
 func _on_can_bite_timer_timeout() -> void:
 	can_bite = true
-
-
+	
 func _on_bite_bef_limit_timeout() -> void:
-	var distance = (Vector3(player.global_position.x, 0, player.global_position.z)- Vector3(global_position.x, 0, global_position.z)).length()
-
-	if distance > ATTACK_RANGE:
-		bite_limit_reached = false
+	if !_target_in_range():
+		state = State.CHASE
 		return
-		
+	
+	state = State.BITE
 	is_bitting = true
 	can_bite = false
-	bite_limit_reached = false
 	player_original_rota = player.rotation.y
-	check_correct_anim("bite")
 	player.is_dont_move = true
 	bite_timer.start()
 	await get_tree().create_timer(1.05).timeout
 	get_viewport().get_camera_3d().start_shake()
+	
+
+func _target_in_range():
+	return (Vector3(player.global_position.x,0,player.global_position.z)
+	- Vector3(global_position.x,0,global_position.z)).length() < ATTACK_RANGE
