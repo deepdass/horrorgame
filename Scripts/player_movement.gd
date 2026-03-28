@@ -94,15 +94,9 @@ func _physics_process(delta: float) -> void:
 	##
 	
 	velocity += knockback
-	knockback *= 0.91
+	knockback *= 0.92
+	if knockback.length() < 0.05:
+		knockback = Vector3.ZERO
 	
 	move_and_slide()
 	
-func dont_move():
-	print("dont move")
-	is_dont_move = true
-	
-	
-func set_dont_move_false():
-	is_dont_move = false
-	print("move")

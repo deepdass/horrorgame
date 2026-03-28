@@ -7,7 +7,7 @@ var player : Player = null
 var animation_state_machine_playback : AnimationNodeStateMachinePlayback
 
 const SPEED : float = 0.7
-const ATTACK_RANGE : float = 0.85
+const ATTACK_RANGE : float = 0.7
 
 var can_bite : bool = true
 var is_bitting : bool = false
@@ -30,7 +30,7 @@ func _process(delta):
 			is_bitting = true
 			can_bite = false
 			check_correct_anim("bite")
-			player.dont_move()
+			player.is_dont_move = true
 			bite_timer.start()
 		elif !is_bitting:
 			navigation_agent_3d.set_target_position(player.global_position)
@@ -53,7 +53,7 @@ func check_correct_anim(anim):
 
 
 func _on_bite_timer_timeout() -> void:
-	player.set_dont_move_false()
+	player.is_dont_move = false
 	is_bitting = false
 	var push_dir = (player.global_position - global_position).normalized()
 	player.knockback = push_dir * 3

@@ -219,7 +219,7 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_c6tgc")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rfg7q"]
-size = Vector3(5, 1, 0.6915283)
+size = Vector3(5, 1, 2.103241)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_stmjy"]
 render_priority = 0
@@ -233,7 +233,7 @@ flip_faces = true
 size = Vector2(2, 2)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4d1mg"]
-size = Vector3(7, 1, 1)
+size = Vector3(7, 1, 1.46875)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7buel"]
 size = Vector3(7, 1, 1)
@@ -417,7 +417,7 @@ follow_player = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.0000002, 0.9999999)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="all cams/fixed_cam/trigger" index="0" unique_id=2140847195]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, -3.0829818)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, -2.3771257)
 shape = SubResource("BoxShape3D_rfg7q")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="all cams/fixed_cam" unique_id=1475149538]
@@ -432,6 +432,7 @@ transform = Transform3D(-0.75073075, -0.19539344, 0.6310505, 0, 0.9552567, 0.295
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0000002, -6)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="all cams/fixed_cam2/trigger" index="0" unique_id=1331903858]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.234375)
 shape = SubResource("BoxShape3D_4d1mg")
 
 [node name="fixed_cam3" parent="all cams" unique_id=419498136 instance=ExtResource("12_rfg7q")]
