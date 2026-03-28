@@ -31,6 +31,7 @@ func _process(delta):
 			can_bite = false
 			check_correct_anim("bite")
 			player.is_dont_move = true
+			
 			bite_timer.start()
 		elif !is_bitting:
 			navigation_agent_3d.set_target_position(player.global_position)
@@ -39,7 +40,12 @@ func _process(delta):
 			check_correct_anim("walk")
 	else:
 		check_correct_anim("idle1")
-
+		
+	if is_bitting:
+		var dir = -(global_position - player.global_position)
+		dir.y = 0
+		var target_rot = atan2(dir.x, dir.z)
+		player.rotation.y = lerp_angle(player.rotation.y, target_rot, 3 * delta)
 	move_and_slide()
 
 

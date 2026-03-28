@@ -30,7 +30,7 @@ func turn(delta):
 		rotation_degrees.y += turn_dir * turn_speed * delta
 	
 func _unhandled_input(_event: InputEvent) -> void:
-	if Input.is_action_just_pressed("quick_turn") and not is_quick_turning:
+	if Input.is_action_just_pressed("quick_turn") and not is_quick_turning and !is_dont_move:
 		is_quick_turning = true
 		var target_y_rotation := rotation.y + PI
 		var tween := create_tween() as Tween
