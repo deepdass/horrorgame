@@ -56,7 +56,7 @@ func _on_bite_timer_timeout() -> void:
 	player.set_dont_move_false()
 	is_bitting = false
 	var push_dir = (player.global_position - global_position).normalized()
-	player.velocity += push_dir * 3000
+	player.knockback = push_dir * 3
 	can_bite_timer.start()
 	
 func _on_can_bite_timer_timeout() -> void:

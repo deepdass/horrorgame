@@ -14,6 +14,7 @@ var animation_state_machine_playback : AnimationNodeStateMachinePlayback
 var running : bool = false
 
 var is_dont_move : bool = false
+var knockback : Vector3 = Vector3.ZERO
 
 func _ready() -> void:
 	animation_state_machine_playback = animation_tree.get("parameters/playback")
@@ -91,11 +92,16 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("Jump"):
 		velocity.y = JUMP_VELOCITY
 	##
+	
+	velocity += knockback
+	knockback *= 0.91
+	
 	move_and_slide()
 	
 func dont_move():
 	print("dont move")
 	is_dont_move = true
+	
 	
 func set_dont_move_false():
 	is_dont_move = false
