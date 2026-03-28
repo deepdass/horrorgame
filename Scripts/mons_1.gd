@@ -47,6 +47,9 @@ func _process(delta):
 		dir.y = 0
 		var target_rot = atan2(dir.x, dir.z)
 		player.rotation.y = lerp_angle(player.rotation.y, target_rot, 3 * delta)
+		
+	if not is_on_floor():
+		velocity += get_gravity() * delta
 	move_and_slide()
 
 

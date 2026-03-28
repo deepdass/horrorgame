@@ -42,8 +42,8 @@ func _unhandled_input(_event: InputEvent) -> void:
 		tween.finished.connect(func(): is_quick_turning = false )
 		
 	
-
 func walk(delta):
+	
 	var input_dir = Input.get_axis("forward", "backward")
 	var direction = basis.z * input_dir
 	
@@ -94,6 +94,9 @@ func _physics_process(delta: float) -> void:
 	knockback *= 0.92
 	if knockback.length() < 0.05:
 		knockback = Vector3.ZERO
+		
+	if not is_on_floor():
+		velocity += get_gravity() * delta
 	
 	move_and_slide()
 	

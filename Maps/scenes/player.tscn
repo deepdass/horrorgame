@@ -3711,19 +3711,39 @@ advance_condition = &"is_running"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_q7435"]
 advance_mode = 2
-advance_condition = &"fff"
+advance_condition = &"is_aiming"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_a5j8c"]
+advance_mode = 2
+advance_condition = &"is_aiming"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_cjebs"]
+advance_mode = 2
+advance_condition = &"is_aiming"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_77sa3"]
+advance_mode = 2
+advance_condition = &"is_running"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_uh1f6"]
+advance_mode = 2
+advance_condition = &"idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0ntl5"]
+advance_mode = 2
+advance_condition = &"is_walking"
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_es0of"]
 states/Start/position = Vector2(206, 100)
 states/aim/node = SubResource("AnimationNodeAnimation_q7435")
-states/aim/position = Vector2(730, 100)
+states/aim/position = Vector2(698, 100)
 states/idle/node = SubResource("AnimationNodeAnimation_eg7oe")
 states/idle/position = Vector2(439, 100)
 states/run/node = SubResource("AnimationNodeAnimation_fliis")
 states/run/position = Vector2(612, 160)
 states/walk/node = SubResource("AnimationNodeAnimation_efa55")
 states/walk/position = Vector2(612, 37)
-transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_t4ed7"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_yvevl"), "run", "walk", SubResource("AnimationNodeStateMachineTransition_m2xu4"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_7j3xs"), "walk", "run", SubResource("AnimationNodeStateMachineTransition_wl8sk"), "walk", "aim", SubResource("AnimationNodeStateMachineTransition_q7435")]
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_t4ed7"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_yvevl"), "run", "walk", SubResource("AnimationNodeStateMachineTransition_m2xu4"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_7j3xs"), "walk", "run", SubResource("AnimationNodeStateMachineTransition_wl8sk"), "walk", "aim", SubResource("AnimationNodeStateMachineTransition_q7435"), "idle", "aim", SubResource("AnimationNodeStateMachineTransition_a5j8c"), "run", "aim", SubResource("AnimationNodeStateMachineTransition_cjebs"), "aim", "run", SubResource("AnimationNodeStateMachineTransition_77sa3"), "aim", "idle", SubResource("AnimationNodeStateMachineTransition_uh1f6"), "aim", "walk", SubResource("AnimationNodeStateMachineTransition_0ntl5")]
 graph_offset = Vector2(23, -22)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rfg7q"]
@@ -4098,8 +4118,8 @@ libraries/ = SubResource("AnimationLibrary_7lct0")
 [node name="AnimationTree" type="AnimationTree" parent="school_girl" unique_id=1849577093]
 tree_root = SubResource("AnimationNodeStateMachine_es0of")
 anim_player = NodePath("../AnimationPlayer")
-parameters/conditions/fff = false
 parameters/conditions/idle = false
+parameters/conditions/is_aiming = false
 parameters/conditions/is_running = false
 parameters/conditions/is_walking = false
 
