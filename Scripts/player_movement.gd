@@ -86,13 +86,6 @@ func _physics_process(delta: float) -> void:
 		velocity.x = 0
 		velocity.z = 0
 	
-	## Add the gravity.
-	if not is_on_floor():
-		velocity += get_gravity() * delta
-	if Input.is_action_just_pressed("Jump"):
-		velocity.y = JUMP_VELOCITY
-	##
-	
 	velocity += knockback
 	knockback *= 0.92
 	if knockback.length() < 0.05:

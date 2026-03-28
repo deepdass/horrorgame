@@ -13,6 +13,7 @@ var can_bite : bool = true
 var is_bitting : bool = false
 @onready var bite_timer: Timer = $bite_timer
 @onready var can_bite_timer: Timer = $can_bite_timer
+var player_original_rota : float
 
 func _ready() -> void:
 	animation_state_machine_playback = animation_tree.get("parameters/playback")
@@ -29,10 +30,12 @@ func _process(delta):
 		if (Vector3(player.global_position.x, 0, player.global_position.z) - Vector3(global_position.x, 0, global_position.z)).length() < ATTACK_RANGE and can_bite and !is_bitting:
 			is_bitting = true
 			can_bite = false
+			player_original_rota = player.rotation.y
 			check_correct_anim("bite")
 			player.is_dont_move = true
-			
 			bite_timer.start()
+			await get_tree().create_timer(1.05).timeout
+			get_viewport().get_camera_3d().start_shake()
 		elif !is_bitting:
 			navigation_agent_3d.set_target_position(player.global_position)
 			var next_nav_point = navigation_agent_3d.get_next_path_position()
@@ -62,7 +65,8 @@ func _on_bite_timer_timeout() -> void:
 	player.is_dont_move = false
 	is_bitting = false
 	var push_dir = (player.global_position - global_position).normalized()
-	player.knockback = push_dir * 3
+	player.rotation.y = lerp_angle(player.rotation.y, player_original_rota, 1)
+	player.knockback = push_dir * 4
 	can_bite_timer.start()
 	
 func _on_can_bite_timer_timeout() -> void:
