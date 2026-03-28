@@ -16,6 +16,8 @@ var running : bool = false
 var is_dont_move : bool = false
 var knockback : Vector3 = Vector3.ZERO
 
+var is_aiming : bool = false
+
 func _ready() -> void:
 	animation_state_machine_playback = animation_tree.get("parameters/playback")
 	animation_tree.active = true
@@ -69,7 +71,7 @@ func walk(delta):
 
 func check_correct_anim(anim):
 	if !(animation_state_machine_playback.get_current_node() == anim):
-			animation_state_machine_playback.travel(anim)
+		animation_state_machine_playback.travel(anim)
 
 func _physics_process(delta: float) -> void:
 	
@@ -79,10 +81,12 @@ func _physics_process(delta: float) -> void:
 		move_and_slide()
 		return
 	
+	is_aiming = Input.is_action_pressed("fire")
+	
 	turn(delta)
 	walk(delta)
 	
-	if is_quick_turning:
+	if is_quick_turning or is_aiming:
 		velocity.x = 0
 		velocity.z = 0
 	

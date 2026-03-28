@@ -13,6 +13,8 @@ var can_bite : bool = true
 var is_bitting : bool = false
 @onready var bite_timer: Timer = $bite_timer
 @onready var can_bite_timer: Timer = $can_bite_timer
+@onready var bite_bef_limit: Timer = $bite_bef_limit
+var bite_limit_reached : bool = false
 var player_original_rota : float
 
 func _ready() -> void:
@@ -28,14 +30,10 @@ func _process(delta):
 		rotation.y = lerp_angle(rotation.y, target_rotation, 5 * delta)
 		
 		if (Vector3(player.global_position.x, 0, player.global_position.z) - Vector3(global_position.x, 0, global_position.z)).length() < ATTACK_RANGE and can_bite and !is_bitting:
-			is_bitting = true
-			can_bite = false
-			player_original_rota = player.rotation.y
-			check_correct_anim("bite")
-			player.is_dont_move = true
-			bite_timer.start()
-			await get_tree().create_timer(1.05).timeout
-			get_viewport().get_camera_3d().start_shake()
+			if !bite_limit_reached:
+				bite_limit_reached = true
+				bite_bef_limit.start()
+				
 		elif !is_bitting:
 			navigation_agent_3d.set_target_position(player.global_position)
 			var next_nav_point = navigation_agent_3d.get_next_path_position()
@@ -71,3 +69,21 @@ func _on_bite_timer_timeout() -> void:
 	
 func _on_can_bite_timer_timeout() -> void:
 	can_bite = true
+
+
+func _on_bite_bef_limit_timeout() -> void:
+	var distance = (Vector3(player.global_position.x, 0, player.global_position.z)- Vector3(global_position.x, 0, global_position.z)).length()
+
+	if distance > ATTACK_RANGE:
+		bite_limit_reached = false
+		return
+		
+	is_bitting = true
+	can_bite = false
+	bite_limit_reached = false
+	player_original_rota = player.rotation.y
+	check_correct_anim("bite")
+	player.is_dont_move = true
+	bite_timer.start()
+	await get_tree().create_timer(1.05).timeout
+	get_viewport().get_camera_3d().start_shake()
