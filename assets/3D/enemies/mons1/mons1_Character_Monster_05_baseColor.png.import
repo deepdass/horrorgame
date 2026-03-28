@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://0iacgsvqd16y"
-path.s3tc="res://.godot/imported/mons1_Character_Monster_05_baseColor.png-25de547114e1e2443f15a840dd1a02ee.s3tc.ctex"
+uid="uid://vr1w8qsq0uab"
+path.s3tc="res://.godot/imported/mons1_Character_Monster_05_baseColor.png-1accc3c587aee48f4cbabb7339a99572.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -14,8 +14,8 @@ generator_parameters={
 
 [deps]
 
-source_file="res://assets/3D/enemies/mons1_Character_Monster_05_baseColor.png"
-dest_files=["res://.godot/imported/mons1_Character_Monster_05_baseColor.png-25de547114e1e2443f15a840dd1a02ee.s3tc.ctex"]
+source_file="res://assets/3D/enemies/mons1/mons1_Character_Monster_05_baseColor.png"
+dest_files=["res://.godot/imported/mons1_Character_Monster_05_baseColor.png-1accc3c587aee48f4cbabb7339a99572.s3tc.ctex"]
 
 [params]
 
