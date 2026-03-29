@@ -56,7 +56,9 @@ func walk(delta):
 	var direction = basis.z * input_dir
 	print(input_dir, "State - ", current_state)
 	
-	if input_dir == 0.0 or is_dont_move:
+	if Input.is_action_pressed("fire"):
+		current_state = State.AIMING
+	elif input_dir == 0.0 or is_dont_move:
 		current_state = State.IDLE
 	elif input_dir > 0:
 		current_state = State.WALK_BACKWARD
@@ -66,39 +68,32 @@ func walk(delta):
 		else:
 			current_state = State.WALKING
 	
-	animation_tree.set("parameters/conditions/walking_backward", false)
-	animation_tree.set("parameters/conditions/is_running", false)
-	animation_tree.set("parameters/conditions/is_walking", false)
-	animation_tree.set("parameters/conditions/idle", false)
-	
 	match current_state:
 		
 		State.IDLE:
-			animation_tree.set("parameters/conditions/idle", true)
 			check_correct_anim("idle") 
 			velocity.x = 0
 			velocity.z = 0
 		
 		State.WALKING:
-			animation_tree.set("parameters/conditions/is_walking", true)
+			check_correct_anim("walk") 
 			velocity.x = direction.x * SPEED
 			velocity.z = direction.z * SPEED
 		
 		State.WALK_BACKWARD:
-			animation_tree.set("parameters/conditions/walking_backward", true)
+			check_correct_anim("walk_backward") 
 			velocity.x = direction.x * SPEED
 			velocity.z = direction.z * SPEED
 		
 		State.RUNNING:
-			animation_tree.set("parameters/conditions/is_running", true)
 			check_correct_anim("run") 
 			velocity.x = direction.x * SPRINTSPEED 
 			velocity.z = direction.z * SPRINTSPEED
 		
 		State.AIMING:
-			pass
-	
-
+			check_correct_anim("aim") 
+			velocity.x = 0
+			velocity.z = 0
 
 
 func check_correct_anim(anim):
@@ -114,12 +109,10 @@ func _physics_process(delta: float) -> void:
 		move_and_slide()
 		return
 	
-	is_aiming = Input.is_action_pressed("fire")
-	
 	turn(delta)
 	walk(delta)
 	
-	if is_quick_turning or is_aiming:
+	if is_quick_turning:
 		velocity.x = 0
 		velocity.z = 0
 	
