@@ -24,6 +24,10 @@ var can_fire : bool = true
 
 const blood_effect : PackedScene = preload("res://Maps/scenes/blood.tscn")
 
+@onready var allmons: Node3D = $"../allmons"
+var nearestEnemy : CharacterBody3D 
+var nearestEnemy_distance : float = INF
+
 enum State {
 	IDLE,
 	WALKING,
@@ -109,6 +113,10 @@ func walk(delta):
 			velocity.x = 0
 			velocity.z = 0
 			ray_cast_3d.enabled = true
+			
+			if allmons:
+				calnearst_enemy()
+			
 			if ray_cast_3d.is_colliding():
 				if ray_cast_3d.get_collider().has_method("do_damage") and fired:
 					var body = ray_cast_3d.get_collider()
@@ -164,3 +172,13 @@ func _physics_process(delta: float) -> void:
 
 func _on_bullet_timer_timeout() -> void:
 	can_fire = true
+	
+func calnearst_enemy() -> void:
+	nearestEnemy_distance = INF
+	for i : CharacterBody3D in allmons.get_children():
+		var newdis : float = (global_position - i.global_position).length()
+		if !(nearestEnemy_distance < newdis):
+			nearestEnemy_distance = newdis
+			nearestEnemy = i
+	if nearestEnemy:
+		look_at(Vector3(nearestEnemy.global_position.x, global_position.y, nearestEnemy.global_position.z), Vector3.UP)
