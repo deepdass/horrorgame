@@ -114,7 +114,7 @@ func walk(delta):
 			velocity.z = 0
 			ray_cast_3d.enabled = true
 			
-			if allmons:
+			if allmons.get_children():
 				calnearst_enemy()
 			
 			if ray_cast_3d.is_colliding():

@@ -7,8 +7,8 @@ render_priority = 0
 shader = ExtResource("1_2g8sf")
 
 [sub_resource type="Curve" id="Curve_t15l7"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.47786885), 0.0, 0.0, 0, 0]
-point_count = 2
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.23346302, 0.7336066), 1.0269465, 1.0269465, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
 
 [sub_resource type="CurveTexture" id="CurveTexture_2g8sf"]
 curve = SubResource("Curve_t15l7")
@@ -18,9 +18,11 @@ emission_shape_scale = Vector3(0.01, 0.01, 0.01)
 spread = 10.0
 initial_velocity_min = 1.0
 initial_velocity_max = 6.0
+gravity = Vector3(0, -19.6, 0)
 linear_accel_min = -2.2351742e-06
 linear_accel_max = 1.9999977
 scale_min = 0.29999998
+scale_max = 0.59999996
 scale_curve = SubResource("CurveTexture_2g8sf")
 
 [sub_resource type="QuadMesh" id="QuadMesh_feaig"]
@@ -67,7 +69,7 @@ _data = {
 [node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=1412697983]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
 material_override = SubResource("ShaderMaterial_ijtk8")
-amount = 20
+amount = 25
 lifetime = 0.9
 process_material = SubResource("ParticleProcessMaterial_ijtk8")
 draw_pass_1 = SubResource("QuadMesh_feaig")
