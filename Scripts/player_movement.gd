@@ -114,9 +114,27 @@ func walk(delta):
 			velocity.z = 0
 			ray_cast_3d.enabled = true
 			
-			if allmons.get_children():
-				calnearst_enemy()
-			
+			var best_enemy : CharacterBody3D
+			var best_diff : float = INF
+		
+			for enemy : CharacterBody3D in allmons.get_children():
+				var target_pos = enemy.global_position
+				target_pos.y = global_position.y
+				var dir = (target_pos - global_position).normalized()
+				var angle = atan2(dir.x, dir.z)
+				var diff = wrapf(angle - rotation.y, -PI, PI) - PI
+				var abs_diff = abs(diff)
+				if abs_diff < best_diff:
+					best_diff = abs_diff
+					best_enemy = enemy
+			if best_enemy and best_diff < deg_to_rad(40):
+				var target_pos = best_enemy.global_position
+				target_pos.y = global_position.y
+				var dir = (target_pos - global_position).normalized()
+				var angle = atan2(dir.x, dir.z)
+				var diff = wrapf(angle - rotation.y, -PI, PI) - PI
+				rotation.y += diff * 3 * delta
+		
 			if ray_cast_3d.is_colliding():
 				if ray_cast_3d.get_collider().has_method("do_damage") and fired:
 					var body = ray_cast_3d.get_collider()
@@ -180,5 +198,3 @@ func calnearst_enemy() -> void:
 		if !(nearestEnemy_distance < newdis):
 			nearestEnemy_distance = newdis
 			nearestEnemy = i
-	if nearestEnemy:
-		look_at(Vector3(nearestEnemy.global_position.x, global_position.y, nearestEnemy.global_position.z), Vector3.UP)
