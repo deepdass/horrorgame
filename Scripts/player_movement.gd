@@ -45,6 +45,8 @@ func turn(delta):
 		rotation_degrees.y -= turn_dir * turn_speed * delta
 	else: 
 		rotation_degrees.y += turn_dir * turn_speed * delta
+		
+	
 	
 func _unhandled_input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("quick_turn") and not is_quick_turning and !is_dont_move:
@@ -58,7 +60,6 @@ func _unhandled_input(_event: InputEvent) -> void:
 		
 	
 func walk(delta):
-	
 	var input_dir = Input.get_axis("forward", "backward")
 	var direction = basis.z * input_dir
 	
@@ -116,6 +117,7 @@ func walk(delta):
 					var blood = blood_effect.instantiate()
 					get_tree().current_scene.add_child(blood)
 					blood.global_position = ray_cast_3d.get_collision_point()
+					blood.rotation = rotation   
 					blood.get_node("GPUParticles3D").emitting = true
 					
 					var push_dir = body.global_position - global_position
