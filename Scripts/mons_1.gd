@@ -24,6 +24,7 @@ var bite_limit_reached : bool = false
 var player_original_rota : float
 
 var health : int = 100
+var knockback : Vector3 = Vector3.ZERO
 
 func _ready() -> void:
 	animation_tree.active = true
@@ -69,6 +70,11 @@ func _process(delta):
 			player.rotation.y = lerp_angle(player.rotation.y, target_rot, 3 * delta)
 		
 	_update_animation_conditions()
+	
+	velocity += knockback
+	knockback *= 0.92
+	if knockback.length() < 0.05:
+		knockback = Vector3.ZERO
 	
 	if not is_on_floor():
 		velocity += get_gravity() * delta

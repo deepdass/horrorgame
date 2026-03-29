@@ -108,7 +108,10 @@ func walk(delta):
 			ray_cast_3d.enabled = true
 			if ray_cast_3d.is_colliding():
 				if ray_cast_3d.get_collider().has_method("do_damage") and fired:
-					ray_cast_3d.get_collider().do_damage(30)
+					var body = ray_cast_3d.get_collider()
+					body.do_damage(30)
+					var push_dir = (body.global_position - global_position).normalized()
+					body.knockback = push_dir * 4
 			
 	if Input.is_action_just_released("aim"):
 		pistol.visible = false
