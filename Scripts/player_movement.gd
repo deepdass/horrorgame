@@ -1,6 +1,5 @@
 class_name Player extends CharacterBody3D
 
-
 const SPEED : float = 1.3
 const SPRINTSPEED : float = 3.0
 const JUMP_VELOCITY : float = 3.0
@@ -17,6 +16,15 @@ var is_dont_move : bool = false
 var knockback : Vector3 = Vector3.ZERO
 
 var is_aiming : bool = false
+
+enum State {
+	IDLE,
+	WALKING,
+	WALK_BACKWARD,
+	RUNNING,
+	AIMING
+}
+var current_state : State = State.IDLE
 
 func _ready() -> void:
 	animation_state_machine_playback = animation_tree.get("parameters/playback")
@@ -46,28 +54,52 @@ func walk(delta):
 	
 	var input_dir = Input.get_axis("forward", "backward")
 	var direction = basis.z * input_dir
+	print(input_dir, "State - ", current_state)
 	
-	if input_dir > 0:
-		velocity.x = direction.x * SPEED
-		velocity.z = direction.z * SPEED
-		check_correct_anim("walk_backward")
-	
-	elif input_dir != 0:
+	if input_dir == 0.0 or is_dont_move:
+		current_state = State.IDLE
+	elif input_dir > 0:
+		current_state = State.WALK_BACKWARD
+	elif input_dir < 0:
 		if Input.is_action_pressed("Sprint"):
-			velocity.x = direction.x * SPRINTSPEED 
-			velocity.z = direction.z * SPRINTSPEED
-			check_correct_anim("run")
-			running = true
+			current_state = State.RUNNING
 		else:
+			current_state = State.WALKING
+	
+	animation_tree.set("parameters/conditions/walking_backward", false)
+	animation_tree.set("parameters/conditions/is_running", false)
+	animation_tree.set("parameters/conditions/is_walking", false)
+	animation_tree.set("parameters/conditions/idle", false)
+	
+	match current_state:
+		
+		State.IDLE:
+			animation_tree.set("parameters/conditions/idle", true)
+			check_correct_anim("idle") 
+			velocity.x = 0
+			velocity.z = 0
+		
+		State.WALKING:
+			animation_tree.set("parameters/conditions/is_walking", true)
 			velocity.x = direction.x * SPEED
 			velocity.z = direction.z * SPEED
-			check_correct_anim("walk")
-			running = false
-	else:
-		velocity.x = 0
-		velocity.z = 0
-		check_correct_anim("idle")
-		running = false
+		
+		State.WALK_BACKWARD:
+			animation_tree.set("parameters/conditions/walking_backward", true)
+			velocity.x = direction.x * SPEED
+			velocity.z = direction.z * SPEED
+		
+		State.RUNNING:
+			animation_tree.set("parameters/conditions/is_running", true)
+			check_correct_anim("run") 
+			velocity.x = direction.x * SPRINTSPEED 
+			velocity.z = direction.z * SPRINTSPEED
+		
+		State.AIMING:
+			pass
+	
+
+
 
 func check_correct_anim(anim):
 	if !(animation_state_machine_playback.get_current_node() == anim):
@@ -76,8 +108,9 @@ func check_correct_anim(anim):
 func _physics_process(delta: float) -> void:
 	
 	if is_dont_move:
+		current_state = State.IDLE
+		check_correct_anim("idle") 
 		velocity = Vector3.ZERO
-		check_correct_anim("idle")
 		move_and_slide()
 		return
 	
