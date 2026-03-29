@@ -22,6 +22,8 @@ var can_fire : bool = true
 @onready var ray_cast_3d: RayCast3D = $school_girl/Armature/Skeleton3D/BoneAttachment3D/pistol/RayCast3D
 @onready var bullet_timer: Timer = $bullet_timer
 
+const blood_effect : PackedScene = preload("res://Maps/scenes/blood.tscn")
+
 enum State {
 	IDLE,
 	WALKING,
@@ -110,8 +112,15 @@ func walk(delta):
 				if ray_cast_3d.get_collider().has_method("do_damage") and fired:
 					var body = ray_cast_3d.get_collider()
 					body.do_damage(30)
-					var push_dir = (body.global_position - global_position).normalized()
-					body.knockback = push_dir * 4
+					
+					var blood = blood_effect.instantiate()
+					get_tree().current_scene.add_child(blood)
+					blood.global_position = ray_cast_3d.get_collision_point()
+					blood.get_node("GPUParticles3D").emitting = true
+					
+					var push_dir = body.global_position - global_position
+					push_dir.y = 0
+					push_dir = push_dir.normalized()
 			
 	if Input.is_action_just_released("aim"):
 		pistol.visible = false
@@ -150,7 +159,6 @@ func _physics_process(delta: float) -> void:
 	
 	move_and_slide()
 	
-
 
 func _on_bullet_timer_timeout() -> void:
 	can_fire = true

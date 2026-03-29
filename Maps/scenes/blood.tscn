@@ -1,0 +1,75 @@
+[gd_scene format=3 uid="uid://l7rgc5we5ut7"]
+
+[ext_resource type="Shader" uid="uid://tp4vunxpvant" path="res://Shaders/blood.tres" id="1_2g8sf"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ijtk8"]
+render_priority = 0
+shader = ExtResource("1_2g8sf")
+
+[sub_resource type="Curve" id="Curve_t15l7"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.47786885), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_2g8sf"]
+curve = SubResource("Curve_t15l7")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ijtk8"]
+spread = 0.3
+initial_velocity_min = 1.0
+initial_velocity_max = 6.0
+linear_accel_min = -2.2351742e-06
+linear_accel_max = 1.9999977
+scale_min = 0.29999998
+scale_curve = SubResource("CurveTexture_2g8sf")
+
+[sub_resource type="QuadMesh" id="QuadMesh_feaig"]
+
+[sub_resource type="Animation" id="Animation_2g8sf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GPUParticles3D:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_ijtk8"]
+resource_name = "blood_stop"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GPUParticles3D:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_feaig"]
+_data = {
+&"RESET": SubResource("Animation_2g8sf"),
+&"blood_stop": SubResource("Animation_ijtk8")
+}
+
+[node name="blood_particle" type="Node3D" unique_id=63853878]
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=1412697983]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
+material_override = SubResource("ShaderMaterial_ijtk8")
+amount = 20
+process_material = SubResource("ParticleProcessMaterial_ijtk8")
+draw_pass_1 = SubResource("QuadMesh_feaig")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=585603680]
+libraries/ = SubResource("AnimationLibrary_feaig")
+autoplay = &"blood_stop"

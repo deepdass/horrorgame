@@ -26,6 +26,8 @@ var player_original_rota : float
 var health : int = 100
 var knockback : Vector3 = Vector3.ZERO
 
+@onready var blood_particle_bite: Node3D = $blood_particle_bite
+
 func _ready() -> void:
 	animation_tree.active = true
 	
@@ -101,6 +103,7 @@ func _on_bite_timer_timeout() -> void:
 	player.is_dont_move = false
 	is_bitting = false
 	var push_dir = (player.global_position - global_position).normalized()
+	push_dir.y = 0
 	player.rotation.y = lerp_angle(player.rotation.y, player_original_rota, 1)
 	player.knockback = push_dir * 4
 	can_bite_timer.start()
@@ -122,7 +125,11 @@ func _on_bite_bef_limit_timeout() -> void:
 	bite_timer.start()
 	await get_tree().create_timer(1.05).timeout
 	get_viewport().get_camera_3d().start_shake()
-	
+
+func blood_effect_onbite():
+	blood_particle_bite.get_node("GPUParticles3D").emitting = true
+	await get_tree().create_timer(1.5).timeout
+	blood_particle_bite.get_node("GPUParticles3D").emitting = false
 
 func _target_in_range():
 	return (Vector3(player.global_position.x,0,player.global_position.z)
