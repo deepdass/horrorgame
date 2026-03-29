@@ -2597,7 +2597,7 @@ curve = SubResource("Curve_t15l7")
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ijtk8"]
 spread = 0.3
 initial_velocity_min = 1.0
-initial_velocity_max = 6.0
+initial_velocity_max = 4.0
 linear_accel_min = -2.2351742e-06
 linear_accel_max = 1.9999977
 scale_min = 0.29999998
@@ -2708,7 +2708,7 @@ one_shot = true
 transform = Transform3D(0.8280506, 0, 0.5606535, 0, 1, 0, -0.5606535, 0, 0.8280506, 0.0138995275, 1.4093564, 0.68722224)
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="blood_particle_bite" unique_id=1412697983]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
+transform = Transform3D(0.9659256, 0, 0.25881898, 0, 1, 0, -0.25881898, 0, 0.9659256, 0, 0, 0)
 material_override = SubResource("ShaderMaterial_ijtk8")
 emitting = false
 amount = 20
