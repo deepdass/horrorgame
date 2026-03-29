@@ -1,7 +1,7 @@
 [gd_resource type="VisualShader" format=3 uid="uid://tp4vunxpvant"]
 
 [sub_resource type="VisualShaderNodeColorConstant" id="VisualShaderNodeColorConstant_tjeg3"]
-constant = Color(0.8636278, 0, 0, 1)
+constant = Color(0.6503125, 0.046061084, 0.046192907, 1)
 
 [sub_resource type="VisualShaderNodeFloatFunc" id="VisualShaderNodeFloatFunc_dvp6a"]
 function = 31

@@ -5,7 +5,7 @@
 [ext_resource type="Shader" uid="uid://tp4vunxpvant" path="res://Shaders/blood.tres" id="3_k7xlm"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_jjaj7"]
-radius = 0.32226563
+radius = 0.27978516
 height = 1.7234039
 
 [sub_resource type="Animation" id="Animation_8xp5g"]
