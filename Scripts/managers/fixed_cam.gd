@@ -6,7 +6,7 @@ extends Camera3D
 var player : Player = null
 
 var shake_strength := 0.13
-var shake_time := 0.6
+var shake_time := 0.7
 var shake_timer := 0.0
 var original_camera_pos : Vector3
 

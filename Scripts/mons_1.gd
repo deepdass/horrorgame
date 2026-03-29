@@ -23,6 +23,8 @@ var is_bitting : bool = false
 var bite_limit_reached : bool = false
 var player_original_rota : float
 
+var health : int = 100
+
 func _ready() -> void:
 	animation_tree.active = true
 	
@@ -119,3 +121,9 @@ func _on_bite_bef_limit_timeout() -> void:
 func _target_in_range():
 	return (Vector3(player.global_position.x,0,player.global_position.z)
 	- Vector3(global_position.x,0,global_position.z)).length() < ATTACK_RANGE
+	
+func do_damage(damage):
+	health -= damage
+	print(health)
+	if health <= 0:
+		print("death")

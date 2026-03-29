@@ -4,7 +4,7 @@ const SPEED : float = 1.3
 const SPRINTSPEED : float = 3.0
 const JUMP_VELOCITY : float = 3.0
 
-const turn_speed : float = 240.0
+const turn_speed : float = 200.0
 const quick_turn_time : float = 0.4
 var is_quick_turning : bool = false
 
@@ -16,6 +16,11 @@ var is_dont_move : bool = false
 var knockback : Vector3 = Vector3.ZERO
 
 var is_aiming : bool = false
+var fired : bool = false
+var can_fire : bool = true
+@onready var pistol: Node3D = $school_girl/Armature/Skeleton3D/BoneAttachment3D/pistol
+@onready var ray_cast_3d: RayCast3D = $school_girl/Armature/Skeleton3D/BoneAttachment3D/pistol/RayCast3D
+@onready var bullet_timer: Timer = $bullet_timer
 
 enum State {
 	IDLE,
@@ -54,9 +59,8 @@ func walk(delta):
 	
 	var input_dir = Input.get_axis("forward", "backward")
 	var direction = basis.z * input_dir
-	print(input_dir, "State - ", current_state)
 	
-	if Input.is_action_pressed("fire"):
+	if Input.is_action_pressed("aim"):
 		current_state = State.AIMING
 	elif input_dir == 0.0 or is_dont_move:
 		current_state = State.IDLE
@@ -67,6 +71,12 @@ func walk(delta):
 			current_state = State.RUNNING
 		else:
 			current_state = State.WALKING
+	
+	fired = false
+	if Input.is_action_just_pressed("fire") and current_state == State.AIMING and can_fire:
+		can_fire = false
+		fired = true
+		bullet_timer.start()
 	
 	match current_state:
 		
@@ -91,9 +101,18 @@ func walk(delta):
 			velocity.z = direction.z * SPRINTSPEED
 		
 		State.AIMING:
+			pistol.visible = true
 			check_correct_anim("aim") 
 			velocity.x = 0
 			velocity.z = 0
+			ray_cast_3d.enabled = true
+			if ray_cast_3d.is_colliding():
+				if ray_cast_3d.get_collider().has_method("do_damage") and fired:
+					ray_cast_3d.get_collider().do_damage(30)
+			
+	if Input.is_action_just_released("aim"):
+		pistol.visible = false
+		ray_cast_3d.enabled = false
 
 
 func check_correct_anim(anim):
@@ -103,6 +122,8 @@ func check_correct_anim(anim):
 func _physics_process(delta: float) -> void:
 	
 	if is_dont_move:
+		pistol.visible = false
+		ray_cast_3d.enabled = false
 		current_state = State.IDLE
 		check_correct_anim("idle") 
 		velocity = Vector3.ZERO
@@ -126,3 +147,7 @@ func _physics_process(delta: float) -> void:
 	
 	move_and_slide()
 	
+
+
+func _on_bullet_timer_timeout() -> void:
+	can_fire = true

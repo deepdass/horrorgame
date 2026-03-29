@@ -1,10 +1,9 @@
 [gd_scene format=4 uid="uid://brc27vrw3vk6w"]
 
 [ext_resource type="Script" uid="uid://b3v5i62lcncdb" path="res://Scripts/managers/gamemode.gd" id="1_ageuk"]
-[ext_resource type="Script" uid="uid://4g5aftkmv1ur" path="res://Scripts/player_movement.gd" id="1_dntxa"]
 [ext_resource type="Environment" uid="uid://b20egbo36dye7" path="res://new_environment.tres" id="2_4d1mg"]
+[ext_resource type="Texture2D" uid="uid://dfouvljg0hc7m" path="res://assets/3D/player/school_girl_T_Sarah_misc.png" id="3_yj5vl"]
 [ext_resource type="Texture2D" uid="uid://dcnqtvue7y7o2" path="res://assets/3D/human/textures/DiffuseMap.png" id="4_ageuk"]
-[ext_resource type="PackedScene" uid="uid://cr5ayhbbaiba8" path="res://assets/3D/player/school_girl.tscn" id="4_rfg7q"]
 [ext_resource type="ArrayMesh" uid="uid://bh658wc82a6me" path="res://assets/3D/human/source/Character.obj" id="5_hgj1k"]
 [ext_resource type="Shader" uid="uid://b84qvs26oyhtn" path="res://Shaders/ps1_jitter.gdshader" id="5_yi55j"]
 [ext_resource type="PackedScene" uid="uid://be7ebd8qy0bm8" path="res://assets/env/silent_hill_3_cathedral/scene.gltf" id="6_ao1rr"]
@@ -26,7 +25,58 @@
 [ext_resource type="Texture2D" uid="uid://bbeq4p1eklagt" path="res://assets/env/cathedral/cathedral_RefRep_9.png" id="18_5j2pe"]
 [ext_resource type="Texture2D" uid="uid://bj38eufeo8axi" path="res://assets/env/cathedral/cathedral_RefRep_10.png" id="19_y85mv"]
 [ext_resource type="Texture2D" uid="uid://c36uva33xp3jt" path="res://assets/env/cathedral/cathedral_RefRep_11.png" id="20_v612b"]
+[ext_resource type="PackedScene" uid="uid://c27aqsydo88gd" path="res://Maps/scenes/player.tscn" id="26_qs540"]
 [ext_resource type="PackedScene" uid="uid://rn5mt6pxidk6" path="res://assets/3D/enemies/mons1/mons1.tscn" id="27_yj5vl"]
+
+[sub_resource type="Shader" id="Shader_eg7oe"]
+code = "shader_type spatial;
+render_mode blend_mix,
+cull_disabled,
+depth_prepass_alpha,
+shadows_disabled,
+specular_disabled,
+vertex_lighting;
+
+uniform sampler2D base_tex: source_color ,filter_nearest;
+uniform bool use_rAS_ALPHA = false;
+uniform vec2 texture_tile = vec2(1,1);
+
+uniform bool snap_enabled = true;
+uniform float snap_res : hint_range(60.0, 480.0, 1) = 128; //smaller value more jitter
+
+void vertex() {
+	vec4 view_space_pos = MODELVIEW_MATRIX * vec4(VERTEX, 1.0);
+	vec4 clip_space_pos = PROJECTION_MATRIX * view_space_pos;
+	
+	if (snap_enabled){
+		vec2 ndc = clip_space_pos.xy / clip_space_pos.w;
+		ndc = round(ndc * snap_res) / snap_res;
+		clip_space_pos.xy = ndc * clip_space_pos.w;
+	}
+	POSITION = clip_space_pos;
+}
+
+void fragment() {
+	vec4 base = texture(base_tex,UV * texture_tile);
+	ALBEDO = vec3(0,0,0);
+	
+	if (use_rAS_ALPHA == true) {
+		ALPHA = base.r;
+	} else if (use_rAS_ALPHA == false) {
+		ALPHA = base.a;
+	}
+	
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_eg7oe"]
+render_priority = 0
+shader = SubResource("Shader_eg7oe")
+shader_parameter/base_tex = ExtResource("3_yj5vl")
+shader_parameter/use_rAS_ALPHA = true
+shader_parameter/texture_tile = Vector2(1, 1)
+shader_parameter/snap_enabled = true
+shader_parameter/snap_res = 128.0
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_yj5vl"]
 vertices = PackedVector3Array(8.430903, 0.3834487, -12.48812, 8.430903, 0.3834487, -15.23812, 5.6809034, 0.3834487, -15.23812, 5.6809034, 0.3834487, 1.5118799, 8.180903, 0.3834487, 1.5118799, 0.93090343, 0.3834487, -13.73812, 1.1809034, 0.3834487, -12.73812, 1.4309034, 0.3834487, -12.73812, 2.6809034, 0.3834487, -13.23812, 1.4309034, 0.3834487, -13.98812, -2.0690966, 0.3834487, -13.23812, -1.8190966, 0.3834487, -11.98812, -1.3190966, 0.3834487, -12.23812, -1.0690966, 0.3834487, -13.73812, -2.0690966, 0.3834487, -14.23812, 4.1809034, 0.3834487, -11.98812, 4.4309034, 0.3834487, -14.98812, 1.6809034, 0.3834487, -14.73812, -2.0690966, 0.3834487, -10.98812, -2.0690966, 0.3834487, -11.48812, -3.3190966, 0.3834487, -11.98812, -4.5690966, 0.3834487, -10.73812, -4.5690966, 0.3834487, -12.98812, -3.5690966, 0.3834487, -12.73812, -3.3190966, 0.3834487, -12.73812, -1.0690966, 0.3834487, -11.73812, -0.81909657, 0.3834487, -10.73812, -0.81909657, 0.3834487, 0.7618799, -0.56909657, 0.3834487, 1.2618799, 0.43090343, 0.3834487, 1.2618799, 0.68090343, 0.3834487, 0.7618799, -1.8190966, 0.3834487, 0.26187992, -2.5690966, 0.3834487, 0.26187992, -2.8190966, 0.3834487, 0.7618799, -2.0690966, 0.3834487, 1.2618799, -1.5690966, 0.3834487, 0.7618799, 1.4309034, 0.3834487, -0.7381201, 1.1809034, 0.3834487, -2.23812, 0.68090343, 0.3834487, -2.48812, -0.81909657, 0.3834487, -2.48812, 0.68090343, 0.3834487, -10.73812, -1.5690966, 0.3834487, -0.7381201, 1.9309034, 0.3834487, 1.2618799, 2.6809034, 0.3834487, 0.7618799, 2.4309034, 0.3834487, 0.26187992, 1.4309034, 0.3834487, 0.011879921, 0.93090343, 0.3834487, -11.73812, 1.6809034, 0.3834487, -10.98812, -1.3190966, 0.3834487, -2.23812, -3.3190966, 0.3834487, 0.011879921, -4.5690966, 0.3834487, 1.0118799, -1.8190966, 0.3834487, -1.2381201, -2.8190966, 0.3834487, -1.9881201, -3.3190966, 0.3834487, -0.9881201, -4.5690966, 0.3834487, -2.48812, -3.0690966, 0.3834487, -2.48812, 3.1809034, 0.3834487, 0.011879921, 4.4309034, 0.3834487, 1.0118799, 1.6809034, 0.3834487, -1.2381201, 2.6809034, 0.3834487, -1.9881201, 2.9309034, 0.3834487, -1.2381201, 4.4309034, 0.3834487, -2.48812, 2.9309034, 0.3834487, -2.48812)
@@ -39,10 +89,6 @@ agent_height = 0.5
 shader = ExtResource("7_hgj1k")
 shader_parameter/viewport_size = Vector2(320, 240)
 shader_parameter/virtual_res = Vector2(640, 480)
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rfg7q"]
-radius = 0.2163086
-height = 1.800293
 
 [sub_resource type="BoxMesh" id="BoxMesh_nrr81"]
 
@@ -246,6 +292,57 @@ size = Vector3(0.79119873, 1, 0.6633301)
 [node name="gamemode" type="Node" parent="." unique_id=822496641]
 script = ExtResource("1_ageuk")
 
+[node name="player" parent="." unique_id=1959472943 instance=ExtResource("26_qs540")]
+
+[node name="Skeleton3D" parent="player/school_girl/Armature" parent_id_path=PackedInt32Array(1959472943, 1076983184, 2082363309) index="0" unique_id=1726262404]
+bones/0/position = Vector3(0.93641186, 1.7951429, -103.21748)
+bones/0/rotation = Quaternion(-0.7550398, -0.052614372, -0.028130472, 0.6529589)
+bones/1/rotation = Quaternion(-0.036297716, -0.0047241673, 0.06282813, 0.99735296)
+bones/2/rotation = Quaternion(0.061600935, -0.004489456, 0.0013859051, 0.9980899)
+bones/3/rotation = Quaternion(0.06189191, -0.0029648482, 0.0014909914, 0.99807733)
+bones/4/rotation = Quaternion(0.074822895, 0.0033724415, -0.018320436, 0.9970228)
+bones/5/rotation = Quaternion(-0.1661047, 0.0056029884, 0.012931737, 0.98600745)
+bones/7/rotation = Quaternion(-0.6169263, -0.3802023, 0.542187, -0.42530155)
+bones/8/rotation = Quaternion(0.46286148, 0.08133764, 0.08995915, 0.87809503)
+bones/9/rotation = Quaternion(-0.012516386, -0.0067399605, 0.18206222, 0.9831843)
+bones/10/rotation = Quaternion(0.08461901, 0.16898695, 0.1102319, 0.9757725)
+bones/11/rotation = Quaternion(0.118559375, 0.040081177, 0.07122284, 0.989578)
+bones/12/rotation = Quaternion(0.01506654, 0.0019355069, -0.14251427, 0.98967624)
+bones/13/rotation = Quaternion(-0.04129275, -0.092288025, 0.028432302, 0.99446946)
+bones/15/rotation = Quaternion(0.15603156, -0.014852244, -0.06290563, 0.9856351)
+bones/16/rotation = Quaternion(0.18109299, -9.039903e-05, -0.016679393, 0.9833245)
+bones/17/rotation = Quaternion(0.24274531, 1.8988994e-05, -0.0238182, 0.9697976)
+bones/19/rotation = Quaternion(0.10542247, -0.012065313, -0.062000997, 0.99241954)
+bones/20/rotation = Quaternion(0.18821234, 0.00012245213, -0.019327344, 0.98193824)
+bones/21/rotation = Quaternion(0.2359254, -5.425725e-05, -0.021089785, 0.9715424)
+bones/23/rotation = Quaternion(0.6408744, -0.3539119, 0.53795433, 0.41788962)
+bones/24/rotation = Quaternion(0.38457742, -0.15319966, -0.10902417, 0.9037388)
+bones/25/rotation = Quaternion(-0.0125862975, 0.008883106, -0.23929505, 0.9708248)
+bones/26/rotation = Quaternion(0.046442408, -0.11643171, -0.07594812, 0.98920107)
+bones/27/rotation = Quaternion(0.12482663, -0.056240916, -0.110253625, 0.9844285)
+bones/28/rotation = Quaternion(-0.0052901837, 0.028848132, 0.24484546, 0.9691184)
+bones/29/rotation = Quaternion(0.011509884, 0.0018034632, -0.004027136, 0.99992406)
+bones/31/rotation = Quaternion(0.21963672, 0.014882746, 0.095978126, 0.9707351)
+bones/32/rotation = Quaternion(0.1125858, 0.0003324423, 0.013918375, 0.9935446)
+bones/33/rotation = Quaternion(0.1975717, -0.00054100965, 0.025659328, 0.9799525)
+bones/35/rotation = Quaternion(0.15543538, 0.017123101, 0.07081077, 0.98515606)
+bones/36/rotation = Quaternion(0.17014842, 8.4657495e-06, 0.020242995, 0.98521054)
+bones/37/rotation = Quaternion(0.28925893, 0.01960207, 0.04101246, 0.95617104)
+bones/39/rotation = Quaternion(0.05939489, 0.07035583, 0.992591, -0.07928098)
+bones/40/rotation = Quaternion(-0.29868865, 0.015783962, -0.011228667, 0.954154)
+bones/41/rotation = Quaternion(0.5770475, -0.013192719, 0.0043016993, 0.81659275)
+bones/42/rotation = Quaternion(0.35151815, -0.035958655, 0.013274971, 0.9353961)
+bones/44/rotation = Quaternion(-0.052833322, 0.0077688396, 0.994486, -0.09025485)
+bones/45/rotation = Quaternion(-0.19829518, 0.045925003, -0.0066626677, 0.9790432)
+bones/46/rotation = Quaternion(0.5424876, -0.013842523, -0.028740631, 0.83945787)
+bones/47/rotation = Quaternion(0.35205856, 0.03539292, -0.013003123, 0.9352183)
+
+[node name="character" parent="player/school_girl/Armature/Skeleton3D" index="0" unique_id=576520247]
+surface_material_override/4 = SubResource("ShaderMaterial_eg7oe")
+
+[node name="BoneAttachment3D" parent="player/school_girl/Armature/Skeleton3D" index="1" unique_id=1198001087]
+transform = Transform3D(0.7306405, 0.105993874, 0.67448443, 0.52474356, 0.544847, -0.65405345, -0.43681663, 0.8318092, 0.3424678, -23.142561, 12.600354, -95.561676)
+
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=446785335]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.013619661, 0, -0.010673523)
 navigation_mesh = SubResource("NavigationMesh_yj5vl")
@@ -305,17 +402,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_behavior_recursive = 1
-
-[node name="player" type="CharacterBody3D" parent="." unique_id=1461134150]
-collision_layer = 129
-collision_mask = 129
-script = ExtResource("1_dntxa")
-
-[node name="school_girl" parent="player" unique_id=1653524613 instance=ExtResource("4_rfg7q")]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="player" unique_id=1986804420]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.90657055, 0)
-shape = SubResource("CapsuleShape3D_rfg7q")
 
 [node name="env" type="Node3D" parent="." unique_id=1385954955]
 
@@ -459,6 +545,8 @@ shape = SubResource("BoxShape3D_stmjy")
 [node name="monst" parent="." unique_id=217254903 instance=ExtResource("27_yj5vl")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.035164654, -0.047441944, -2.916283)
 
+[editable path="player"]
+[editable path="player/school_girl"]
 [editable path="env/cathedral2"]
 [editable path="all cams/fixed_cam"]
 [editable path="all cams/fixed_cam2"]
