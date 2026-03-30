@@ -123,12 +123,12 @@ func walk(delta):
 				if ray_cast_3d.get_collider().has_method("do_damage") and fired:
 					var body = ray_cast_3d.get_collider()
 					body.do_damage(35)
-					
-					var blood = blood_effect.instantiate()
-					get_tree().current_scene.add_child(blood)
-					blood.global_position = ray_cast_3d.get_collision_point()
-					blood.rotation = rotation   
-					blood.get_node("GPUParticles3D").emitting = true
+					if !ray_cast_3d.get_collider().died_after_crawl:
+						var blood = blood_effect.instantiate()
+						get_tree().current_scene.add_child(blood)
+						blood.global_position = ray_cast_3d.get_collision_point()
+						blood.rotation = rotation   
+						blood.get_node("GPUParticles3D").emitting = true
 					
 					var push_dir = body.global_position - global_position
 					push_dir.y = 0

@@ -16,7 +16,7 @@ enum State {
 var state : State = State.IDLE
 
 const SPEED : float = 0.7
-const ATTACK_RANGE : float = 0.8
+var ATTACK_RANGE : float = 0.8
 
 var can_bite : bool = true
 var is_bitting : bool = false
@@ -35,13 +35,14 @@ var knockback : Vector3 = Vector3.ZERO
 var died_after_crawl : bool = false
 
 @onready var area_3d: Area3D = $Area3D
+@onready var collision_shape_3d: CollisionShape3D = $CollisionShape3D
 
 
 func _ready() -> void:
 	animation_tree.active = true
 	
 func _process(delta):
-	
+	print(State.keys()[state])
 	if player and !state == State.DEATH:
 		var direction = player.global_position - global_position
 		direction.y = 0
@@ -80,6 +81,7 @@ func _process(delta):
 			dir.y = 0
 			var target_rot = atan2(dir.x, dir.z)
 			player.rotation.y = lerp_angle(player.rotation.y, target_rot, 3 * delta)
+			ATTACK_RANGE = 0.8
 		
 		State.DEATH:
 			velocity = Vector3.ZERO
@@ -114,7 +116,7 @@ func _update_animation_conditions():
 	if !player:
 		animation_tree.set("parameters/conditions/walking", false)
 		animation_tree.set("parameters/conditions/bite", false)
-		animation_tree.set("parameters/conditions/fall", false)
+		animation_tree.set("parameters/conditions/fall", state == State.DEATH)
 		animation_tree.set("parameters/conditions/should_crawl", false)
 		animation_tree.set("parameters/conditions/idle", state == State.IDLE)
 		return
@@ -162,6 +164,7 @@ func _on_bite_bef_limit_timeout() -> void:
 func blood_effect_onbite():
 	player.take_damage()
 	blood_particle_bite.get_node("GPUParticles3D").emitting = true
+	await get_tree().create_timer(1).timeout
 	blood_particle_bite.get_node("GPUParticles3D").emitting = false
 
 func _target_in_range():
@@ -178,6 +181,7 @@ func do_damage(damage):
 			died_after_crawl = true
 			await get_tree().create_timer(3).timeout
 			health = 10
+			ATTACK_RANGE = 1
 		else:
 			area_3d.monitoring = false
 			state = State.DEATH
