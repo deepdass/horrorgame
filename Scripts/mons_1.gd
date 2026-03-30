@@ -37,6 +37,7 @@ var died_after_crawl : bool = false
 @onready var area_3d: Area3D = $Area3D
 @onready var collision_shape_3d: CollisionShape3D = $CollisionShape3D
 @onready var corpses: Node3D = $"../../corpses"
+@onready var gamemode: Node = $"../../gamemode"
 
 
 func _ready() -> void:
@@ -175,6 +176,8 @@ func _target_in_range():
 	
 func do_damage(damage):
 	health -= damage
+	if !player:
+		player = gamemode.player
 
 	if health <= 0:
 		if can_crawl and player:

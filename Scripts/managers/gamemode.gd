@@ -1,5 +1,7 @@
 extends Node
 
+@onready var player: Player = $"../player"
+
 func _ready() -> void:
 	Engine.time_scale = 1
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
