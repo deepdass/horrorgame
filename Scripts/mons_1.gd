@@ -16,7 +16,7 @@ enum State {
 var state : State = State.IDLE
 
 const SPEED : float = 0.7
-var ATTACK_RANGE : float = 0.8
+var ATTACK_RANGE : float = 0.9
 
 var can_bite : bool = true
 var is_bitting : bool = false
@@ -36,6 +36,7 @@ var died_after_crawl : bool = false
 
 @onready var area_3d: Area3D = $Area3D
 @onready var collision_shape_3d: CollisionShape3D = $CollisionShape3D
+@onready var corpses: Node3D = $"../../corpses"
 
 
 func _ready() -> void:
@@ -190,13 +191,17 @@ func do_damage(damage):
 			area_3d.monitoring = false
 			can_bite = false
 			player = null
-			collision_shape_3d.queue_free()
-			var wait_time = 3
+			var wait_time = 2
 			
 			if died_after_crawl:
 				anim_playback.travel("fall_after_crawl")
 				wait_time = 1.1
-				
+				collision_shape_3d.queue_free()
+			get_parent().remove_child(self)
+			corpses.add_child(self)
 			await get_tree().create_timer(wait_time).timeout
 			set_physics_process(false)
 			set_process(false)
+			if collision_shape_3d:
+				collision_shape_3d.queue_free()
+			

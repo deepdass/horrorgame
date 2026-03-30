@@ -243,52 +243,6 @@ script = ExtResource("1_ageuk")
 
 [node name="player" parent="." unique_id=1959472943 instance=ExtResource("26_qs540")]
 
-[node name="Skeleton3D" parent="player/school_girl/Armature" parent_id_path=PackedInt32Array(1959472943, 1076983184, 2082363309) index="0" unique_id=1726262404]
-bones/0/position = Vector3(0.82846075, 2.6846228, -103.18851)
-bones/0/rotation = Quaternion(-0.7518612, -0.060770925, -0.023985915, 0.6560766)
-bones/1/rotation = Quaternion(-0.033655073, -0.005927392, 0.075639196, 0.99654955)
-bones/2/rotation = Quaternion(0.056024246, -0.006920917, 0.00025720644, 0.9984054)
-bones/3/rotation = Quaternion(0.056186646, -0.0049970285, 0.0006512541, 0.99840754)
-bones/4/rotation = Quaternion(0.07270691, 0.0032412042, -0.02156079, 0.997115)
-bones/5/rotation = Quaternion(-0.1718602, 0.004189456, 0.010685702, 0.9850545)
-bones/7/rotation = Quaternion(-0.61596453, -0.38162434, 0.54056674, -0.42747897)
-bones/8/rotation = Quaternion(0.46883133, 0.08210468, 0.08547663, 0.8752998)
-bones/9/rotation = Quaternion(-0.0121618705, -0.0065226215, 0.17690939, 0.98413044)
-bones/10/rotation = Quaternion(0.09441718, 0.16797812, 0.10883799, 0.9752041)
-bones/11/rotation = Quaternion(0.11757797, 0.038873754, 0.07716425, 0.9892977)
-bones/12/rotation = Quaternion(0.014147654, 0.0015568574, -0.13801098, 0.9903285)
-bones/13/rotation = Quaternion(-0.036994666, -0.09224958, 0.037040617, 0.99435884)
-bones/15/rotation = Quaternion(0.14657785, -0.014064945, -0.062403195, 0.9871287)
-bones/16/rotation = Quaternion(0.16920906, -8.48845e-05, -0.0155579215, 0.9854574)
-bones/17/rotation = Quaternion(0.224402, 1.7275337e-05, -0.022092966, 0.97424626)
-bones/19/rotation = Quaternion(0.09522624, -0.011157146, -0.062236335, 0.9934456)
-bones/20/rotation = Quaternion(0.17711781, 0.0001129444, -0.018247092, 0.98402053)
-bones/21/rotation = Quaternion(0.22074978, -5.1805284e-05, -0.01960137, 0.9751335)
-bones/23/rotation = Quaternion(0.6405381, -0.35344627, 0.54150605, 0.41419548)
-bones/24/rotation = Quaternion(0.38474426, -0.15162998, -0.098052226, 0.90518844)
-bones/25/rotation = Quaternion(-0.01226936, 0.008628137, -0.23326692, 0.9722971)
-bones/26/rotation = Quaternion(0.037660003, -0.10410556, -0.08050317, 0.9905873)
-bones/27/rotation = Quaternion(0.12466852, -0.05621302, -0.11112146, 0.9843526)
-bones/28/rotation = Quaternion(-0.00579575, 0.028722644, 0.24234092, 0.9697487)
-bones/29/rotation = Quaternion(0.010621846, 0.0017611982, -0.00928305, 0.999899)
-bones/31/rotation = Quaternion(0.21600808, 0.0145470835, 0.096040696, 0.9715478)
-bones/32/rotation = Quaternion(0.10933611, 0.0003244669, 0.013550643, 0.99391246)
-bones/33/rotation = Quaternion(0.18835503, -0.0005221106, 0.024622029, 0.9817922)
-bones/35/rotation = Quaternion(0.1505597, 0.016365625, 0.072161786, 0.98582786)
-bones/36/rotation = Quaternion(0.16247915, 8.169502e-06, 0.019338723, 0.9865225)
-bones/37/rotation = Quaternion(0.27933943, 0.02188083, 0.040376622, 0.9590935)
-bones/39/rotation = Quaternion(0.05238494, 0.06893534, 0.9933045, -0.076486245)
-bones/40/rotation = Quaternion(-0.30043542, -0.0065641757, 0.004722072, 0.95376796)
-bones/41/rotation = Quaternion(0.5822413, -0.0099963145, -0.010824921, 0.81288254)
-bones/42/rotation = Quaternion(0.34913468, -0.035932537, 0.013373718, 0.936288)
-bones/44/rotation = Quaternion(-0.059259392, 0.004362751, 0.9940496, -0.09129536)
-bones/45/rotation = Quaternion(-0.19654806, 0.031528436, -0.0042498335, 0.97997797)
-bones/46/rotation = Quaternion(0.5451721, -0.01899812, -0.0291009, 0.83760345)
-bones/47/rotation = Quaternion(0.35097632, 0.035381466, -0.013047508, 0.9356247)
-
-[node name="BoneAttachment3D" parent="player/school_girl/Armature/Skeleton3D" index="1" unique_id=1198001087]
-transform = Transform3D(0.6779819, 0.07924281, 0.7307948, 0.5794388, 0.5541341, -0.5976505, -0.45231795, 0.8286467, 0.32977673, -23.721897, 12.199293, -94.84676)
-
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=446785335]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.013619661, 0, -0.010673523)
 navigation_mesh = SubResource("NavigationMesh_yj5vl")
@@ -494,8 +448,8 @@ shape = SubResource("BoxShape3D_stmjy")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6468462, -0.047441944, -5.7066793)
 can_crawl = true
 
-[editable path="player"]
-[editable path="player/school_girl"]
+[node name="corpses" type="Node3D" parent="." unique_id=765615338]
+
 [editable path="env/cathedral2"]
 [editable path="all cams/fixed_cam"]
 [editable path="all cams/fixed_cam2"]
