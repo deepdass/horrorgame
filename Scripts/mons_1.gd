@@ -185,8 +185,17 @@ func do_damage(damage):
 			ATTACK_RANGE = 1
 			can_bite = true
 		else:
-			area_3d.monitoring = false
 			state = State.DEATH
+			area_3d.monitoring = false
+			can_bite = false
+			player = null
+			collision_shape_3d.queue_free()
+			var wait_time = 3
 			
 			if died_after_crawl:
 				anim_playback.travel("fall_after_crawl")
+				wait_time = 1.1
+				
+			await get_tree().create_timer(wait_time).timeout
+			set_physics_process(false)
+			set_process(false)
