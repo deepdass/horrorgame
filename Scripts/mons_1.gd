@@ -42,7 +42,7 @@ func _ready() -> void:
 	animation_tree.active = true
 	
 func _process(delta):
-	print(State.keys()[state])
+	##print(State.keys()[state])
 	if player and !state == State.DEATH:
 		var direction = player.global_position - global_position
 		direction.y = 0
@@ -164,8 +164,9 @@ func _on_bite_bef_limit_timeout() -> void:
 func blood_effect_onbite():
 	player.take_damage()
 	blood_particle_bite.get_node("GPUParticles3D").emitting = true
-	await get_tree().create_timer(1).timeout
-	blood_particle_bite.get_node("GPUParticles3D").emitting = false
+	if get_tree():
+		await get_tree().create_timer(1).timeout
+		blood_particle_bite.get_node("GPUParticles3D").emitting = false
 
 func _target_in_range():
 	return (Vector3(player.global_position.x,0,player.global_position.z)

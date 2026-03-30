@@ -29,6 +29,7 @@ var nearestEnemy : CharacterBody3D
 var nearestEnemy_distance : float = INF
 
 var health : int = 3
+const DEATH_SCREEN = preload("uid://cco2xp2e1twlm")
 
 enum State {
 	IDLE,
@@ -211,4 +212,7 @@ func take_damage():
 	health -= 1
 	print(health)
 	if health <= 0:
-		print("death")
+		Engine.time_scale = 0.3
+		await get_tree().create_timer(0.7).timeout
+		Engine.time_scale = 1
+		get_tree().change_scene_to_packed(DEATH_SCREEN)
