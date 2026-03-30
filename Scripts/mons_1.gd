@@ -8,7 +8,9 @@ enum State {
 	IDLE,
 	CHASE,
 	PREPARE_BITE,
-	BITE
+	BITE,
+	DEATH,
+	CRAWL
 }
 var state : State = State.IDLE
 
@@ -28,11 +30,18 @@ var knockback : Vector3 = Vector3.ZERO
 
 @onready var blood_particle_bite: Node3D = $blood_particle_bite
 
+@export var can_crawl : bool = false
+
+@onready var area_3d: Area3D = $Area3D
+
+
 func _ready() -> void:
 	animation_tree.active = true
 	
 func _process(delta):
-	if player:
+	print(State.keys()[state])
+	
+	if player and !state == State.DEATH:
 		var direction = player.global_position - global_position
 		direction.y = 0
 		var target_rotation = atan2(direction.x, direction.z)
@@ -71,6 +80,24 @@ func _process(delta):
 			var target_rot = atan2(dir.x, dir.z)
 			player.rotation.y = lerp_angle(player.rotation.y, target_rot, 3 * delta)
 		
+		State.DEATH:
+			velocity = Vector3.ZERO
+		
+		State.CRAWL:
+			if player:
+				var direction = player.global_position - global_position
+				direction.y = 0
+				var target_rotation = atan2(direction.x, direction.z)
+				rotation.y = lerp_angle(rotation.y, target_rotation, 5 * delta)
+	
+				navigation_agent_3d.set_target_position(player.global_position)
+				var next_nav_point = navigation_agent_3d.get_next_path_position()
+				velocity = (next_nav_point - global_position).normalized() * SPEED * 0.6
+	
+				if _target_in_range() and can_bite:
+					state = State.PREPARE_BITE
+					bite_bef_limit.start()
+		
 	_update_animation_conditions()
 	
 	velocity += knockback
@@ -86,12 +113,17 @@ func _update_animation_conditions():
 	if !player:
 		animation_tree.set("parameters/conditions/walking", false)
 		animation_tree.set("parameters/conditions/bite", false)
+		animation_tree.set("parameters/conditions/fall", false)
+		animation_tree.set("parameters/conditions/should_crawl", false)
 		animation_tree.set("parameters/conditions/idle", state == State.IDLE)
 		return
 	else:
 		animation_tree.set("parameters/conditions/idle", false)
+
 	animation_tree.set("parameters/conditions/bite", state == State.BITE)
 	animation_tree.set("parameters/conditions/walking", state == State.CHASE)
+	animation_tree.set("parameters/conditions/fall", state == State.DEATH or state == State.CRAWL)
+	animation_tree.set("parameters/conditions/should_crawl", state == State.CRAWL)
 
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
@@ -127,8 +159,8 @@ func _on_bite_bef_limit_timeout() -> void:
 	get_viewport().get_camera_3d().start_shake()
 
 func blood_effect_onbite():
+	player.take_damage()
 	blood_particle_bite.get_node("GPUParticles3D").emitting = true
-	await get_tree().create_timer(1.5).timeout
 	blood_particle_bite.get_node("GPUParticles3D").emitting = false
 
 func _target_in_range():
@@ -137,6 +169,13 @@ func _target_in_range():
 	
 func do_damage(damage):
 	health -= damage
-	print(health)
+
 	if health <= 0:
-		print("death")
+		if can_crawl and player:
+			state = State.CRAWL
+			can_crawl = false
+			await get_tree().create_timer(3).timeout
+			health = 10
+		else:
+			area_3d.monitoring = false
+			state = State.DEATH
