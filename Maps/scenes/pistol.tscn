@@ -42,7 +42,7 @@ transform = Transform3D(100, 0, 0, 0, -100.000015, -1.5099583e-05, 0, 1.5099583e
 mesh = SubResource("ArrayMesh_osdkv")
 skeleton = NodePath("")
 
-[node name="RayCast3D" type="RayCast3D" parent="." unique_id=1933173420]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.2684485e-08, 0.039253753, -0.090273246)
+[node name="RayCast3D" type="RayCast3D" parent="Cylinder_Material_0" unique_id=1933173420]
+transform = Transform3D(0.01, 0, 0, 0, -0.009999999, 1.5099578e-09, 0, -1.5099578e-09, -0.009999999, 6.2684485e-10, -0.00039253762, 0.0009027323)
 enabled = false
-target_position = Vector3(0, 0, 100)
+target_position = Vector3(0, 0, 20)

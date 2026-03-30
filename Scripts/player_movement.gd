@@ -4,7 +4,7 @@ const SPEED : float = 1.3
 const SPRINTSPEED : float = 3.0
 const JUMP_VELOCITY : float = 3.0
 
-const turn_speed : float = 240.0
+const turn_speed : float = 200.0
 const quick_turn_time : float = 0.4
 var is_quick_turning : bool = false
 
@@ -19,8 +19,9 @@ var is_aiming : bool = false
 var fired : bool = false
 var can_fire : bool = true
 @onready var pistol: Node3D = $school_girl/Armature/Skeleton3D/BoneAttachment3D/pistol
-@onready var ray_cast_3d: RayCast3D = $school_girl/Armature/Skeleton3D/BoneAttachment3D/pistol/RayCast3D
+@onready var ray_cast_3d: RayCast3D = $school_girl/Armature/Skeleton3D/BoneAttachment3D/pistol/Cylinder_Material_0/RayCast3D
 @onready var bullet_timer: Timer = $bullet_timer
+@onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
 
 const blood_effect : PackedScene = preload("res://Maps/scenes/blood.tscn")
 
@@ -124,6 +125,7 @@ func walk(delta):
 				if ray_cast_3d.get_collider().has_method("do_damage") and fired:
 					var body = ray_cast_3d.get_collider()
 					body.do_damage(35)
+					audio_stream_player.play()
 					if !ray_cast_3d.get_collider().died_after_crawl:
 						var blood = blood_effect.instantiate()
 						get_tree().current_scene.add_child(blood)

@@ -2611,7 +2611,7 @@ _data = {
 }
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_8xp5g"]
-radius = 4.4
+radius = 4.7
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ijtk8"]
 render_priority = 0
@@ -2648,28 +2648,28 @@ shape = SubResource("CapsuleShape3D_jjaj7")
 [node name="mons1" parent="." unique_id=99643107 instance=ExtResource("2_8xp5g")]
 
 [node name="Skeleton3D" parent="mons1/Armature_002" parent_id_path=PackedInt32Array(99643107, 2026479848) index="0" unique_id=1826272904]
-bones/0/position = Vector3(0.94487953, 3.865209, -105.93646)
-bones/0/rotation = Quaternion(0.698323, 0.011445637, 0.042210106, -0.71444553)
-bones/1/rotation = Quaternion(0.00096103566, 0.026342964, -0.018452182, 0.9994823)
-bones/2/rotation = Quaternion(0.02715617, 0.02051392, -0.016059998, 0.99929166)
-bones/3/rotation = Quaternion(0.027160244, 0.019628791, -0.017026212, 0.9992933)
-bones/4/rotation = Quaternion(0.20044415, 0.030929089, -0.071822844, 0.97657925)
-bones/5/rotation = Quaternion(0.21952283, 0.03522368, -0.111378066, 0.96858865)
-bones/7/rotation = Quaternion(-0.62403786, -0.39852515, 0.5017593, -0.44720474)
-bones/8/rotation = Quaternion(0.34184095, 0.28452298, 0.053667445, 0.89404213)
-bones/9/rotation = Quaternion(-0.004167658, 0.025084738, 0.33790252, 0.94083756)
-bones/10/rotation = Quaternion(0.1824413, -0.33584747, 0.23983145, 0.89241385)
-bones/15/rotation = Quaternion(0.5202719, -0.48842108, 0.48719415, 0.50339234)
-bones/16/rotation = Quaternion(0.5241361, -0.2421687, -0.15555425, 0.8015226)
-bones/17/rotation = Quaternion(0.0039698435, -0.017983042, -0.23378444, 0.972114)
-bones/18/rotation = Quaternion(-0.17026213, 0.212551, 0.028943803, 0.9617667)
-bones/23/rotation = Quaternion(0.13428056, 0.14856867, 0.9750913, -0.09535765)
-bones/24/rotation = Quaternion(-0.20179014, 0.01918829, 0.030069923, 0.9787791)
-bones/25/rotation = Quaternion(0.5588673, -0.10027618, -0.043279108, 0.82203346)
-bones/26/rotation = Quaternion(0.24623169, 0.04560899, -0.011568999, 0.9680682)
-bones/28/rotation = Quaternion(-0.18387406, 0.08042654, 0.9796456, -0.0040563717)
-bones/29/rotation = Quaternion(-0.13568377, 0.080973685, -0.06403226, 0.9853594)
-bones/30/rotation = Quaternion(0.53738713, 0.12996498, 0.025789384, 0.8328621)
+bones/0/position = Vector3(-0.014071107, -0.033109248, -105.47603)
+bones/0/rotation = Quaternion(0.6936118, 0.027591752, -0.022588832, -0.7194659)
+bones/1/rotation = Quaternion(-0.002504599, -0.018226651, 0.014207736, 0.9997298)
+bones/2/rotation = Quaternion(0.021865245, -0.014305139, 0.0071758786, 0.99963284)
+bones/3/rotation = Quaternion(0.02196903, -0.01369464, 0.008024556, 0.9996327)
+bones/4/rotation = Quaternion(0.22742723, 0.027704172, -0.04782341, 0.9722255)
+bones/5/rotation = Quaternion(0.2935088, 0.02033161, -0.031555668, 0.9552191)
+bones/7/rotation = Quaternion(-0.61163354, -0.40496168, 0.5202163, -0.437362)
+bones/8/rotation = Quaternion(0.35450402, 0.39735103, 0.23506886, 0.81313086)
+bones/9/rotation = Quaternion(-0.004644201, 0.02768911, 0.3765758, 0.92596036)
+bones/10/rotation = Quaternion(0.12044044, -0.15884177, -0.061764047, 0.977982)
+bones/15/rotation = Quaternion(0.58101434, -0.41421023, 0.5776097, 0.396509)
+bones/16/rotation = Quaternion(0.33655438, -0.4239566, -0.25491914, 0.80125415)
+bones/17/rotation = Quaternion(0.0056559923, -0.024691328, -0.333081, 0.94255793)
+bones/18/rotation = Quaternion(-0.14994192, 0.37858152, -0.039327215, 0.9124949)
+bones/23/rotation = Quaternion(0.15570366, 0.15043713, 0.97395587, -0.06734311)
+bones/24/rotation = Quaternion(-0.18194303, -0.021467756, 0.03321234, 0.9825136)
+bones/25/rotation = Quaternion(0.53650826, -0.09789946, -0.03983126, 0.83725035)
+bones/26/rotation = Quaternion(0.24541044, 0.045696042, -0.011580915, 0.9682724)
+bones/28/rotation = Quaternion(-0.14996283, 0.15010138, 0.97709835, 0.016112361)
+bones/29/rotation = Quaternion(-0.19150113, 0.066948116, -0.07817963, 0.97608054)
+bones/30/rotation = Quaternion(0.5445807, 0.11214721, 0.027784158, 0.8307124)
 
 [node name="AnimationPlayer" parent="mons1" index="1" unique_id=247068474]
 libraries/ = SubResource("AnimationLibrary_xodmt")

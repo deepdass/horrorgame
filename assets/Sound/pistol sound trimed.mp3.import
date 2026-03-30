@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://b0lifvdr4xsu2"
+path="res://.godot/imported/pistol sound trimed.mp3-baecfa086dbcf24154bb6116437a9c87.mp3str"
+
+[deps]
+
+source_file="res://assets/Sound/pistol sound trimed.mp3"
+dest_files=["res://.godot/imported/pistol sound trimed.mp3-baecfa086dbcf24154bb6116437a9c87.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
