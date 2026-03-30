@@ -87,6 +87,7 @@ func walk(delta):
 	if Input.is_action_just_pressed("fire") and current_state == State.AIMING and can_fire:
 		can_fire = false
 		fired = true
+		audio_stream_player.play()
 		bullet_timer.start()
 	
 	match current_state:
@@ -125,7 +126,6 @@ func walk(delta):
 				if ray_cast_3d.get_collider().has_method("do_damage") and fired:
 					var body = ray_cast_3d.get_collider()
 					body.do_damage(35)
-					audio_stream_player.play()
 					if !ray_cast_3d.get_collider().died_after_crawl:
 						var blood = blood_effect.instantiate()
 						get_tree().current_scene.add_child(blood)

@@ -470,7 +470,7 @@ shape = SubResource("BoxShape3D_stmjy")
 [node name="allmons" type="Node3D" parent="." unique_id=1470427191]
 
 [node name="monst" parent="allmons" unique_id=217254903 instance=ExtResource("27_yj5vl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.23959619, -0.047441944, -10.7615595)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.23959619, -0.047441944, -10.458614)
 can_crawl = true
 
 [node name="monst2" parent="allmons" unique_id=885456188 instance=ExtResource("27_yj5vl")]

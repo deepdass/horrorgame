@@ -110,8 +110,6 @@ func _process(delta):
 	if knockback.length() < 0.05:
 		knockback = Vector3.ZERO
 	
-	if not is_on_floor():
-		velocity += get_gravity() * delta
 	move_and_slide()
 
 func _update_animation_conditions():
@@ -182,10 +180,12 @@ func do_damage(damage):
 	if health <= 0:
 		if can_crawl and player:
 			state = State.CRAWL
+			collision_shape_3d.disabled = true
 			can_crawl = false
 			died_after_crawl = true
 			can_bite = false
 			await get_tree().create_timer(3).timeout
+			collision_shape_3d.disabled = false
 			health = 10
 			ATTACK_RANGE = 1
 			can_bite = true
@@ -194,17 +194,13 @@ func do_damage(damage):
 			area_3d.monitoring = false
 			can_bite = false
 			player = null
-			var wait_time = 2
 			
 			if died_after_crawl:
 				anim_playback.travel("fall_after_crawl")
-				wait_time = 1.1
-				collision_shape_3d.queue_free()
 			get_parent().remove_child(self)
 			corpses.add_child(self)
-			await get_tree().create_timer(wait_time).timeout
+			collision_shape_3d.queue_free()
+			await get_tree().create_timer(3).timeout
 			set_physics_process(false)
 			set_process(false)
-			if collision_shape_3d:
-				collision_shape_3d.queue_free()
 			
