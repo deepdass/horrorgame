@@ -4,7 +4,7 @@ const SPEED : float = 1.3
 const SPRINTSPEED : float = 3.0
 const JUMP_VELOCITY : float = 3.0
 
-const turn_speed : float = 200.0
+const turn_speed : float = 240.0
 const quick_turn_time : float = 0.4
 var is_quick_turning : bool = false
 
@@ -27,6 +27,8 @@ const blood_effect : PackedScene = preload("res://Maps/scenes/blood.tscn")
 @onready var allmons: Node3D = $"../allmons"
 var nearestEnemy : CharacterBody3D 
 var nearestEnemy_distance : float = INF
+
+var health : int = 3
 
 enum State {
 	IDLE,
@@ -114,31 +116,13 @@ func walk(delta):
 			velocity.z = 0
 			ray_cast_3d.enabled = true
 			
-			var best_enemy : CharacterBody3D
-			var best_diff : float = INF
-		
-			for enemy : CharacterBody3D in allmons.get_children():
-				var target_pos = enemy.global_position
-				target_pos.y = global_position.y
-				var dir = (target_pos - global_position).normalized()
-				var angle = atan2(dir.x, dir.z)
-				var diff = wrapf(angle - rotation.y, -PI, PI) - PI
-				var abs_diff = abs(diff)
-				if abs_diff < best_diff:
-					best_diff = abs_diff
-					best_enemy = enemy
-			if best_enemy and best_diff < deg_to_rad(40):
-				var target_pos = best_enemy.global_position
-				target_pos.y = global_position.y
-				var dir = (target_pos - global_position).normalized()
-				var angle = atan2(dir.x, dir.z)
-				var diff = wrapf(angle - rotation.y, -PI, PI) - PI
-				rotation.y += diff * 3 * delta
+			if allmons.get_children():
+				aim_assist(delta)
 		
 			if ray_cast_3d.is_colliding():
 				if ray_cast_3d.get_collider().has_method("do_damage") and fired:
 					var body = ray_cast_3d.get_collider()
-					body.do_damage(30)
+					body.do_damage(35)
 					
 					var blood = blood_effect.instantiate()
 					get_tree().current_scene.add_child(blood)
@@ -153,7 +137,7 @@ func walk(delta):
 	if Input.is_action_just_released("aim"):
 		pistol.visible = false
 		ray_cast_3d.enabled = false
-
+	
 
 func check_correct_anim(anim):
 	if !(animation_state_machine_playback.get_current_node() == anim):
@@ -198,3 +182,33 @@ func calnearst_enemy() -> void:
 		if !(nearestEnemy_distance < newdis):
 			nearestEnemy_distance = newdis
 			nearestEnemy = i
+	if nearestEnemy:
+		look_at(Vector3(nearestEnemy.global_position.x, global_position.y, nearestEnemy.global_position.z), Vector3.UP)
+
+func aim_assist(delta):
+	var best_enemy : CharacterBody3D
+	var best_diff : float = INF
+		
+	for enemy : CharacterBody3D in allmons.get_children():
+		var target_pos = enemy.global_position
+		target_pos.y = global_position.y
+		var dir = (target_pos - global_position).normalized()
+		var angle = atan2(-dir.x, -dir.z)
+		var diff = wrapf(angle - rotation.y, -PI, PI)
+		var abs_diff = abs(diff)
+		if abs_diff < best_diff:
+			best_diff = abs_diff
+			best_enemy = enemy
+	if best_enemy and best_diff < deg_to_rad(40):
+		var target_pos = best_enemy.global_position
+		target_pos.y = global_position.y
+		var dir = (target_pos - global_position).normalized()
+		var angle = atan2(-dir.x, -dir.z)
+		var diff = wrapf(angle - rotation.y, -PI, PI)
+		rotation.y += diff * 4 * delta
+		
+func take_damage():
+	health -= 1
+	print(health)
+	if health <= 0:
+		print("death")
