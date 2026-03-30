@@ -179,9 +179,11 @@ func do_damage(damage):
 			state = State.CRAWL
 			can_crawl = false
 			died_after_crawl = true
+			can_bite = false
 			await get_tree().create_timer(3).timeout
 			health = 10
 			ATTACK_RANGE = 1
+			can_bite = true
 		else:
 			area_3d.monitoring = false
 			state = State.DEATH
