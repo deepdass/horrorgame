@@ -4,6 +4,7 @@ var player : Player = null
 @onready var navigation_agent_3d: NavigationAgent3D = $NavigationAgent3D
 
 @onready var animation_tree: AnimationTree = $mons1/AnimationTree
+@onready var anim_playback : AnimationNodeStateMachinePlayback = animation_tree.get("parameters/playback")
 enum State {
 	IDLE,
 	CHASE,
@@ -31,6 +32,7 @@ var knockback : Vector3 = Vector3.ZERO
 @onready var blood_particle_bite: Node3D = $blood_particle_bite
 
 @export var can_crawl : bool = false
+var died_after_crawl : bool = false
 
 @onready var area_3d: Area3D = $Area3D
 
@@ -39,7 +41,6 @@ func _ready() -> void:
 	animation_tree.active = true
 	
 func _process(delta):
-	print(State.keys()[state])
 	
 	if player and !state == State.DEATH:
 		var direction = player.global_position - global_position
@@ -174,8 +175,12 @@ func do_damage(damage):
 		if can_crawl and player:
 			state = State.CRAWL
 			can_crawl = false
+			died_after_crawl = true
 			await get_tree().create_timer(3).timeout
 			health = 10
 		else:
 			area_3d.monitoring = false
 			state = State.DEATH
+			
+			if died_after_crawl:
+				anim_playback.travel("fall_after_crawl")
