@@ -32,6 +32,9 @@ var nearestEnemy_distance : float = INF
 var health : int = 3
 const DEATH_SCREEN = preload("uid://cco2xp2e1twlm")
 
+const MUZZLE = preload("uid://dp5triedcn6i5")
+@onready var marker_3d: Marker3D = $school_girl/Armature/Skeleton3D/BoneAttachment3D/pistol/Marker3D
+
 enum State {
 	IDLE,
 	WALKING,
@@ -87,8 +90,14 @@ func walk(delta):
 	if Input.is_action_just_pressed("fire") and current_state == State.AIMING and can_fire:
 		can_fire = false
 		fired = true
+		
+		var muzzle = MUZZLE.instantiate()
+		marker_3d.get_parent().add_child(muzzle)
+		muzzle.global_position = marker_3d.global_position
+		
 		audio_stream_player.play()
 		bullet_timer.start()
+		 
 	
 	match current_state:
 		

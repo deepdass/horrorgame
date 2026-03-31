@@ -1,0 +1,110 @@
+[gd_scene format=3 uid="uid://dp5triedcn6i5"]
+
+[ext_resource type="Texture2D" uid="uid://cqdxhblgtxlrm" path="res://assets/2D/muzzle/muzzle_flash01.png" id="1_ppqdw"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ji6me"]
+transparency = 1
+blend_mode = 1
+cull_mode = 2
+shading_mode = 0
+vertex_color_use_as_albedo = true
+vertex_color_is_srgb = true
+albedo_texture = ExtResource("1_ppqdw")
+
+[sub_resource type="Curve" id="Curve_0hldl"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_schw2"]
+curve = SubResource("Curve_0hldl")
+
+[sub_resource type="Curve" id="Curve_ppqdw"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_0hldl"]
+curve = SubResource("Curve_ppqdw")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ppqdw"]
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_0hldl")
+color = Color(1.5720325, 1.2756859, 0.8825735, 1)
+alpha_curve = SubResource("CurveTexture_schw2")
+
+[sub_resource type="QuadMesh" id="QuadMesh_0hldl"]
+size = Vector2(0.8, 0.6)
+center_offset = Vector3(0.27, 0.05, 0)
+
+[sub_resource type="QuadMesh" id="QuadMesh_ppqdw"]
+size = Vector2(0.8, 0.6)
+center_offset = Vector3(0.27, 0, -0.05)
+orientation = 1
+
+[sub_resource type="Animation" id="Animation_ppqdw"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GPUParticles3D:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_0hldl"]
+resource_name = "fire"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GPUParticles3D:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_schw2"]
+_data = {
+&"RESET": SubResource("Animation_ppqdw"),
+&"fire": SubResource("Animation_0hldl")
+}
+
+[node name="muzzle" type="Node3D" unique_id=1775697226]
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=418874152]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_ji6me")
+amount = 1
+lifetime = 0.05
+one_shot = true
+explosiveness = 1.0
+randomness = 1.0
+fixed_fps = 120
+process_material = SubResource("ParticleProcessMaterial_ppqdw")
+draw_passes = 2
+draw_pass_1 = SubResource("QuadMesh_0hldl")
+draw_pass_2 = SubResource("QuadMesh_ppqdw")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=934379161]
+libraries/ = SubResource("AnimationLibrary_schw2")
