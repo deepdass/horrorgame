@@ -221,7 +221,6 @@ func aim_assist(delta):
 		
 func take_damage():
 	health -= 1
-	print(health)
 	if health <= 0:
 		Engine.time_scale = 0.3
 		await get_tree().create_timer(0.7).timeout
