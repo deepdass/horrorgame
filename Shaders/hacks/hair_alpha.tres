@@ -1,0 +1,13 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://osg842vg7wuy"]
+
+[ext_resource type="Shader" uid="uid://dpte4i0xipcof" path="res://Shaders/hacks/invisible.gdshader" id="1_uo40d"]
+[ext_resource type="Texture2D" uid="uid://dfouvljg0hc7m" path="res://assets/3D/player/school_girl_T_Sarah_misc.png" id="2_an4qh"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_uo40d")
+shader_parameter/base_tex = ExtResource("2_an4qh")
+shader_parameter/use_rAS_ALPHA = true
+shader_parameter/texture_tile = Vector2(1, 1)
+shader_parameter/snap_enabled = true
+shader_parameter/snap_res = 128.0
