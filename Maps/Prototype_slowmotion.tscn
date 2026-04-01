@@ -1,31 +1,31 @@
-[gd_scene format=4 uid="uid://brc27vrw3vk6w"]
+[gd_scene format=4 uid="uid://bk618xir6bmbh"]
 
-[ext_resource type="Script" uid="uid://b3v5i62lcncdb" path="res://Scripts/managers/gamemode.gd" id="1_ageuk"]
-[ext_resource type="Environment" uid="uid://b20egbo36dye7" path="res://new_environment.tres" id="2_4d1mg"]
-[ext_resource type="PackedScene" uid="uid://dbt0axcmijm44" path="res://Maps/scenes/player.tscn" id="2_qs540"]
-[ext_resource type="Texture2D" uid="uid://dcnqtvue7y7o2" path="res://assets/3D/human/textures/DiffuseMap.png" id="4_ageuk"]
-[ext_resource type="ArrayMesh" uid="uid://bh658wc82a6me" path="res://assets/3D/human/source/Character.obj" id="5_hgj1k"]
-[ext_resource type="Shader" uid="uid://b84qvs26oyhtn" path="res://Shaders/ps1_jitter.gdshader" id="5_yi55j"]
-[ext_resource type="PackedScene" uid="uid://be7ebd8qy0bm8" path="res://assets/env/silent_hill_3_cathedral/scene.gltf" id="6_ao1rr"]
-[ext_resource type="Shader" uid="uid://bptckj33b1dsn" path="res://Shaders/ps1look.gdshader" id="7_hgj1k"]
-[ext_resource type="PackedScene" uid="uid://brc7a5wrmkv1k" path="res://assets/3D/pyramid-head/pyramid_head.tscn" id="8_yi55j"]
-[ext_resource type="Texture2D" uid="uid://d2i54e4j0mt64" path="res://assets/3D/ps1-chicken/textures/Chicken1.TGA.png" id="9_mralm"]
-[ext_resource type="PackedScene" uid="uid://cl3mcntidv5hd" path="res://assets/env/cathedral/cathedral.glb" id="9_stmjy"]
-[ext_resource type="PackedScene" uid="uid://lqwtn0sh4nt8" path="res://assets/env/old_bar/scene.gltf" id="10_32ben"]
-[ext_resource type="Texture2D" uid="uid://d2iqmxd6ayl5c" path="res://assets/env/cathedral/cathedral_RefRep.png" id="10_tllh5"]
-[ext_resource type="Texture2D" uid="uid://bg6fafr2242t" path="res://assets/env/cathedral/cathedral_RefRep_1.png" id="11_qs540"]
-[ext_resource type="PackedScene" uid="uid://dn6hk1omiou1y" path="res://Maps/fixed_cam.tscn" id="12_rfg7q"]
-[ext_resource type="Texture2D" uid="uid://os3a6dtaftdi" path="res://assets/env/cathedral/cathedral_RefRep_2.png" id="12_yj5vl"]
-[ext_resource type="Texture2D" uid="uid://0gq8yh14haol" path="res://assets/env/cathedral/cathedral_RefRep_4.png" id="13_nyqs4"]
-[ext_resource type="Shader" uid="uid://bx6l8umgq38ax" path="res://Shaders/posterization.gdshader" id="14_7buel"]
-[ext_resource type="Texture2D" uid="uid://cr2mw62plr0b3" path="res://assets/env/cathedral/cathedral_RefRep_5.png" id="14_l0qwv"]
-[ext_resource type="Texture2D" uid="uid://oqbd11b5y8bx" path="res://assets/env/cathedral/cathedral_RefRep_6.png" id="15_8wxf2"]
-[ext_resource type="Texture2D" uid="uid://df03gcafokp1s" path="res://assets/env/cathedral/cathedral_RefRep_7.png" id="16_l88py"]
-[ext_resource type="Texture2D" uid="uid://kvwav8aky1f6" path="res://assets/env/cathedral/cathedral_RefRep_8.png" id="17_v7mc6"]
-[ext_resource type="Texture2D" uid="uid://bbeq4p1eklagt" path="res://assets/env/cathedral/cathedral_RefRep_9.png" id="18_5j2pe"]
-[ext_resource type="Texture2D" uid="uid://bj38eufeo8axi" path="res://assets/env/cathedral/cathedral_RefRep_10.png" id="19_y85mv"]
-[ext_resource type="Texture2D" uid="uid://c36uva33xp3jt" path="res://assets/env/cathedral/cathedral_RefRep_11.png" id="20_v612b"]
-[ext_resource type="PackedScene" uid="uid://rn5mt6pxidk6" path="res://assets/3D/enemies/mons1/mons1.tscn" id="27_yj5vl"]
+[ext_resource type="Script" uid="uid://b3v5i62lcncdb" path="res://Scripts/managers/gamemode.gd" id="1_neq6q"]
+[ext_resource type="PackedScene" uid="uid://be7ebd8qy0bm8" path="res://assets/env/silent_hill_3_cathedral/scene.gltf" id="3_7y03w"]
+[ext_resource type="Environment" uid="uid://b20egbo36dye7" path="res://new_environment.tres" id="4_ptmks"]
+[ext_resource type="Shader" uid="uid://bptckj33b1dsn" path="res://Shaders/ps1look.gdshader" id="5_gmedh"]
+[ext_resource type="Shader" uid="uid://b84qvs26oyhtn" path="res://Shaders/ps1_jitter.gdshader" id="6_0bdvg"]
+[ext_resource type="PackedScene" uid="uid://lqwtn0sh4nt8" path="res://assets/env/old_bar/scene.gltf" id="7_qtexj"]
+[ext_resource type="PackedScene" uid="uid://cl3mcntidv5hd" path="res://assets/env/cathedral/cathedral.glb" id="8_1q0ga"]
+[ext_resource type="Texture2D" uid="uid://d2iqmxd6ayl5c" path="res://assets/env/cathedral/cathedral_RefRep.png" id="9_4ksx7"]
+[ext_resource type="Texture2D" uid="uid://bg6fafr2242t" path="res://assets/env/cathedral/cathedral_RefRep_1.png" id="10_6i1w3"]
+[ext_resource type="Texture2D" uid="uid://os3a6dtaftdi" path="res://assets/env/cathedral/cathedral_RefRep_2.png" id="11_b301k"]
+[ext_resource type="Texture2D" uid="uid://0gq8yh14haol" path="res://assets/env/cathedral/cathedral_RefRep_4.png" id="12_xgp4j"]
+[ext_resource type="Texture2D" uid="uid://cr2mw62plr0b3" path="res://assets/env/cathedral/cathedral_RefRep_5.png" id="13_mi2yy"]
+[ext_resource type="Texture2D" uid="uid://oqbd11b5y8bx" path="res://assets/env/cathedral/cathedral_RefRep_6.png" id="14_thtv3"]
+[ext_resource type="Texture2D" uid="uid://df03gcafokp1s" path="res://assets/env/cathedral/cathedral_RefRep_7.png" id="15_3ksl0"]
+[ext_resource type="Texture2D" uid="uid://kvwav8aky1f6" path="res://assets/env/cathedral/cathedral_RefRep_8.png" id="16_33mmd"]
+[ext_resource type="Texture2D" uid="uid://bbeq4p1eklagt" path="res://assets/env/cathedral/cathedral_RefRep_9.png" id="17_3kg43"]
+[ext_resource type="Texture2D" uid="uid://bj38eufeo8axi" path="res://assets/env/cathedral/cathedral_RefRep_10.png" id="18_y1eba"]
+[ext_resource type="Texture2D" uid="uid://c36uva33xp3jt" path="res://assets/env/cathedral/cathedral_RefRep_11.png" id="19_utx2o"]
+[ext_resource type="Texture2D" uid="uid://dcnqtvue7y7o2" path="res://assets/3D/human/textures/DiffuseMap.png" id="20_x0bmd"]
+[ext_resource type="ArrayMesh" uid="uid://bh658wc82a6me" path="res://assets/3D/human/source/Character.obj" id="21_fbat8"]
+[ext_resource type="PackedScene" uid="uid://brc7a5wrmkv1k" path="res://assets/3D/pyramid-head/pyramid_head.tscn" id="22_lxpoo"]
+[ext_resource type="Texture2D" uid="uid://d2i54e4j0mt64" path="res://assets/3D/ps1-chicken/textures/Chicken1.TGA.png" id="23_10ycj"]
+[ext_resource type="PackedScene" uid="uid://dn6hk1omiou1y" path="res://Maps/fixed_cam.tscn" id="24_v7437"]
+[ext_resource type="Shader" uid="uid://bx6l8umgq38ax" path="res://Shaders/posterization.gdshader" id="25_cfsl7"]
+[ext_resource type="PackedScene" uid="uid://rn5mt6pxidk6" path="res://assets/3D/enemies/mons1/mons1.tscn" id="26_k2r7c"]
+[ext_resource type="PackedScene" uid="uid://c27aqsydo88gd" path="res://Maps/scenes/player_SlowMotion.tscn" id="26_neq6q"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_yj5vl"]
 vertices = PackedVector3Array(-2.5694828, 5.6334534, -2.9892864, -2.0694828, 6.3834534, -2.7392864, -1.8194828, 6.6334534, -2.7392864, -2.5694828, 5.6334534, -10.239286, -2.0694828, 6.3834534, -10.239286, -1.0694828, 7.1334534, -10.489286, -1.0694828, 7.1334534, -11.989286, -1.5694828, 6.8834534, -12.489286, -1.5694828, 6.8834534, -10.239286, -2.0694828, 6.3834534, -9.739286, -1.0694828, 7.1334534, -9.489286, -5.069483, 5.6334534, -1.9892864, -2.5694828, 5.6334534, -4.9892864, -2.5694828, 5.6334534, -5.4892864, -2.0694828, 6.3834534, -5.4892864, -1.0694828, 7.1334534, -5.7392864, -1.5694828, 6.8834534, -7.7392864, -2.5694828, 5.6334534, -9.739286, -1.8194828, 6.6334534, -5.4892864, -1.8194828, 6.6334534, -4.9892864, -2.0694828, 6.3834534, -4.9892864, -5.069483, 5.6334534, -15.489286, -1.0694828, 7.1334534, -4.7392864, -1.0694828, 7.1334534, -7.9892864, -1.0694828, 7.1334534, -3.2392864, -1.0694828, 7.1334534, -14.989286, -1.5694828, 6.8834534, -15.489286, -2.7361493, 5.3834534, -15.489286, -2.3194828, 6.1334534, -2.7392864, -1.0694828, 7.1334534, -7.2392864, -1.0694828, 7.1334534, -12.739286, 1.1805172, 7.1334534, -15.489286, 1.1805172, 7.1334534, -12.489286, 1.6805172, 6.6334534, -12.489286, 1.9305172, 6.3834534, -12.489286, 4.930517, 5.6334534, -12.989286, 4.930517, 5.6334534, -15.489286, 2.4305172, 5.3834534, -15.489286, 2.9305172, 5.3834534, -12.655953, 3.6555176, 5.3834534, -14.264286, 8.680517, 0.38345337, -12.239286, 8.680517, 0.38345337, -15.489286, 5.430517, 0.38345337, -15.489286, 5.430517, 0.38345337, 1.7607136, 8.430517, 0.38345337, 1.7607136, -4.819483, 0.38345337, -14.989286, -4.819483, 0.38345337, -13.989286, -3.8194828, 0.38345337, -14.739286, -1.5694828, 0.38345337, -14.239286, -2.0694828, 0.38345337, -14.989286, -2.0694828, 0.38345337, -14.489286, 3.9305172, 0.38345337, 1.0107136, 4.180517, 0.38345337, 1.5107136, 4.680517, 0.38345337, 1.0107136, -2.0694828, 0.38345337, -12.739286, -2.0694828, 0.38345337, -11.989286, -1.0694828, 0.38345337, -12.239286, -0.8194828, 0.38345337, -13.489286, 0.6805172, 0.38345337, -13.489286, 0.9305172, 0.38345337, -12.739286, 1.6805172, 0.38345337, -12.489286, 2.4305172, 0.38345337, -12.989286, 4.680517, 0.38345337, -14.989286, 1.4305172, 0.38345337, -14.239286, -3.8194828, 0.38345337, -12.989286, -3.0694828, 0.38345337, -0.7392864, -2.3194828, 0.38345337, -0.9892864, -2.3194828, 0.38345337, -2.2392864, -4.319483, 0.38345337, -2.7392864, -2.3194828, 0.38345337, -10.739286, -2.3194828, 0.38345337, -11.739286, -3.0694828, 0.38345337, -12.239286, -4.319483, 0.38345337, -10.489286, 2.1805172, 0.38345337, -2.2392864, 2.1805172, 0.38345337, -0.9892864, 2.9305172, 0.38345337, -0.7392864, -2.8194828, 0.38345337, 1.0107136, -2.5694828, 0.38345337, 0.010713577, 2.4305172, 0.38345337, 0.010713577, 2.6805172, 0.38345337, 1.0107136, -2.5694828, 0.38345337, -12.989286, 4.430517, 0.38345337, -11.239286, 3.9305172, 0.38345337, -10.739286, 4.180517, 0.38345337, -2.7392864, 2.6805172, 0.38345337, -2.7392864, -4.819483, 0.38345337, -13.739286, -4.819483, 0.38345337, 1.2607136, 1.6805172, 0.38345337, -14.989286, 1.4305172, 6.8834534, -9.739286, 1.6805172, 6.6334534, -9.739286, 1.6805172, 6.6334534, -10.239286, 0.9305172, 7.1334534, -10.489286, 1.4305172, 6.8834534, -4.9892864, 1.9305172, 6.3834534, -4.9892864, 1.9305172, 6.3834534, -5.4892864, 0.9305172, 7.1334534, -5.7392864, 1.9305172, 6.3834534, -0.7392864, 1.4305172, 6.6334534, -0.9892864, 1.6805172, 6.6334534, -0.23928642, 1.9305172, 6.3834534, -0.23928642, 2.1805172, 5.8834534, -12.239286, 2.4305172, 5.6334534, -0.7392864, 2.4305172, 5.6334534, -0.23928642, 4.930517, 5.6334534, 1.7607136, 0.9305172, 7.1334534, -9.489286, 2.1805172, 5.8834534, -10.239286, 2.4305172, 5.6334534, -4.9892864, 1.6805172, 6.6334534, -2.7392864, 0.9305172, 7.1334534, -4.7392864, 0.9305172, 7.1334534, -2.4892864, 0.9305172, 7.1334534, 0.010713577, 2.1805172, 5.8834534, -9.739286, 1.4305172, 6.8834534, -7.4892864, 2.4305172, 5.6334534, -5.4892864, 0.9305172, 7.1334534, -7.2392864, 0.9305172, 7.1334534, -3.2392864, 0.9305172, 7.1334534, 1.5107136, 2.2638507, 5.6334534, 1.5940475, 0.9305172, 7.1334534, -0.9892864, 0.9305172, 7.1334534, -7.9892864, 0.6805172, 0.38345337, -11.989286, 0.9305172, 0.38345337, -10.489286, 2.4305172, 0.38345337, -10.739286, 1.9305172, 0.38345337, -2.7392864, 0.9305172, 0.38345337, -2.7392864, 1.6805172, 0.38345337, -0.23928642, -2.3194828, 0.63345337, 1.5107136, -1.3194828, 0.38345337, 1.0107136, -1.8194828, 0.38345337, -0.23928642, 2.1805172, 0.38345337, 1.5107136, 0.9305172, 0.38345337, 1.0107136, -1.0694828, 0.38345337, -2.7392864, -0.8194828, 0.38345337, 1.5107136, 0.6805172, 0.38345337, 1.5107136, -1.0694828, 0.38345337, -10.489286, 3.1805172, 1.3834534, -10.739286, 2.9305172, 1.3834534, -10.239286, 3.6805172, 1.3834534, -10.239286, 3.4305172, 1.3834534, -10.739286, 3.9305172, 1.3834534, -10.989286, 3.1805172, 1.1334534, -11.989286, 2.4305172, 1.3834534, -11.489286, -1.0694828, 7.1334534, -2.4892864, -1.8194828, 6.6334534, -0.7392864, -1.0694828, 7.1334534, -0.9892864, -1.5694828, 6.6334534, 1.7607136, -1.0694828, 7.1334534, 1.5107136, -1.0694828, 7.1334534, 0.010713577, -1.8194828, 6.6334534, -0.23928642, -5.069483, 5.6334534, 1.7607136, -2.7361493, 5.6334534, 1.7607136, -3.8094702, 5.6334534, 0.7467003, -3.844483, 5.6334534, -0.76428604)
@@ -35,7 +35,7 @@ agent_radius = 0.25
 [sub_resource type="VoxelGIData" id="VoxelGIData_4d1mg"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_yi55j"]
-shader = ExtResource("7_hgj1k")
+shader = ExtResource("5_gmedh")
 shader_parameter/viewport_size = Vector2(320, 240)
 shader_parameter/virtual_res = Vector2(640, 480)
 
@@ -43,14 +43,14 @@ shader_parameter/virtual_res = Vector2(640, 480)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_32ben"]
 render_priority = 0
-shader = ExtResource("5_yi55j")
+shader = ExtResource("6_0bdvg")
 shader_parameter/texture_tile = Vector2(1, 1)
 shader_parameter/snap_enabled = true
 shader_parameter/snap_res = 128.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ao1rr"]
 render_priority = 0
-shader = ExtResource("5_yi55j")
+shader = ExtResource("6_0bdvg")
 shader_parameter/texture_tile = Vector2(1, 1)
 shader_parameter/snap_enabled = true
 shader_parameter/snap_res = 128.0
@@ -88,104 +88,104 @@ radius = 0.15234375
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fl6ej"]
 render_priority = 0
-shader = ExtResource("5_yi55j")
-shader_parameter/base_tex = ExtResource("10_tllh5")
+shader = ExtResource("6_0bdvg")
+shader_parameter/base_tex = ExtResource("9_4ksx7")
 shader_parameter/texture_tile = Vector2(1, 1)
 shader_parameter/snap_enabled = false
 shader_parameter/snap_res = 256.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_speb1"]
 render_priority = 0
-shader = ExtResource("5_yi55j")
-shader_parameter/base_tex = ExtResource("11_qs540")
+shader = ExtResource("6_0bdvg")
+shader_parameter/base_tex = ExtResource("10_6i1w3")
 shader_parameter/texture_tile = Vector2(1, 1)
 shader_parameter/snap_enabled = false
 shader_parameter/snap_res = 160.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_e7hr7"]
 render_priority = 0
-shader = ExtResource("5_yi55j")
-shader_parameter/base_tex = ExtResource("12_yj5vl")
+shader = ExtResource("6_0bdvg")
+shader_parameter/base_tex = ExtResource("11_b301k")
 shader_parameter/texture_tile = Vector2(1, 1)
 shader_parameter/snap_enabled = false
 shader_parameter/snap_res = 256.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_b3old"]
 render_priority = 0
-shader = ExtResource("5_yi55j")
-shader_parameter/base_tex = ExtResource("13_nyqs4")
+shader = ExtResource("6_0bdvg")
+shader_parameter/base_tex = ExtResource("12_xgp4j")
 shader_parameter/texture_tile = Vector2(1, 1)
 shader_parameter/snap_enabled = false
 shader_parameter/snap_res = 256.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_yf3nn"]
 render_priority = 0
-shader = ExtResource("5_yi55j")
-shader_parameter/base_tex = ExtResource("14_l0qwv")
+shader = ExtResource("6_0bdvg")
+shader_parameter/base_tex = ExtResource("13_mi2yy")
 shader_parameter/texture_tile = Vector2(1, 1)
 shader_parameter/snap_enabled = false
 shader_parameter/snap_res = 256.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ofrg3"]
 render_priority = 0
-shader = ExtResource("5_yi55j")
-shader_parameter/base_tex = ExtResource("15_8wxf2")
+shader = ExtResource("6_0bdvg")
+shader_parameter/base_tex = ExtResource("14_thtv3")
 shader_parameter/texture_tile = Vector2(1, 1)
 shader_parameter/snap_enabled = false
 shader_parameter/snap_res = 256.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tuo4h"]
 render_priority = 0
-shader = ExtResource("5_yi55j")
-shader_parameter/base_tex = ExtResource("16_l88py")
+shader = ExtResource("6_0bdvg")
+shader_parameter/base_tex = ExtResource("15_3ksl0")
 shader_parameter/texture_tile = Vector2(1, 1)
 shader_parameter/snap_enabled = false
 shader_parameter/snap_res = 256.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dehne"]
 render_priority = 0
-shader = ExtResource("5_yi55j")
-shader_parameter/base_tex = ExtResource("17_v7mc6")
+shader = ExtResource("6_0bdvg")
+shader_parameter/base_tex = ExtResource("16_33mmd")
 shader_parameter/texture_tile = Vector2(1, 1)
 shader_parameter/snap_enabled = false
 shader_parameter/snap_res = 256.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1fpbf"]
 render_priority = 0
-shader = ExtResource("5_yi55j")
-shader_parameter/base_tex = ExtResource("18_5j2pe")
+shader = ExtResource("6_0bdvg")
+shader_parameter/base_tex = ExtResource("17_3kg43")
 shader_parameter/texture_tile = Vector2(1, 1)
 shader_parameter/snap_enabled = false
 shader_parameter/snap_res = 256.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5bfks"]
 render_priority = 0
-shader = ExtResource("5_yi55j")
-shader_parameter/base_tex = ExtResource("19_y85mv")
+shader = ExtResource("6_0bdvg")
+shader_parameter/base_tex = ExtResource("18_y1eba")
 shader_parameter/texture_tile = Vector2(1, 1)
 shader_parameter/snap_enabled = false
 shader_parameter/snap_res = 256.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_oc6tg"]
 render_priority = 0
-shader = ExtResource("5_yi55j")
-shader_parameter/base_tex = ExtResource("20_v612b")
+shader = ExtResource("6_0bdvg")
+shader_parameter/base_tex = ExtResource("19_utx2o")
 shader_parameter/texture_tile = Vector2(1, 1)
 shader_parameter/snap_enabled = false
 shader_parameter/snap_res = 256.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_mralm"]
 render_priority = 0
-shader = ExtResource("5_yi55j")
-shader_parameter/base_tex = ExtResource("4_ageuk")
+shader = ExtResource("6_0bdvg")
+shader_parameter/base_tex = ExtResource("20_x0bmd")
 shader_parameter/texture_tile = Vector2(1, 1)
 shader_parameter/snap_enabled = true
 shader_parameter/snap_res = 128.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rfg7q"]
 render_priority = 0
-shader = ExtResource("5_yi55j")
-shader_parameter/base_tex = ExtResource("9_mralm")
+shader = ExtResource("6_0bdvg")
+shader_parameter/base_tex = ExtResource("23_10ycj")
 shader_parameter/texture_tile = Vector2(1, 1)
 shader_parameter/snap_enabled = true
 shader_parameter/snap_res = 128.0
@@ -234,7 +234,7 @@ size = Vector3(5, 1, 2.103241)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_stmjy"]
 render_priority = 0
-shader = ExtResource("14_7buel")
+shader = ExtResource("25_cfsl7")
 shader_parameter/levels = 32.0
 shader_parameter/gamma = Vector2(0.245, 3.6)
 
@@ -255,15 +255,13 @@ size = Vector3(0.9584198, 1, 0.6633301)
 [node name="world" type="Node3D" unique_id=1752372244]
 
 [node name="gamemode" type="Node" parent="." unique_id=822496641]
-script = ExtResource("1_ageuk")
-
-[node name="player" parent="." unique_id=1959472943 instance=ExtResource("2_qs540")]
+script = ExtResource("1_neq6q")
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=446785335]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.014, -1, -0.011)
 navigation_mesh = SubResource("NavigationMesh_yj5vl")
 
-[node name="cathedral" parent="NavigationRegion3D" unique_id=1767185244 instance=ExtResource("6_ao1rr")]
+[node name="cathedral" parent="NavigationRegion3D" unique_id=1767185244 instance=ExtResource("3_7y03w")]
 transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 16.954626, -0.11654663, 4)
 visible = false
 
@@ -298,7 +296,7 @@ light_energy = 0.04
 shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="lighting" unique_id=1823360178]
-environment = ExtResource("2_4d1mg")
+environment = ExtResource("4_ptmks")
 
 [node name="ReflectionProbe" type="ReflectionProbe" parent="lighting" unique_id=201037726]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0026855469, 0, -10.320435)
@@ -372,7 +370,7 @@ material = SubResource("ShaderMaterial_ao1rr")
 [node name="CSGBakedCollisionShape3D2" type="CollisionShape3D" parent="env/CSGBox3D2/StaticBody3D" unique_id=994557515]
 shape = SubResource("ConcavePolygonShape3D_yj5vl")
 
-[node name="bar" parent="env" unique_id=376087219 instance=ExtResource("10_32ben")]
+[node name="bar" parent="env" unique_id=376087219 instance=ExtResource("7_qtexj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.65812, 0.13830185, -3.004013)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="env" unique_id=923017697]
@@ -447,7 +445,7 @@ shape = SubResource("CylinderShape3D_qs540")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.2952168, 1.1118237, -12.373589)
 shape = SubResource("CylinderShape3D_qs540")
 
-[node name="cathedral2" parent="env" unique_id=928190163 instance=ExtResource("9_stmjy")]
+[node name="cathedral2" parent="env" unique_id=928190163 instance=ExtResource("8_1q0ga")]
 transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 8.97179, -0.11654663, 2.2924912)
 
 [node name="gate" parent="env/cathedral2/Sketchfab_model/Collada visual scene group" parent_id_path=PackedInt32Array(928190163, 666556367) index="0" unique_id=572348236]
@@ -469,10 +467,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 1)
 [node name="human" type="MeshInstance3D" parent="ps1_models" unique_id=251254654]
 transform = Transform3D(-0.2588191, 0, -0.96592575, 0, 1, 0, 0.96592575, 0, -0.2588191, 5.3891106, 0.020593079, -1.5618207)
 material_override = SubResource("ShaderMaterial_mralm")
-mesh = ExtResource("5_hgj1k")
+mesh = ExtResource("21_fbat8")
 skeleton = NodePath("../..")
 
-[node name="Pyramid Head - Silent Hill 2" parent="ps1_models" unique_id=1506281210 instance=ExtResource("8_yi55j")]
+[node name="Pyramid Head - Silent Hill 2" parent="ps1_models" unique_id=1506281210 instance=ExtResource("22_lxpoo")]
 transform = Transform3D(-1.3, 0, 1.9629454e-07, 0, 1.3, 0, -1.9629454e-07, 0, -1.3, 3.91013, 0.034291178, -0.85105544)
 
 [node name="TheChicken" type="Node3D" parent="ps1_models" unique_id=49953285]
@@ -487,7 +485,7 @@ skeleton = NodePath("")
 [node name="all cams" type="Node3D" parent="." unique_id=942344683]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0000002, -13.783042)
 
-[node name="fixed_cam" parent="all cams" unique_id=1703934271 instance=ExtResource("12_rfg7q")]
+[node name="fixed_cam" parent="all cams" unique_id=1703934271 instance=ExtResource("24_v7437")]
 transform = Transform3D(1, 0, 0, 0, 0.8775398, 0.4795038, 0, -0.4795038, 0.8775398, 0, 1.9399998, 15.209041)
 follow_player = true
 
@@ -515,7 +513,7 @@ visible = false
 extra_cull_margin = 16384.0
 mesh = SubResource("QuadMesh_tllh5")
 
-[node name="fixed_cam2" parent="all cams" unique_id=1522748109 instance=ExtResource("12_rfg7q")]
+[node name="fixed_cam2" parent="all cams" unique_id=1522748109 instance=ExtResource("24_v7437")]
 transform = Transform3D(-0.75073075, -0.19539344, 0.6310505, 0, 0.9552567, 0.29577807, -0.6606083, 0.22204968, -0.7171406, 4.4132996, 2.2478712, 2.7400885)
 
 [node name="trigger" parent="all cams/fixed_cam2" index="0"]
@@ -525,7 +523,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0000002, -6)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.234375)
 shape = SubResource("BoxShape3D_4d1mg")
 
-[node name="fixed_cam3" parent="all cams" unique_id=419498136 instance=ExtResource("12_rfg7q")]
+[node name="fixed_cam3" parent="all cams" unique_id=419498136 instance=ExtResource("24_v7437")]
 transform = Transform3D(-0.5161752, 0.47527334, -0.71251553, 0, 0.8319086, 0.5549128, 0.856483, 0.28643224, -0.4294106, -3.2462158, 2.5207975, -0.9991312)
 
 [node name="trigger" parent="all cams/fixed_cam3" index="0"]
@@ -547,7 +545,7 @@ shape = SubResource("BoxShape3D_7buel")
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 1, -3.5250912)
 shape = SubResource("BoxShape3D_7buel")
 
-[node name="fixed_cam4" parent="all cams" unique_id=277263780 instance=ExtResource("12_rfg7q")]
+[node name="fixed_cam4" parent="all cams" unique_id=277263780 instance=ExtResource("24_v7437")]
 transform = Transform3D(-0.98272294, 0.14323375, -0.11721659, 0, 0.6333198, 0.7738902, 0.18508278, 0.7605196, -0.6223779, -0.27672195, 1.2271116, 0.13909054)
 
 [node name="trigger" parent="all cams/fixed_cam4" index="0"]
@@ -559,14 +557,18 @@ shape = SubResource("BoxShape3D_stmjy")
 
 [node name="allmons" type="Node3D" parent="." unique_id=1470427191]
 
-[node name="monst" parent="allmons" unique_id=885456188 instance=ExtResource("27_yj5vl")]
+[node name="monst" parent="allmons" unique_id=885456188 instance=ExtResource("26_k2r7c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.23959619, -0.047441944, -10.458614)
 can_crawl = true
+is_stop_motion = true
 
-[node name="monst2" parent="allmons" unique_id=275802157 instance=ExtResource("27_yj5vl")]
+[node name="monst2" parent="allmons" unique_id=275802157 instance=ExtResource("26_k2r7c")]
 transform = Transform3D(-0.62552863, 0, 0.7802013, 0, 1, 0, -0.7802013, 0, -0.62552863, 0.27119893, -0.047441944, -5.961841)
+is_stop_motion = true
 
 [node name="corpses" type="Node3D" parent="." unique_id=765615338]
+
+[node name="player" parent="." unique_id=1959472943 instance=ExtResource("26_neq6q")]
 
 [editable path="env/cathedral2"]
 [editable path="all cams/fixed_cam"]

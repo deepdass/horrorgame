@@ -1,0 +1,68 @@
+[gd_scene format=3 uid="uid://c0sg8wd7f1qx"]
+
+[ext_resource type="Script" uid="uid://du4w0cog18fxq" path="res://Scripts/managers/startup.gd" id="1_polha"]
+
+[node name="Control" type="Control" unique_id=726457039]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_polha")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1750691673]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.07683588, 0.07683579, 0.07683582, 1)
+
+[node name="Label" type="Label" parent="ColorRect" unique_id=584090522]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -108.5
+offset_top = -80.0
+offset_right = 108.500305
+offset_bottom = -15.999634
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 46
+text = "Which Map??"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Stop_motion" type="Button" parent="." unique_id=1943291292]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 394.0
+offset_top = -160.0
+offset_right = 543.0
+offset_bottom = -109.0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 24
+text = "Stop Motion"
+
+[node name="Normal" type="Button" parent="." unique_id=662787091]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 115.0
+offset_top = -160.0
+offset_right = 218.0
+offset_bottom = -109.0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 24
+text = "Normal"
+
+[connection signal="pressed" from="Stop_motion" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="Normal" to="." method="_on_restart_pressed"]

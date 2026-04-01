@@ -18,6 +18,51 @@ shape = SubResource("CapsuleShape3D_rfg7q")
 [node name="heather" parent="." unique_id=629092520 instance=ExtResource("2_cfp7m")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.014393926, 0, 0.028932989)
 
+[node name="Skeleton3D" parent="heather/Armature" parent_id_path=PackedInt32Array(629092520, 329133421) index="0" unique_id=955702025]
+bones/0/position = Vector3(-0.023653, -0.11755371, -95.89854)
+bones/0/rotation = Quaternion(-0.7344531, 0.025078697, -0.04871929, 0.6764438)
+bones/1/rotation = Quaternion(0.0025041595, -0.0031311654, 0.01668079, 0.9998529)
+bones/2/rotation = Quaternion(0.053016994, -0.00097325543, 0.013596867, 0.99850065)
+bones/3/rotation = Quaternion(-0.03518033, -0.0029830209, -0.012590424, 0.9992972)
+bones/4/rotation = Quaternion(0.035403334, 0.059741803, 0.030707987, 0.99711317)
+bones/5/rotation = Quaternion(0.06292335, 0.06916605, 0.0029524371, 0.9956144)
+bones/7/rotation = Quaternion(-0.6142592, -0.39119613, 0.54064447, -0.42113522)
+bones/8/rotation = Quaternion(0.51375675, 0.012095759, -0.025360657, 0.85747576)
+bones/9/rotation = Quaternion(-0.001838827, 0.050838217, 0.092199214, 0.99444026)
+bones/10/rotation = Quaternion(-0.016504271, 0.02262123, 0.09109554, 0.99544835)
+bones/15/rotation = Quaternion(0.05199829, 0.015364771, -0.09617797, 0.99388623)
+bones/16/rotation = Quaternion(0.1489193, -0.00052616274, -0.016657209, 0.988709)
+bones/17/rotation = Quaternion(0.11305983, 0.00038923498, -0.013275186, 0.99349946)
+bones/19/rotation = Quaternion(0.10047107, -0.025623748, -0.1141836, 0.988034)
+bones/20/rotation = Quaternion(0.2219249, -0.001397018, -0.019719603, 0.9748634)
+bones/21/rotation = Quaternion(0.09016198, 0.0004223641, -0.011020028, 0.9958661)
+bones/23/rotation = Quaternion(0.6297378, -0.38053626, 0.5307338, 0.42064735)
+bones/24/rotation = Quaternion(0.49988303, -0.041643497, 0.01973617, 0.8648661)
+bones/25/rotation = Quaternion(-0.009826108, -0.13436785, -0.1307253, 0.98222184)
+bones/26/rotation = Quaternion(-0.01023477, -0.00342368, -0.060223613, 0.9981266)
+bones/27/rotation = Quaternion(0.18415213, -0.02642488, -0.07552424, 0.9796356)
+bones/28/rotation = Quaternion(0.02235236, -0.017767346, 0.03735592, 0.99889404)
+bones/29/rotation = Quaternion(-0.036408022, 0.005742398, -0.03998368, 0.9985204)
+bones/31/rotation = Quaternion(0.060787898, -0.012504756, 0.07951973, 0.99489963)
+bones/32/rotation = Quaternion(0.15093128, 0.00015372086, 0.012060436, 0.98847073)
+bones/33/rotation = Quaternion(0.115506634, -0.0014238118, -0.008235414, 0.9932715)
+bones/35/rotation = Quaternion(0.1090404, 0.03117856, 0.08664825, 0.9897628)
+bones/36/rotation = Quaternion(0.22423977, 0.0015056633, 0.015770068, 0.9744052)
+bones/37/rotation = Quaternion(0.0925435, -0.00034762084, 0.008150056, 0.99567527)
+bones/39/rotation = Quaternion(0.09822933, -0.009732189, 0.99126667, -0.0874453)
+bones/40/rotation = Quaternion(-0.091492295, 0.05748151, -0.0048882836, 0.9941334)
+bones/41/rotation = Quaternion(0.5501401, -0.036783736, -0.016969481, 0.8340893)
+bones/44/rotation = Quaternion(-0.049893968, -0.011448205, 0.998616, -0.01207763)
+bones/45/rotation = Quaternion(-0.08934469, -0.030956047, 0.0009024771, 0.9955193)
+bones/46/rotation = Quaternion(0.5482449, 0.008088083, -0.028608728, 0.8357893)
+
+[node name="BoneAttachment3D" parent="heather/Armature/Skeleton3D" index="1" unique_id=1690418548]
+transform = Transform3D(0.5651549, -0.03537266, 0.8242255, 0.7865096, 0.32465005, -0.52536106, -0.24900141, 0.9451721, 0.21129884, -22.0264, 4.3019657, -91.68904)
+
+[node name="AnimationTree" parent="heather" index="2" unique_id=734491051]
+root_node = NodePath("..")
+anim_player = NodePath("../AnimationPlayer")
+
 [node name="bullet_timer" type="Timer" parent="." unique_id=376702007]
 wait_time = 0.7
 
