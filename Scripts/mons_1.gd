@@ -39,12 +39,35 @@ var died_after_crawl : bool = false
 @onready var corpses: Node3D = $"../../corpses"
 @onready var gamemode: Node = $"../../gamemode"
 
+@onready var animation_player: AnimationPlayer = $mons1/AnimationPlayer
+
+var frame_counter := 0
+var step_frames := 3
 
 func _ready() -> void:
 	animation_tree.active = true
 	
+	for anim_name in animation_player.get_animation_list():
+		var anim = animation_player.get_animation(anim_name)
+		
+		for track in anim.get_track_count():
+			anim.track_set_interpolation_type(track, Animation.INTERPOLATION_NEAREST)
+			var interp = anim.track_get_interpolation_type(track)
+		
+			if interp == Animation.INTERPOLATION_NEAREST:
+				print("ok")
+	
 func _process(delta):
 	##print(State.keys()[state])
+	
+
+	animation_tree.process_callback = AnimationTree.ANIMATION_PROCESS_MANUAL
+	frame_counter += 1
+	
+	if frame_counter >= step_frames:
+		animation_tree.advance(delta * step_frames)
+		frame_counter = 0
+	
 	if player and !state == State.DEATH:
 		var direction = player.global_position - global_position
 		direction.y = 0
