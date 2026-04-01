@@ -30,7 +30,7 @@ var nearestEnemy : CharacterBody3D
 var nearestEnemy_distance : float = INF
 
 var health : int = 3
-const DEATH_SCREEN = preload("uid://cco2xp2e1twlm")
+const DEATH_SCREEN = preload("res://Maps/death_screen.tscn")
 
 const MUZZLE = preload("uid://dp5triedcn6i5")
 @onready var marker_3d: Marker3D = $heather/Armature/Skeleton3D/BoneAttachment3D/pistol/Marker3D
@@ -161,7 +161,8 @@ func _physics_process(delta: float) -> void:
 		pistol.visible = false
 		ray_cast_3d.enabled = false
 		current_state = State.IDLE
-		check_correct_anim("idle") 
+		if animation_state_machine_playback.get_current_node() != "push":
+			check_correct_anim("idle") 
 		velocity = Vector3.ZERO
 		move_and_slide()
 		return
@@ -174,7 +175,7 @@ func _physics_process(delta: float) -> void:
 		velocity.z = 0
 	
 	velocity += knockback
-	knockback *= 0.92
+	knockback *= 0.91
 	if knockback.length() < 0.05:
 		knockback = Vector3.ZERO
 		
@@ -223,6 +224,9 @@ func take_damage():
 	health -= 1
 	if health <= 0:
 		Engine.time_scale = 0.3
-		await get_tree().create_timer(0.7).timeout
+		await get_tree().create_timer(0.7, true).timeout
 		Engine.time_scale = 1
 		get_tree().change_scene_to_packed(DEATH_SCREEN)
+	else:
+		await get_tree().create_timer(0.8, true).timeout
+		check_correct_anim("push")
