@@ -3,8 +3,8 @@ extends CharacterBody3D
 var player : Player = null
 @onready var navigation_agent_3d: NavigationAgent3D = $NavigationAgent3D
 
-@onready var animation_tree: AnimationTree = $mons1/AnimationTree
-@onready var anim_playback : AnimationNodeStateMachinePlayback = animation_tree.get("parameters/playback")
+@onready var animation_tree: AnimationTree
+@onready var anim_playback : AnimationNodeStateMachinePlayback 
 enum State {
 	IDLE,
 	CHASE,
@@ -39,8 +39,24 @@ var died_after_crawl : bool = false
 @onready var corpses: Node3D = $"../../corpses"
 @onready var gamemode: Node = $"../../gamemode"
 
+@export var is_stop_motion : bool
+
+const mesh : PackedScene = preload("res://assets/3D/enemies/mons1/mons_1_mesh.tscn")
+const mesh_stopmotion : PackedScene = preload("res://assets/3D/enemies/mons1/mons_1_mesh_stopmotion.tscn")
+
 func _ready() -> void:
+	var m
+	if is_stop_motion:
+		m = mesh_stopmotion.instantiate()
+	else:
+		m = mesh.instantiate()
+	add_child(m)
+
+	animation_tree = m.get_node("AnimationTree")
+	anim_playback = animation_tree.get("parameters/playback")
+
 	animation_tree.active = true
+
 	
 func _process(delta):
 	##print(State.keys()[state])
