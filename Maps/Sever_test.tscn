@@ -2,7 +2,7 @@
 
 [ext_resource type="Environment" uid="uid://b20egbo36dye7" path="res://new_environment.tres" id="1_fl6qq"]
 [ext_resource type="PackedScene" uid="uid://dxjewgqus3jde" path="res://TESTS/environment-blender.fbx" id="2_hnumt"]
-[ext_resource type="PackedScene" uid="uid://c27aqsydo88gd" path="res://Maps/scenes/player.tscn" id="3_jcedh"]
+[ext_resource type="PackedScene" uid="uid://c27aqsydo88gd" path="res://Maps/scenes/player_SlowMotion.tscn" id="3_jcedh"]
 [ext_resource type="PackedScene" uid="uid://dn6hk1omiou1y" path="res://Maps/fixed_cam.tscn" id="4_ggr8e"]
 [ext_resource type="PackedScene" uid="uid://rn5mt6pxidk6" path="res://assets/3D/enemies/mons1/mons1.tscn" id="5_k0c6k"]
 [ext_resource type="Script" uid="uid://b3v5i62lcncdb" path="res://Scripts/managers/gamemode.gd" id="6_571go"]

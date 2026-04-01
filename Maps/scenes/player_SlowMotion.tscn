@@ -1,0 +1,125 @@
+[gd_scene format=3 uid="uid://c27aqsydo88gd"]
+
+[ext_resource type="Script" uid="uid://4g5aftkmv1ur" path="res://Scripts/player_movement.gd" id="1_rbht1"]
+[ext_resource type="PackedScene" uid="uid://y78vu1573nfp" path="res://Maps/scenes/heather_stop_motion.tscn" id="2_cfp7m"]
+[ext_resource type="AudioStream" uid="uid://b0lifvdr4xsu2" path="res://assets/Sound/pistol sound trimed.mp3" id="3_cfp7m"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rfg7q"]
+radius = 0.18066406
+height = 1.7565918
+
+[node name="player" type="CharacterBody3D" unique_id=1959472943]
+script = ExtResource("1_rbht1")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=235749498]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.88471997, 0)
+shape = SubResource("CapsuleShape3D_rfg7q")
+
+[node name="heather" parent="." unique_id=1140978754 instance=ExtResource("2_cfp7m")]
+transform = Transform3D(-1, 0, -1.509958e-07, 0, 1, 0, 1.509958e-07, 0, -1, 0.014393926, 0, 0.028932989)
+
+[node name="Skeleton3D" parent="heather/Armature" parent_id_path=PackedInt32Array(1140978754, 586318543) index="0" unique_id=701918379]
+bones/0/position = Vector3(-98.824844, -9.275539, -9597.701)
+bones/0/rotation = Quaternion(-0.72976935, 0.023891643, -0.038435675, 0.682194)
+bones/1/position = Vector3(2.2888184e-05, 994.36163, -75.357445)
+bones/1/rotation = Quaternion(-0.0043421425, -0.0071793515, 0.036122058, 0.99931216)
+bones/2/position = Vector3(3.4332275e-05, 1163.4153, 5.435943e-05)
+bones/2/rotation = Quaternion(0.05307237, -0.0033026573, 0.011973502, 0.9985134)
+bones/3/position = Vector3(-7.050256e-05, 1329.6182, -1.9121871e-06)
+bones/3/rotation = Quaternion(-0.035148345, -0.004966717, -0.014155092, 0.99926955)
+bones/4/position = Vector3(-5.722046e-06, 1495.8184, -0.00012752757)
+bones/4/rotation = Quaternion(0.04398171, -0.048524935, 0.0008668655, 0.9978528)
+bones/5/position = Vector3(2.9325485e-05, 806.26245, 120.904816)
+bones/5/rotation = Quaternion(0.03271229, -0.033861253, -0.066759184, 0.99665767)
+bones/6/position = Vector3(0.00017929077, 2310.9727, 346.54572)
+bones/7/position = Vector3(506.8582, 1260.1371, -18.77359)
+bones/7/rotation = Quaternion(-0.6149741, -0.39128733, 0.5366302, -0.42512265)
+bones/8/position = Vector3(-2.9290735e-05, 1123.5421, 0.0016795183)
+bones/8/rotation = Quaternion(0.5166359, 0.0067090937, -0.019600606, 0.8559545)
+bones/9/position = Vector3(-5.161579e-06, 2623.2725, -0.0001704382)
+bones/9/rotation = Quaternion(-0.005148544, 0.059942268, 0.09012701, 0.9941114)
+bones/10/position = Vector3(-6.305636e-06, 2242.433, 3.2867538e-06)
+bones/10/rotation = Quaternion(-0.021811595, 0.02235427, 0.085403934, 0.9958568)
+bones/11/position = Vector3(-156.9424, 474.77872, 111.612076)
+bones/11/rotation = Quaternion(0.120653115, 0.024319764, 0.07545857, 0.9895239)
+bones/12/position = Vector3(-18.195313, 409.47708, 0.0005324448)
+bones/12/rotation = Quaternion(0.02854329, 0.0005849866, -0.08238215, 0.9961918)
+bones/13/position = Vector3(7.9639893, 329.07385, 0.0006892558)
+bones/13/rotation = Quaternion(-0.038603168, -0.005075036, -0.07414434, 0.9964872)
+bones/14/position = Vector3(10.2322445, 261.42996, 0.00035577005)
+bones/15/position = Vector3(-172.2637, 1196.4006, -8.904452)
+bones/15/rotation = Quaternion(0.051049616, 0.0148663, -0.10815197, 0.99271154)
+bones/16/position = Vector3(5.3043213, 273.01758, -0.00016350596)
+bones/16/rotation = Quaternion(0.148816, -0.00052559184, -0.016654892, 0.98872447)
+bones/17/position = Vector3(-0.7001343, 253.1748, -0.00026538013)
+bones/17/rotation = Quaternion(0.11298861, 0.00038869353, -0.013273633, 0.99350756)
+bones/18/position = Vector3(-4.603857, 220.20248, 2.533663e-06)
+bones/19/position = Vector3(172.26315, 1127.861, -18.135838)
+bones/19/rotation = Quaternion(0.07843731, -0.025972169, -0.12317743, 0.98893905)
+bones/20/position = Vector3(5.8114014, 311.5419, -2.4211826e-05)
+bones/20/rotation = Quaternion(0.20837751, -0.0013350616, -0.019461827, 0.9778539)
+bones/21/position = Vector3(-0.6771736, 279.9387, -0.00013048964)
+bones/21/rotation = Quaternion(0.0765861, 0.00022611427, -0.010729791, 0.9970053)
+bones/22/position = Vector3(-5.1337905, 250.47292, -0.0019139246)
+bones/23/position = Vector3(-506.85745, 1259.9999, -16.958832)
+bones/23/rotation = Quaternion(0.6316554, -0.3781832, 0.5304525, 0.42024887)
+bones/24/position = Vector3(3.770312e-05, 1123.5414, 0.0007398164)
+bones/24/rotation = Quaternion(0.49769074, -0.027472638, 0.018038217, 0.86673176)
+bones/25/position = Vector3(-0.00015467788, 2623.0042, 0.0001415902)
+bones/25/rotation = Quaternion(-0.008864465, -0.13656007, -0.1291822, 0.9821328)
+bones/26/position = Vector3(0.00030693272, 2242.4292, 0.00018760597)
+bones/26/rotation = Quaternion(-0.013414018, -0.014900607, -0.06222418, 0.99786085)
+bones/27/position = Vector3(155.27388, 497.88672, 117.041275)
+bones/27/rotation = Quaternion(0.16162568, -0.010510263, -0.052521147, 0.9853975)
+bones/28/position = Vector3(40.454834, 425.68887, -0.00019190554)
+bones/28/rotation = Quaternion(0.031256933, -0.015726948, 0.07019471, 0.9969195)
+bones/29/position = Vector3(5.4261475, 318.1034, -0.000104984734)
+bones/29/rotation = Quaternion(-0.037024904, 0.0067360047, -0.029514538, 0.9988557)
+bones/30/position = Vector3(-45.87997, 216.66193, -0.00034154637)
+bones/31/position = Vector3(150.83174, 1215.2292, -9.286679)
+bones/31/rotation = Quaternion(0.07382048, -0.009335728, 0.09626347, 0.99257076)
+bones/32/position = Vector3(-3.746872, 259.97238, -1.8612482e-05)
+bones/32/rotation = Quaternion(0.1676874, 0.0001809135, 0.011558958, 0.9857725)
+bones/33/position = Vector3(3.5268707, 248.94376, -0.00027831853)
+bones/33/rotation = Quaternion(0.13211834, -0.001584273, -0.008684466, 0.9911946)
+bones/34/position = Vector3(0.21987915, 213.70718, 9.155297e-05)
+bones/35/position = Vector3(-150.83127, 1114.906, -0.53615373)
+bones/35/rotation = Quaternion(0.12458904, 0.035094716, 0.0960106, 0.9869286)
+bones/36/position = Vector3(-8.657593, 294.11823, -0.0001821433)
+bones/36/rotation = Quaternion(0.24502875, 0.0019224593, 0.015149243, 0.96939564)
+bones/37/position = Vector3(1.6312256, 297.90958, -0.00025264436)
+bones/37/rotation = Quaternion(0.11392349, -0.0007716699, 0.007509144, 0.9934609)
+bones/38/position = Vector3(7.026401, 260.73907, -0.00048937474)
+bones/39/position = Vector3(823.5614, -552.44293, 16.231182)
+bones/39/rotation = Quaternion(0.10011464, -0.027459728, 0.9912081, -0.08203453)
+bones/40/position = Vector3(-3.2180367e-05, 4357.9155, -1.875819e-05)
+bones/40/rotation = Quaternion(-0.041531418, 0.047894258, -0.0013456326, 0.99798775)
+bones/41/position = Vector3(0.00026497763, 3936.2666, -0.0003434109)
+bones/41/rotation = Quaternion(0.5271202, -0.040466405, -0.024072029, 0.84848535)
+bones/42/position = Vector3(-4.7866633e-06, 1611.2491, -0.00013190223)
+bones/42/rotation = Quaternion(0.2594651, 0.032658167, -0.008779366, 0.9651602)
+bones/43/position = Vector3(-9.717102e-05, 659.94824, 1.2738601e-05)
+bones/44/position = Vector3(-823.5613, -552.4422, 17.295506)
+bones/44/rotation = Quaternion(-0.04993441, 0.0004766292, 0.9986977, -0.010453641)
+bones/45/position = Vector3(2.3488406e-05, 4358.161, -8.1368235e-05)
+bones/45/rotation = Quaternion(-0.09648696, -0.03816736, 0.0020254361, 0.9946002)
+bones/46/position = Vector3(3.5747515e-05, 3935.3694, 0.00016073215)
+bones/46/rotation = Quaternion(0.550138, 0.0045709834, -0.034100227, 0.8343647)
+bones/47/position = Vector3(1.44569785e-05, 1608.9291, -7.685973e-05)
+bones/47/rotation = Quaternion(0.25989062, -0.032807272, 0.008838408, 0.96504015)
+bones/48/position = Vector3(1.1499651e-07, 663.0053, -1.5869646e-06)
+
+[node name="BoneAttachment3D" parent="heather/Armature/Skeleton3D" index="1" unique_id=607061922]
+transform = Transform3D(0.53826267, -0.0035766214, 0.84276897, 0.79294646, 0.34090257, -0.5049948, -0.28549603, 0.9400911, 0.18633148, -2256.966, 463.18555, -9073.332)
+
+[node name="bullet_timer" type="Timer" parent="." unique_id=376702007]
+wait_time = 0.7
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=540634857]
+stream = ExtResource("3_cfp7m")
+volume_db = -25.0
+
+[connection signal="timeout" from="bullet_timer" to="." method="_on_bullet_timer_timeout"]
+
+[editable path="heather"]
+[editable path="heather/Armature/Skeleton3D/BoneAttachment3D/pistol"]
