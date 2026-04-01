@@ -64,7 +64,7 @@ func _process(delta):
 				var target_rotation = atan2(direction.x, direction.z)
 				rotation.y = lerp_angle(rotation.y, target_rotation, 5 * delta)
 	
-				navigation_agent_3d.set_target_position(player.global_position)
+				navigation_agent_3d.set_target_position(Vector3(player.global_position.x, global_position.y, player.global_position.z))
 				var next_nav_point = navigation_agent_3d.get_next_path_position()
 				velocity = (next_nav_point - global_position).normalized() * SPEED
 	
@@ -95,7 +95,7 @@ func _process(delta):
 				var target_rotation = atan2(direction.x, direction.z)
 				rotation.y = lerp_angle(rotation.y, target_rotation, 5 * delta)
 	
-				navigation_agent_3d.set_target_position(player.global_position)
+				navigation_agent_3d.set_target_position(Vector3(player.global_position.x, global_position.y, player.global_position.z))
 				var next_nav_point = navigation_agent_3d.get_next_path_position()
 				velocity = (next_nav_point - global_position).normalized() * SPEED * 0.6
 	
@@ -180,12 +180,12 @@ func do_damage(damage):
 	if health <= 0:
 		if can_crawl and player:
 			state = State.CRAWL
-			collision_shape_3d.disabled = true
+			collision_shape_3d.shape.radius = 0.001
 			can_crawl = false
 			died_after_crawl = true
 			can_bite = false
 			await get_tree().create_timer(3).timeout
-			collision_shape_3d.disabled = false
+			collision_shape_3d.shape.radius = 0.28
 			health = 10
 			ATTACK_RANGE = 1
 			can_bite = true

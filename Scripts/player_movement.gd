@@ -1,14 +1,14 @@
 class_name Player extends CharacterBody3D
 
 const SPEED : float = 1.3
-const SPRINTSPEED : float = 3.0
+const SPRINTSPEED : float = 2.7
 const JUMP_VELOCITY : float = 3.0
 
 const turn_speed : float = 200.0
 const quick_turn_time : float = 0.4
 var is_quick_turning : bool = false
 
-@onready var animation_tree: AnimationTree = $school_girl/AnimationTree
+@onready var animation_tree: AnimationTree = $heather/AnimationTree
 var animation_state_machine_playback : AnimationNodeStateMachinePlayback
 var running : bool = false
 
@@ -18,8 +18,8 @@ var knockback : Vector3 = Vector3.ZERO
 var is_aiming : bool = false
 var fired : bool = false
 var can_fire : bool = true
-@onready var pistol: Node3D = $school_girl/Armature/Skeleton3D/BoneAttachment3D/pistol
-@onready var ray_cast_3d: RayCast3D = $school_girl/Armature/Skeleton3D/BoneAttachment3D/pistol/Cylinder_Material_0/RayCast3D
+@onready var pistol: Node3D = $heather/Armature/Skeleton3D/BoneAttachment3D/pistol
+@onready var ray_cast_3d: RayCast3D = $heather/Armature/Skeleton3D/BoneAttachment3D/pistol/Cylinder_Material_0/RayCast3D
 @onready var bullet_timer: Timer = $bullet_timer
 @onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
 
@@ -33,7 +33,7 @@ var health : int = 3
 const DEATH_SCREEN = preload("uid://cco2xp2e1twlm")
 
 const MUZZLE = preload("uid://dp5triedcn6i5")
-@onready var marker_3d: Marker3D = $school_girl/Armature/Skeleton3D/BoneAttachment3D/pistol/Marker3D
+@onready var marker_3d: Marker3D = $heather/Armature/Skeleton3D/BoneAttachment3D/pistol/Marker3D
 
 enum State {
 	IDLE,
