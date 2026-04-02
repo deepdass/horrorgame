@@ -9,7 +9,7 @@ func _ready() -> void:
 	
 func _physics_process(_delta: float) -> void:
 	if Input.is_action_just_pressed("ESC"):
-		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		get_tree().change_scene_to_file("res://Maps/startup.tscn")
 		
 	if Input.is_action_just_pressed("reset"):
 		get_tree().reload_current_scene()
