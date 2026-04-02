@@ -60,8 +60,6 @@ func _ready() -> void:
 	
 func _process(delta):
 	##print(State.keys()[state])
-	animation_tree.advance(delta)
-	
 	if player and !state == State.DEATH:
 		var direction = player.global_position - global_position
 		direction.y = 0
