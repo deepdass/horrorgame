@@ -28,6 +28,7 @@ const blood_effect : PackedScene = preload("res://Maps/scenes/blood.tscn")
 @onready var allmons: Node3D = $"../allmons"
 var nearestEnemy : CharacterBody3D 
 var nearestEnemy_distance : float = INF
+var allreadyfix : bool = false
 
 var health : int = 3
 const DEATH_SCREEN = preload("res://Maps/death_screen.tscn")
@@ -76,6 +77,9 @@ func walk(delta):
 	
 	if Input.is_action_pressed("aim"):
 		current_state = State.AIMING
+		if !allreadyfix:
+			calnearst_enemy()
+			allreadyfix = true
 	elif input_dir == 0.0 or is_dont_move:
 		current_state = State.IDLE
 	elif input_dir > 0:
@@ -145,10 +149,11 @@ func walk(delta):
 					var push_dir = body.global_position - global_position
 					push_dir.y = 0
 					push_dir = push_dir.normalized()
-			
+	
 	if Input.is_action_just_released("aim"):
 		pistol.visible = false
 		ray_cast_3d.enabled = false
+		allreadyfix = false
 	
 
 func check_correct_anim(anim):
@@ -200,25 +205,30 @@ func calnearst_enemy() -> void:
 
 func aim_assist(delta):
 	var best_enemy : CharacterBody3D
-	var best_diff : float = INF
+	var best_score : float = INF
 		
 	for enemy : CharacterBody3D in allmons.get_children():
+		
 		var target_pos = enemy.global_position
 		target_pos.y = global_position.y
 		var dir = (target_pos - global_position).normalized()
 		var angle = atan2(-dir.x, -dir.z)
 		var diff = wrapf(angle - rotation.y, -PI, PI)
 		var abs_diff = abs(diff)
-		if abs_diff < best_diff:
-			best_diff = abs_diff
+		var distance = global_position.distance_to(enemy.global_position)
+		var score = abs_diff + (distance * 0.03)
+		
+		if score < best_score:
+			best_score = score
 			best_enemy = enemy
-	if best_enemy and best_diff < deg_to_rad(40):
+	if best_enemy:
 		var target_pos = best_enemy.global_position
 		target_pos.y = global_position.y
 		var dir = (target_pos - global_position).normalized()
 		var angle = atan2(-dir.x, -dir.z)
 		var diff = wrapf(angle - rotation.y, -PI, PI)
-		rotation.y += diff * 4 * delta
+		if abs(diff) < deg_to_rad(60):
+			rotation.y += diff * 4 * delta
 		
 func take_damage():
 	health -= 1

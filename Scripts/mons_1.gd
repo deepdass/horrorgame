@@ -51,6 +51,7 @@ func _ready() -> void:
 	else:
 		m = mesh.instantiate()
 	add_child(m)
+	m.global_position = Vector3(global_position.x,global_position.y,global_position.z -0.14)
 
 	animation_tree = m.get_node("AnimationTree")
 	anim_playback = animation_tree.get("parameters/playback")
