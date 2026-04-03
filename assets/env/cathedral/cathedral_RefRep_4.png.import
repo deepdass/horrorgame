@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://0gq8yh14haol"
 path.s3tc="res://.godot/imported/cathedral_RefRep_4.png-ef224956d9c5b89157822812d86c3ce7.s3tc.ctex"
+path.etc2="res://.godot/imported/cathedral_RefRep_4.png-ef224956d9c5b89157822812d86c3ce7.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/env/cathedral/cathedral_RefRep_4.png"
-dest_files=["res://.godot/imported/cathedral_RefRep_4.png-ef224956d9c5b89157822812d86c3ce7.s3tc.ctex"]
+dest_files=["res://.godot/imported/cathedral_RefRep_4.png-ef224956d9c5b89157822812d86c3ce7.s3tc.ctex", "res://.godot/imported/cathedral_RefRep_4.png-ef224956d9c5b89157822812d86c3ce7.etc2.ctex"]
 
 [params]
 

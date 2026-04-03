@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://d2i54e4j0mt64"
 path.s3tc="res://.godot/imported/Chicken1.TGA.png-072e7f14b84b986438cb031a85e55371.s3tc.ctex"
+path.etc2="res://.godot/imported/Chicken1.TGA.png-072e7f14b84b986438cb031a85e55371.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/3D/ps1-chicken/textures/Chicken1.TGA.png"
-dest_files=["res://.godot/imported/Chicken1.TGA.png-072e7f14b84b986438cb031a85e55371.s3tc.ctex"]
+dest_files=["res://.godot/imported/Chicken1.TGA.png-072e7f14b84b986438cb031a85e55371.s3tc.ctex", "res://.godot/imported/Chicken1.TGA.png-072e7f14b84b986438cb031a85e55371.etc2.ctex"]
 
 [params]
 

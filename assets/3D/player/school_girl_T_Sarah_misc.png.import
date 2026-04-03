@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://dfouvljg0hc7m"
 path.s3tc="res://.godot/imported/school_girl_T_Sarah_misc.png-9df19c967595978bb6bc3413e90c534f.s3tc.ctex"
+path.etc2="res://.godot/imported/school_girl_T_Sarah_misc.png-9df19c967595978bb6bc3413e90c534f.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/3D/player/school_girl_T_Sarah_misc.png"
-dest_files=["res://.godot/imported/school_girl_T_Sarah_misc.png-9df19c967595978bb6bc3413e90c534f.s3tc.ctex"]
+dest_files=["res://.godot/imported/school_girl_T_Sarah_misc.png-9df19c967595978bb6bc3413e90c534f.s3tc.ctex", "res://.godot/imported/school_girl_T_Sarah_misc.png-9df19c967595978bb6bc3413e90c534f.etc2.ctex"]
 
 [params]
 

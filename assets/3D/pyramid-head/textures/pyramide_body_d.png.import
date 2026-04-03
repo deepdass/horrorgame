@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://bai1vg0sc2chi"
 path.s3tc="res://.godot/imported/pyramide_body_d.png-ff31ab9f50df5289fcf8a7131af7f06a.s3tc.ctex"
+path.etc2="res://.godot/imported/pyramide_body_d.png-ff31ab9f50df5289fcf8a7131af7f06a.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/3D/pyramid-head/textures/pyramide_body_d.png"
-dest_files=["res://.godot/imported/pyramide_body_d.png-ff31ab9f50df5289fcf8a7131af7f06a.s3tc.ctex"]
+dest_files=["res://.godot/imported/pyramide_body_d.png-ff31ab9f50df5289fcf8a7131af7f06a.s3tc.ctex", "res://.godot/imported/pyramide_body_d.png-ff31ab9f50df5289fcf8a7131af7f06a.etc2.ctex"]
 
 [params]
 

@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://b8dskwu1f3j0f"
 path.s3tc="res://.godot/imported/heather_stop_motion_backpack.png-be018450d3bf05f5dbf7bcef13b2ae15.s3tc.ctex"
+path.etc2="res://.godot/imported/heather_stop_motion_backpack.png-be018450d3bf05f5dbf7bcef13b2ae15.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/3D/heather/heather_stop_motion/heather_stop_motion_backpack.png"
-dest_files=["res://.godot/imported/heather_stop_motion_backpack.png-be018450d3bf05f5dbf7bcef13b2ae15.s3tc.ctex"]
+dest_files=["res://.godot/imported/heather_stop_motion_backpack.png-be018450d3bf05f5dbf7bcef13b2ae15.s3tc.ctex", "res://.godot/imported/heather_stop_motion_backpack.png-be018450d3bf05f5dbf7bcef13b2ae15.etc2.ctex"]
 
 [params]
 

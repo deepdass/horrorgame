@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://bgajr7ngixuqn"
 path.s3tc="res://.godot/imported/heather_stop_motion_face_baseColor.png-80043dafcd169db952c0f5c1a09cc44c.s3tc.ctex"
+path.etc2="res://.godot/imported/heather_stop_motion_face_baseColor.png-80043dafcd169db952c0f5c1a09cc44c.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/3D/heather/heather_stop_motion/heather_stop_motion_face_baseColor.png"
-dest_files=["res://.godot/imported/heather_stop_motion_face_baseColor.png-80043dafcd169db952c0f5c1a09cc44c.s3tc.ctex"]
+dest_files=["res://.godot/imported/heather_stop_motion_face_baseColor.png-80043dafcd169db952c0f5c1a09cc44c.s3tc.ctex", "res://.godot/imported/heather_stop_motion_face_baseColor.png-80043dafcd169db952c0f5c1a09cc44c.etc2.ctex"]
 
 [params]
 

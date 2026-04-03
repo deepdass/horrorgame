@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://cn4c5ulj7r3xa"
 path.s3tc="res://.godot/imported/heather_jeans_normal.png-437884bbe02b3c31fecc44e8997f07b5.s3tc.ctex"
+path.etc2="res://.godot/imported/heather_jeans_normal.png-437884bbe02b3c31fecc44e8997f07b5.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://assets/3D/heather/heather_jeans_normal.png"
-dest_files=["res://.godot/imported/heather_jeans_normal.png-437884bbe02b3c31fecc44e8997f07b5.s3tc.ctex"]
+dest_files=["res://.godot/imported/heather_jeans_normal.png-437884bbe02b3c31fecc44e8997f07b5.s3tc.ctex", "res://.godot/imported/heather_jeans_normal.png-437884bbe02b3c31fecc44e8997f07b5.etc2.ctex"]
 
 [params]
 

@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://bsi0cxq6t0pb2"
 path.s3tc="res://.godot/imported/RefRep.15_baseColor.png-1e138ba4774968a17627de59a8891ed8.s3tc.ctex"
+path.etc2="res://.godot/imported/RefRep.15_baseColor.png-1e138ba4774968a17627de59a8891ed8.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/env/silent_hill_3_cathedral/textures/RefRep.15_baseColor.png"
-dest_files=["res://.godot/imported/RefRep.15_baseColor.png-1e138ba4774968a17627de59a8891ed8.s3tc.ctex"]
+dest_files=["res://.godot/imported/RefRep.15_baseColor.png-1e138ba4774968a17627de59a8891ed8.s3tc.ctex", "res://.godot/imported/RefRep.15_baseColor.png-1e138ba4774968a17627de59a8891ed8.etc2.ctex"]
 
 [params]
 
