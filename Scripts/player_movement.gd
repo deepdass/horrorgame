@@ -150,7 +150,7 @@ func walk(delta):
 					push_dir.y = 0
 					push_dir = push_dir.normalized()
 	
-	if Input.is_action_just_released("aim"):
+	if Input.is_action_just_released("aim") and allreadyfix:
 		pistol.visible = false
 		ray_cast_3d.enabled = false
 		allreadyfix = false
@@ -204,11 +204,15 @@ func calnearst_enemy() -> void:
 		look_at(Vector3(nearestEnemy.global_position.x, global_position.y, nearestEnemy.global_position.z), Vector3.UP)
 
 func aim_assist(delta):
+	var turn_dir = Input.get_axis("turn_left", "turn_right")
+	if abs(turn_dir) > 0.05:
+		return
+	
 	var best_enemy : CharacterBody3D
 	var best_score : float = INF
 		
 	for enemy : CharacterBody3D in allmons.get_children():
-		
+			
 		var target_pos = enemy.global_position
 		target_pos.y = global_position.y
 		var dir = (target_pos - global_position).normalized()
@@ -216,7 +220,7 @@ func aim_assist(delta):
 		var diff = wrapf(angle - rotation.y, -PI, PI)
 		var abs_diff = abs(diff)
 		var distance = global_position.distance_to(enemy.global_position)
-		var score = abs_diff + (distance * 0.03)
+		var score = abs_diff + (distance * 0.02)
 		
 		if score < best_score:
 			best_score = score
@@ -228,7 +232,7 @@ func aim_assist(delta):
 		var angle = atan2(-dir.x, -dir.z)
 		var diff = wrapf(angle - rotation.y, -PI, PI)
 		if abs(diff) < deg_to_rad(60):
-			rotation.y += diff * 4 * delta
+			rotation.y += diff * 5 * delta
 		
 func take_damage():
 	health -= 1
