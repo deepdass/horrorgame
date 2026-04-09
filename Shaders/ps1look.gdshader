@@ -2,8 +2,6 @@ shader_type canvas_item;
 
 uniform sampler2D screen_tex: hint_screen_texture, repeat_disable, filter_nearest; 
 
-uniform vec2 viewport_size = vec2(320,240);
-
 const float dither[16] = float[16](
 	-4.0,  0.0, -3.0,  1.0,
 	 2.0, -2.0,  3.0, -1.0,

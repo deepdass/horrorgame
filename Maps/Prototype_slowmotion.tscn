@@ -247,7 +247,6 @@ size = Vector3(0.9584198, 1, 0.6633301)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7y03w"]
 shader = ExtResource("26_1bxo3")
-shader_parameter/viewport_size = Vector2(320, 240)
 
 [node name="world" type="Node3D" unique_id=1752372244]
 
