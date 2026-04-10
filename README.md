@@ -1,9 +1,11 @@
+# RetroHorror
 ## Idea 
-A retro horror game with unique visuals thats use shader techanics like Posterization (like [this](https://www.imgonline.com.ua/eng/posterization.php)) and pixelation like seen in the ps1 games and simulating other limitations they had 
-<br>possibly a psychological horror game but have to learn about it like what make things scary and by what scares me 
-<br>gonna be first person and things of the setting to be a cave (had this idea for a long time) as could be a good setting for psychological horror but not sure how the Posterization effect will work in the setting
+A retro horror game with unique visuals similar to ps1 games and simulating other limitations they had
+<br>and experimented with a different prespective and controls inspired by original Resident Evil and Silent Hill games
 
-# Retro look
+https://github.com/user-attachments/assets/2394da48-69ad-43c9-8a89-f261b77b139c
+
+# Retro look (Guide)
 Heya, this is a guide and my understanding of how you can recreate the aesthetic of the PlayStation 1 era graphics inside Godot, from having limited colors, jitter effect of pixels, lower resolution that gave it the characteristics aesthetic which arose due the technical limitations of the hardware, but you may ask "why, we got better hardware no" but what the fun in that
 
 ## Resolution
@@ -147,7 +149,7 @@ Affine texture mapping - gives disported texture mapping, but most of the game t
 
 ## fun facts
 capcom use to have their resident evil games with fixed camera not just because of technical limitations but also as they wanted to have prerendered background for immersion and have cinematography that changes the mood
-<br>these game use to have only one light source at a time and derived most of the light from AO maps
+<br>these game use to have only one light source at a time and derived most of the light from AO maps (prebaked lighting from real world places)
 
 ## Resources
 https://www.hawkjames.com/indiedev/update/2022/06/02/rendering-ps1.html
@@ -156,14 +158,14 @@ https://www.hawkjames.com/indiedev/update/2022/06/02/rendering-ps1.html
 <br>Images from [wikipedia](https://www.wikipedia.org/)
 
 # bonus 
-This part contains a animation trick used mainly in 2D looking 3D animations like used in Spider-Man: Across the Spider-Verse which is Animating on 3s or 2s which is conceptually similar to stop motion animation, and to some extent you can use this in your retro game for a unique animation style
+This part contains an animation trick used mainly in 2D looking 3D animations like used in Spider-Man: Across the Spider-Verse which is Animating on 3s or 2s which is conceptually similar to stop motion animation, and to some extent you can use this in your retro game for a unique animation style
 <br>so what does this mean, for example you are animating on 3s it just means the next animation frame will be after 3 frames of that constant frame, so no in-betweens or transitions frame
 <br>2s - 2 constant frame
 <br>3s - 3 constant frame and so on
 
 simple steps to make any animation into a 3 step animation 
-1. Select a animation, Which can be done by selecting the fbx model which has the animation
-2. Remove every 2 keyframes after one (i have a custom script which does the whole process)
+1. Select an animation, Which can be done by selecting the fbx model which has the animation
+2. Remove every 2 keyframes after one (I have a custom script which does the whole process)
 3. Then select all the left keyframes with A key then press T key and set the interpolation to constant
 <br>And yeah that's it, you have a 3 step animation or 3s 
 
