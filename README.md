@@ -3,83 +3,29 @@ A retro horror game with unique visuals thats use shader techanics like Posteriz
 <br>possibly a psychological horror game but have to learn about it like what make things scary and by what scares me 
 <br>gonna be first person and things of the setting to be a cave (had this idea for a long time) as could be a good setting for psychological horror but not sure how the Posterization effect will work in the setting
 
-
 # Retro look
-
-Heya this is a guide and my understanding of how you can recreate the aesthetic of the PlayStation 1 era graphics inside Godot, from having limited colors, jitter effect of pixels, lower resolution that gave it the characteristics aesthetic which arose due the techanical limitation of the hardware, but you may ask "why, we got better hardware no" but what the fun in that
+Heya, this is a guide and my understanding of how you can recreate the aesthetic of the PlayStation 1 era graphics inside Godot, from having limited colors, jitter effect of pixels, lower resolution that gave it the characteristics aesthetic which arose due the technical limitations of the hardware, but you may ask "why, we got better hardware no" but what the fun in that
 
 ## Resolution
-First lets have the resolution be lower than you are probably use too
+First lets have the resolution be lower than you are probably use to
 
-ok so first go to Project -> project settings -> display -> window or just search viewport width inside project settings 
+Ok, so first go to Project -> Project Settings -> Display -> Window or just search viewport width inside project settings 
 <br>Then change the viewport width and height to a lower 4:3 resolution for example
 <br>height - 320 or 640
 <br>width - 240 or 480
-<br>if you want you can go higher that these but you start to lose the pixelation look (640×480 worked the best on my 1080p display)
+<br>If you want you can go higher that these, but you start to lose the pixelation look (640×480 worked the best on my 1080p display)
 
-Now if you play the game you will see that the game window is so small to fix that, 
-<br>again go to Project -> project settings -> display -> window -> stretch and change the mode to viewport, so what it does is that it upscales the game to your viewport resolution
+Now if you play the game, you will see that the game window is so small. to fix that, 
+<br>Again go to Project -> Project settings -> Display -> Window -> Stretch and change the mode to viewport, so what it does is that it upscales the game to your viewport resolution
 
 few other changes we have to make in project settings
-<br>1. rendering/textures/canvas_textures/default_texture_filter = nearest // this changes how the textures are scaled, in our case gives it the pixelation look
-<br>2. rendering/shading/overrides/force_vertex_shading = true // this forces the lighting to be at vertex level rather that the default pixel to pixel which give smooth gradient
+<br>1. rendering/textures/canvas_textures/default_texture_filter = nearest ## this changes how the textures are scaled, in our case gives it the pixelation look
+<br>2. rendering/shading/overrides/force_vertex_shading = true ## this forces the lighting to be at vertex level rather that the default pixel to pixel which give smooth gradient and we don't want that. Right one is pixel shading and left one is vertex shading
+
+![vertex_shading](https://github.com/user-attachments/assets/14ddb1b6-2233-4e05-97b4-b9dc099cd12e)
+
+exmaple of vertex shading
 <br>and now just save and restart
-
-## Jitter effect
-in my opinion this effect characterizes ps1 games the best, the jitter effect
-<br>so what is it, its the effect when polygons snap to pixels at the rasterization stage of 3D rendering and give the polygon a jitter effect
-<br>why does this happen, The ps1 hardware rasterizer was unable to render polygons at a sub pixel level due to lack of precision to calculate positions between pixels so it only worked with integers and rounder off the decimals, which caused them to appear snapping at lower resolution (if only it could render at higher resolution it would not be that evident), modern gpus can accurately calculate to sub pixel level and can render at higer res 
-
-### Recreate
-ok so for this you have to add material override for every material you have on a model and for every model as we have to individually edit the models vertices
-<br> you could use a script to do this for you at runtime if you have a lot of models which would be easier, or using a editor tool
-
-The material override will be a shader material, you will see after this the materials are gone form you model cause the material is overriding to with the shader material so first we have to assign the textures
-
-#### code
-```
-shader_type spatial;
-render_mode blend_mix,
-cull_back,
-depth_prepass_alpha,
-shadows_disabled,
-specular_disabled, // these just strips the modern rendering features
-vertex_lighting; 
-
-uniform sampler2D base_tex: source_color ,filter_nearest; // Its a parameter in the shader for the material base color
-uniform vec2 texture_tile = vec2(1,1); // tiles the texture
-uniform vec2 texture_offset = vec2(0,0); // offset if needed
-
-uniform bool snap_enabled = true; // should have jitter effect?
-uniform float snap_res : hint_range(60.0, 480.0, 1) = 128; //smaller value more jitter
-                                                           // fake resolution for vertex positions
-
-void vertex() { //runs for every vertex in a mesh and lets you manipulate it
-// we are reversing the modern rendering pipeline so we can inject our code into it
-	vec4 view_space_pos = MODELVIEW_MATRIX * vec4(VERTEX, 1.0); // object space to view space
-	vec4 clip_space_pos = PROJECTION_MATRIX * view_space_pos; // view space to clip space
-	
-	if (snap_enabled){
-		vec2 ndc = clip_space_pos.xy / clip_space_pos.w;
-		ndc = round(ndc * snap_res) / snap_res;
-		clip_space_pos.xy = ndc * clip_space_pos.w;
-	}
-	POSITION = clip_space_pos;
-    // clip_space_pos.xy / clip_space_pos.w; converts it into NDC(Normalized Device Coordinates, the –1 to +1 screen space) by dividing it by the forth direction of the modern clip space w
-    // round(ndc * snap_res) / snap_res; locks the vertex to one of the point in the fake res across the screen
-    // ndc * clip_space_pos.w; converts back to clip space
-    // POSITION = clip_space_pos; sets the postion
-}
-
-void fragment() { // in fragment shader we are only applying back the textures
-	vec4 base = texture(base_tex,UV * texture_tile + texture_offset);
-	ALBEDO = base.rgb;
-	ALPHA = base.a;
-}
-```
-[check this out](https://www.youtube.com/watch?v=y84bG19sg6U) for better explanation on the ndc part
-
-tweak and experiment with the shader paramaters to fit with what you want, apply the base texture there so the texture is visible 
 
 ## Colors
 did you know ps1 game only used 32,768 colors or less to todays standard 16,777,216 color or even 281,474,976,710,656 with 16 bit for just rgb values even more with rgba textures for that
@@ -130,23 +76,84 @@ void fragment() { // fragment func lets you manipulation each pixel
 }
 ```
 
-what is dithering, it is a technique which involves intentional application of noise in images, video or even audio, in image it is used to simulate the sense of having more colors then there actually is (the eyes creates its own color), this is being used till now especially in mobile games and was used in ps1 game to hide this
+what is dithering?, it is a technique which involves intentional application of noise in images, video or even audio, in image it is used to simulate the sense of having more colors then there actually is (the eyes creates its own color), this is being used till now especially in mobile games and was used in ps1 game to hide this
 <br>well why do we use dither isn't 32768 a lot a color no, I thought that but I was wrong even with these many color you could see color banding (not a smooth gradent between colors)
+
+<img width="418" height="303" alt="Colour_banding_example01" src="https://github.com/user-attachments/assets/8123fd45-b9db-41b4-b00d-ace11ce7fe3f" />
 
 Also if you have a old monitor the dithering effect looks so good, try it, 
 <br>also you could probably use a crt filter, it would make it cooler and would really give that retro feel 
 
+## Jitter effect
+In my opinion this effect characterizes PS1 games the best, the jitter effect
+<br>So what is it?, its the effect when polygons snap to pixels at the rasterization stage of 3D rendering and give the polygon a jitter effect
+<br>Why does this happen?, The ps1 hardware rasterizer was unable to render polygons at a sub pixel level due to lack of precision to calculate positions between pixels so it only worked with integers and rounder off the decimals, which caused them to appear snapping at lower resolution (if only it could render at higher resolution it would not be that evident), modern gpus can accurately calculate to sub pixel level and can render at higer res 
+
+### Recreate
+Ok so, for this you have to add material override for every material you have on a model and for every model as we have to individually edit the models vertices
+<br> you could use a script to do this for you at runtime if you have a lot of models which would be easier, or using a editor tool
+
+The material override will be a shader material, you will see after this the materials are gone form you model cause the material is overridden with the shader material
+
+#### code
+```
+shader_type spatial;
+render_mode blend_mix,
+cull_back,
+depth_prepass_alpha,
+shadows_disabled,
+specular_disabled, // these just strips the modern rendering features
+vertex_lighting; 
+
+uniform sampler2D base_tex: source_color ,filter_nearest; // Its a parameter in the shader for the material base color
+uniform vec2 texture_tile = vec2(1,1); // tiles the texture
+uniform vec2 texture_offset = vec2(0,0); // offset if needed
+
+uniform bool snap_enabled = true; // should have jitter effect?
+uniform float snap_res : hint_range(60.0, 480.0, 1) = 128; //smaller value more jitter
+                                                           // fake resolution for vertex positions
+
+void vertex() { //runs for every vertex in a mesh and lets you manipulate it
+// we are reversing the modern rendering pipeline so we can inject our code into it
+	vec4 view_space_pos = MODELVIEW_MATRIX * vec4(VERTEX, 1.0); // object space to view space
+	vec4 clip_space_pos = PROJECTION_MATRIX * view_space_pos; // view space to clip space
+	
+	if (snap_enabled){
+		vec2 ndc = clip_space_pos.xy / clip_space_pos.w;
+		ndc = round(ndc * snap_res) / snap_res;
+		clip_space_pos.xy = ndc * clip_space_pos.w;
+	}
+	POSITION = clip_space_pos;
+    // clip_space_pos.xy / clip_space_pos.w; converts it into NDC(Normalized Device Coordinates, the –1 to +1 screen space) by dividing it by the forth direction of the modern clip space w
+    // round(ndc * snap_res) / snap_res; locks the vertex to one of the point in the fake res across the screen
+    // ndc * clip_space_pos.w; converts back to clip space
+    // POSITION = clip_space_pos; sets the postion
+}
+
+void fragment() { // in fragment shader we are only applying back the textures
+	vec4 base = texture(base_tex,UV * texture_tile + texture_offset);
+	ALBEDO = base.rgb;
+	ALPHA = base.a;
+}
+```
+[check this out](https://www.youtube.com/watch?v=y84bG19sg6U) for better explanation on the ndc part
+
+tweak and experiment with the shader paramaters to fit with what you want, apply the base texture there so the texture is visible 
+
 ## more you could add
 Affine texture mapping - gives disported texture mapping, but most of the game tried to hide this using vertex color rather than textures, having high density models, fixed camera angles
 
+<img width="960" height="404" alt="Perspective_correct_texture_mapping svg" src="https://github.com/user-attachments/assets/679646bc-7dd3-44ea-8da2-f855bdc00ed9" />
+
 ## fun facts
-capcom use to have their resident evil games with fixed camera not just because of techanical problems but also as they wanted to have prerendered background for immersion and have cinematography that changes the mood
+capcom use to have their resident evil games with fixed camera not just because of technical limitations but also as they wanted to have prerendered background for immersion and have cinematography that changes the mood
 <br>these game use to have only one light source at a time and derived most of the light from AO maps
 
 ## Resources
 https://www.hawkjames.com/indiedev/update/2022/06/02/rendering-ps1.html
 <br>https://www.youtube.com/watch?v=y84bG19sg6U
 <br>https://www.youtube.com/watch?v=VkmTr5WBjF8&t=718s
+<br>Images from [wikipedia](https://www.wikipedia.org/)
 
 # bonus 
 This part contains a animation trick used mainly in 2D looking 3D animations like used in Spider-Man: Across the Spider-Verse which is Animating on 3s or 2s which is conceptually similar to stop motion animation, and to some extent you can use this in your retro game for a unique animation style
