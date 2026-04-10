@@ -150,6 +150,8 @@ Affine texture mapping - gives disported texture mapping, but most of the game t
 ## fun facts
 capcom use to have their resident evil games with fixed camera not just because of technical limitations but also as they wanted to have prerendered background for immersion and have cinematography that changes the mood
 <br>these game use to have only one light source at a time and derived most of the light from AO maps (prebaked lighting from real world places)
+<br>Silent Hill iconic fog was originally a workaround for technical limitations
+<br>PS1 GPU was a 2D renderer
 
 ## Resources
 https://www.hawkjames.com/indiedev/update/2022/06/02/rendering-ps1.html
@@ -163,7 +165,12 @@ This part contains an animation trick used mainly in 2D looking 3D animations li
 <br>2s - 2 constant frame
 <br>3s - 3 constant frame and so on
 
-simple steps to make any animation into a 3 step animation 
+https://github.com/user-attachments/assets/b27c0d1a-54f2-4cc5-9ef9-87d9bdd8989e
+
+<img width="1587" height="535" alt="Screenshot 2026-04-10 212652" src="https://github.com/user-attachments/assets/8ca8b5e6-46ae-4ac1-a5ee-556cda544c2f" />
+
+Example of 3s animation and what the graph editor should look like
+<br>simple steps to make any animation into a 3 step animation 
 1. Select an animation, Which can be done by selecting the fbx model which has the animation
 2. Remove every 2 keyframes after one (I have a custom script which does the whole process)
 3. Then select all the left keyframes with A key then press T key and set the interpolation to constant
