@@ -150,6 +150,8 @@ Affine texture mapping - gives disported texture mapping, but most of the game t
 ## fun facts
 capcom use to have their resident evil games with fixed camera not just because of technical limitations but also as they wanted to have prerendered background for immersion and have cinematography that changes the mood
 <br>these game use to have only one light source at a time and derived most of the light from AO maps (prebaked lighting from real world places)
+<br>Silent Hill iconic fog was originally a workaround for technical limitations
+<br>PS1 GPU was a 2D renderer
 
 ## Resources
 https://www.hawkjames.com/indiedev/update/2022/06/02/rendering-ps1.html
