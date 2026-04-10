@@ -22,11 +22,11 @@ Now if you play the game, you will see that the game window is so small. to fix 
 
 few other changes we have to make in project settings
 <br>1. rendering/textures/canvas_textures/default_texture_filter = nearest ## this changes how the textures are scaled, in our case gives it the pixelation look
-<br>2. rendering/shading/overrides/force_vertex_shading = true ## this forces the lighting to be at vertex level rather that the default pixel to pixel which give smooth gradient and we don't want that. Right one is pixel shading and left one is vertex shading
+<br>2. rendering/shading/overrides/force_vertex_shading = true ## this forces the lighting to be at vertex level rather that the default pixel to pixel which give smooth gradient and we don't want that. 
 
 ![vertex_shading](https://github.com/user-attachments/assets/14ddb1b6-2233-4e05-97b4-b9dc099cd12e)
 
-exmaple of vertex shading
+exmaple of vertex shading. Right one is pixel shading and left one is vertex shading
 <br>and now just save and restart
 
 ## Colors
