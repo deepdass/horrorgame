@@ -89,6 +89,9 @@ Also if you have a old monitor the dithering effect looks so good, try it,
 ## Jitter effect
 In my opinion this effect characterizes PS1 games the best, the jitter effect
 <br>So what is it?, its the effect when polygons snap to pixels at the rasterization stage of 3D rendering and give the polygon a jitter effect
+
+https://github.com/user-attachments/assets/a804e0e7-0480-4a83-9c52-59689623d081
+
 <br>Why does this happen?, The ps1 hardware rasterizer was unable to render polygons at a sub pixel level due to lack of precision to calculate positions between pixels so it only worked with integers and rounder off the decimals, which caused them to appear snapping at lower resolution (if only it could render at higher resolution it would not be that evident), modern gpus can accurately calculate to sub pixel level and can render at higer res 
 
 ### Recreate
