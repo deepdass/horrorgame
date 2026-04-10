@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://b5pmw73eeh40q"]
+
+[ext_resource type="PackedScene" uid="uid://sp4gcsv6b8rr" path="res://assets/3D/hallway/hallway.glb" id="1_48bbx"]
+[ext_resource type="Script" uid="uid://b3v5i62lcncdb" path="res://Scripts/managers/gamemode.gd" id="2_op6df"]
+[ext_resource type="Environment" uid="uid://b20egbo36dye7" path="res://new_environment.tres" id="3_uesaw"]
+[ext_resource type="Shader" uid="uid://bptckj33b1dsn" path="res://Shaders/ps1look.gdshader" id="4_uesaw"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6xpsr"]
+shader = ExtResource("4_uesaw")
+
+[node name="Node3D" type="Node3D" unique_id=1170327049]
+
+[node name="hallway2" parent="." unique_id=1437090957 instance=ExtResource("1_48bbx")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 0)
+
+[node name="gamemode" type="Node" parent="hallway2" unique_id=1353373721]
+script = ExtResource("2_op6df")
+
+[node name="lighting" type="Node" parent="hallway2" unique_id=2055743706]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="hallway2/lighting" unique_id=957215686]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+light_energy = 0.04
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="hallway2/lighting" unique_id=593190464]
+environment = ExtResource("3_uesaw")
+
+[node name="ReflectionProbe" type="ReflectionProbe" parent="hallway2/lighting" unique_id=1653676060]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.877594, 6.0876465, -54.76709)
+size = Vector3(153.14606, 32.175293, 129.53418)
+interior = true
+
+[node name="corpses" type="Node3D" parent="hallway2" unique_id=1850441822]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="hallway2" unique_id=1911602716]
+
+[node name="ColorRect" type="ColorRect" parent="hallway2/CanvasLayer" unique_id=1167672989]
+material = SubResource("ShaderMaterial_6xpsr")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

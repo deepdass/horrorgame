@@ -37,6 +37,7 @@ agent_radius = 0.25
 render_priority = 0
 shader = ExtResource("5_yi55j")
 shader_parameter/texture_tile = Vector2(1, 1)
+shader_parameter/texture_offset = Vector2(0, 0)
 shader_parameter/snap_enabled = true
 shader_parameter/snap_res = 128.0
 
@@ -44,6 +45,7 @@ shader_parameter/snap_res = 128.0
 render_priority = 0
 shader = ExtResource("5_yi55j")
 shader_parameter/texture_tile = Vector2(1, 1)
+shader_parameter/texture_offset = Vector2(0, 0)
 shader_parameter/snap_enabled = true
 shader_parameter/snap_res = 128.0
 
@@ -83,6 +85,7 @@ render_priority = 0
 shader = ExtResource("5_yi55j")
 shader_parameter/base_tex = ExtResource("10_tllh5")
 shader_parameter/texture_tile = Vector2(1, 1)
+shader_parameter/texture_offset = Vector2(0, 0)
 shader_parameter/snap_enabled = false
 shader_parameter/snap_res = 256.0
 
@@ -91,6 +94,7 @@ render_priority = 0
 shader = ExtResource("5_yi55j")
 shader_parameter/base_tex = ExtResource("11_qs540")
 shader_parameter/texture_tile = Vector2(1, 1)
+shader_parameter/texture_offset = Vector2(0, 0)
 shader_parameter/snap_enabled = false
 shader_parameter/snap_res = 160.0
 
@@ -99,6 +103,7 @@ render_priority = 0
 shader = ExtResource("5_yi55j")
 shader_parameter/base_tex = ExtResource("12_yj5vl")
 shader_parameter/texture_tile = Vector2(1, 1)
+shader_parameter/texture_offset = Vector2(0, 0)
 shader_parameter/snap_enabled = false
 shader_parameter/snap_res = 256.0
 
@@ -107,6 +112,7 @@ render_priority = 0
 shader = ExtResource("5_yi55j")
 shader_parameter/base_tex = ExtResource("13_nyqs4")
 shader_parameter/texture_tile = Vector2(1, 1)
+shader_parameter/texture_offset = Vector2(0, 0)
 shader_parameter/snap_enabled = false
 shader_parameter/snap_res = 256.0
 
@@ -115,6 +121,7 @@ render_priority = 0
 shader = ExtResource("5_yi55j")
 shader_parameter/base_tex = ExtResource("14_l0qwv")
 shader_parameter/texture_tile = Vector2(1, 1)
+shader_parameter/texture_offset = Vector2(0, 0)
 shader_parameter/snap_enabled = false
 shader_parameter/snap_res = 256.0
 
@@ -123,6 +130,7 @@ render_priority = 0
 shader = ExtResource("5_yi55j")
 shader_parameter/base_tex = ExtResource("15_8wxf2")
 shader_parameter/texture_tile = Vector2(1, 1)
+shader_parameter/texture_offset = Vector2(0, 0)
 shader_parameter/snap_enabled = false
 shader_parameter/snap_res = 256.0
 
@@ -131,6 +139,7 @@ render_priority = 0
 shader = ExtResource("5_yi55j")
 shader_parameter/base_tex = ExtResource("16_l88py")
 shader_parameter/texture_tile = Vector2(1, 1)
+shader_parameter/texture_offset = Vector2(0, 0)
 shader_parameter/snap_enabled = false
 shader_parameter/snap_res = 256.0
 
@@ -139,6 +148,7 @@ render_priority = 0
 shader = ExtResource("5_yi55j")
 shader_parameter/base_tex = ExtResource("17_v7mc6")
 shader_parameter/texture_tile = Vector2(1, 1)
+shader_parameter/texture_offset = Vector2(0, 0)
 shader_parameter/snap_enabled = false
 shader_parameter/snap_res = 256.0
 
@@ -147,6 +157,7 @@ render_priority = 0
 shader = ExtResource("5_yi55j")
 shader_parameter/base_tex = ExtResource("18_5j2pe")
 shader_parameter/texture_tile = Vector2(1, 1)
+shader_parameter/texture_offset = Vector2(0, 0)
 shader_parameter/snap_enabled = false
 shader_parameter/snap_res = 256.0
 
@@ -155,6 +166,7 @@ render_priority = 0
 shader = ExtResource("5_yi55j")
 shader_parameter/base_tex = ExtResource("19_y85mv")
 shader_parameter/texture_tile = Vector2(1, 1)
+shader_parameter/texture_offset = Vector2(0, 0)
 shader_parameter/snap_enabled = false
 shader_parameter/snap_res = 256.0
 
@@ -163,6 +175,7 @@ render_priority = 0
 shader = ExtResource("5_yi55j")
 shader_parameter/base_tex = ExtResource("20_v612b")
 shader_parameter/texture_tile = Vector2(1, 1)
+shader_parameter/texture_offset = Vector2(0, 0)
 shader_parameter/snap_enabled = false
 shader_parameter/snap_res = 256.0
 
@@ -171,6 +184,7 @@ render_priority = 0
 shader = ExtResource("5_yi55j")
 shader_parameter/base_tex = ExtResource("4_ageuk")
 shader_parameter/texture_tile = Vector2(1, 1)
+shader_parameter/texture_offset = Vector2(0, 0)
 shader_parameter/snap_enabled = true
 shader_parameter/snap_res = 128.0
 
@@ -179,6 +193,7 @@ render_priority = 0
 shader = ExtResource("5_yi55j")
 shader_parameter/base_tex = ExtResource("9_mralm")
 shader_parameter/texture_tile = Vector2(1, 1)
+shader_parameter/texture_offset = Vector2(0, 0)
 shader_parameter/snap_enabled = true
 shader_parameter/snap_res = 128.0
 
@@ -235,7 +250,6 @@ size = Vector3(0.9584198, 1, 0.6633301)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qs540"]
 shader = ExtResource("25_btqht")
-shader_parameter/viewport_size = Vector2(320, 240)
 
 [node name="world" type="Node3D" unique_id=1752372244]
 
