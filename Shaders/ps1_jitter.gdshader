@@ -8,6 +8,7 @@ vertex_lighting;
 
 uniform sampler2D base_tex: source_color ,filter_nearest;
 uniform vec2 texture_tile = vec2(1,1);
+uniform vec2 texture_offset = vec2(0,0);
 
 uniform bool snap_enabled = true;
 uniform float snap_res : hint_range(60.0, 480.0, 1) = 128; //smaller value more jitter
@@ -25,7 +26,7 @@ void vertex() {
 }
 
 void fragment() {
-	vec4 base = texture(base_tex,UV * texture_tile);
+	vec4 base = texture(base_tex,UV * texture_tile + texture_offset);
 	ALBEDO = base.rgb;
 	ALPHA = base.a;
 	
